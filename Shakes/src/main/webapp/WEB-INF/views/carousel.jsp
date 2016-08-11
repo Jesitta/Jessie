@@ -53,8 +53,8 @@
 
 
 <div class="container-fluid">
-<div id="Carousel" class="carousel slide carousel-fade " style="padding-left:30%; padding-top: 70px; width:100 %">
-        <ol class="carousel-indicators" style="padding-left:60%;  width:100 %">
+<div id="Carousel" class="carousel slide carousel-fade" style="padding-left:30%; padding-top: 70px; width:100%">
+        <ol class="carousel-indicators"style="padding-left:60%;width:100%" >
             <li data-target="Carousel" data-slide-to="0" class="active"></li>
             <li data-target="Carousel" data-slide-to="1"></li>
             <li data-target="Carousel" data-slide-to="2"></li>
@@ -66,6 +66,7 @@
             
             <li data-target="Carousel" data-slide-to="8"></li>
         </ol>
+        
 
         <div class="carousel-inner">
            <div class="item ">
@@ -93,6 +94,7 @@
              <img src="resources/images/slide8.png" class="img-responsive">
             </div>                    
         </div>
+        
 </div>
 </div>   
 

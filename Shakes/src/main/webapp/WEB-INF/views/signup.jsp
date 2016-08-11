@@ -6,43 +6,56 @@
 <head>
 <meta charset="UTF-8">
 <title>signuppage</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </head>
 <body>
-<%@include file="newmain.jsp" %>
-<div class="container">
-  <h2>SIGNUP</h2>
-<form:form action="signup" id="signup" method="post" commandName="userTable" autocomplete="on">
 
-  
-    <div class="form-group">
-      <label for="email">Name</label>
-      <form:input path="name" class="form-control" id="name" placeholder="Enter name"/>
-    </div>
-    
-    <div class="form-group">
-      <label for="email">UserID</label>
-      <form:input path="userid" class="form-control" id="userid" placeholder="Enter userid"/>
-    </div>
-    <div class="form-group">
-      <label for="pwd">Password</label>
-      <form:password path="password" class="form-control" id="password" placeholder="Enter password"/>
-    </div>
-     <div class="form-group">
-      <label for="email">Address</label>
-      <form:input path="address" class="form-control" id="address" placeholder="Enter address"/>
-    </div>
-    <div class="form-group">
-      <label for="email">Mobilenumber</label>
-      <form:input path="mobilenumber" class="form-control" id="mobilenumber" placeholder="Enter mobilenumber"/>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-    
-  </form:form>
-</div>
+	<div class="container">
+		<h2>SIGNUP</h2>
+		<form:form action="signup" id="signup" method="post"
+			commandName="userTable">
+
+
+			<div class="form-group">
+				<label for="email">Name</label>
+				<form:input path="name" class="form-control" title="Example:xxxxx"
+					pattern="^[a-zA-Z]+$" placeholder="Enter name" required="true" />
+			</div>
+
+			<div class="form-group">
+				<label for="userid">UserID</label>
+				<form:input path="userid" class="form-control"
+					title="Example:xxxxx124" pattern="^[a-zA-Z|0-9]+$"
+					placeholder="Enter userid" required="true" />
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<form:password path="password" class="form-control" pattern=".{5,}"
+					title="Five or more characters" placeholder="Enter password"
+					required="true" />
+			</div>
+			<div class="form-group">
+				<label for="address">Address</label>
+				<form:input path="address" class="form-control"
+					placeholder="Enter address" required="true" />
+			</div>
+			<div class="form-group">
+				<label for="mobilenumber">Mobilenumber</label>
+				<form:input path="mobilenumber" class="form-control"
+					pattern="[7|8|9][0-9]{9}"
+					title="Phone number should start with 7-9 and remaing 9 digit with 0-9"
+					placeholder="Enter mobilenumber" required="true" />
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+
+		</form:form>
+	</div>
 
 	<%-- <table>
 			<tr>
@@ -82,4 +95,4 @@
 		</table>
 		</form:form> --%>
 </body>
-</html>                                		
+</html>

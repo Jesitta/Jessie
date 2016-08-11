@@ -1,9 +1,10 @@
 package com.niit.cakepark.controller;
 
 
-import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,9 +32,9 @@ public class CategoryController {
 	@Autowired
 	private  CategoryTable categoryTable;
 	
-	@RequestMapping(value ="category",method=RequestMethod.GET)
+	@RequestMapping(value ="/category",method=RequestMethod.GET)
 	public ModelAndView category(){
-		ModelAndView modelAndView = new ModelAndView("category");
+		ModelAndView modelAndView = new ModelAndView("/category");
 		modelAndView.addObject("categoryTable", categoryTable);  
 		modelAndView.addObject("addcategory", "Add Category");
 		
@@ -42,21 +43,22 @@ public class CategoryController {
 	
 
 
-	@RequestMapping(value ="view",method=RequestMethod.POST)
+	@RequestMapping(value ="/view",method=RequestMethod.POST)
 	public ModelAndView  categoryadd(@ModelAttribute("categoryTable") CategoryTable categoryTable) {
-	categoryDAO.saveOrUpdate(categoryTable);
+	categoryDAO.save(categoryTable);
 		ModelAndView modelAndView = new ModelAndView("view");
-		modelAndView.addObject("categoryTable", categoryTable);  
+	 
 		modelAndView.addObject("categoryList",categoryDAO.list());
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping(value ="category/delete/{id}")
-	public String deletecategory(@PathVariable("id") String id, ModelMap model) {
+	@RequestMapping(value ="/category/delete/{id}")
+	public String deletecategory(@PathVariable("id") int id,ModelMap model) {
 		categoryDAO.delete(id);
+		model.addAttribute("categoryList",categoryDAO.list());
 		
-		return "category";
+		return "view";
 	}
 	
 	/*@RequestMapping(value ="category/edit/{id}")
@@ -67,17 +69,42 @@ public class CategoryController {
 		return "category";
 
 */	
-	@RequestMapping(value ="category/edit/{id}")
-	public String editcategory(@PathVariable("id") String id, Model model  ) {
+	@RequestMapping(value ="/category/edit/{id}")
+	public String editcategory(@PathVariable("id") int id,Model model  ) {
 		categoryTable = categoryDAO.get(id); 
 		model.addAttribute("categoryTable", categoryTable);
-		model.addAttribute("categoryList",categoryDAO.list());
+	
 		model.addAttribute("editcategory", "Edit category");  
 		
-		return "category";
+		return "Edit";
+	}
+	/*@RequestMapping(value ="/vieww")
+	public String categoryedit(@PathVariable("id") int id,Model model  ) {
+		categoryTable = categoryDAO.get(id); 
+		model.addAttribute("categoryTable", categoryTable);
+	
+		model.addAttribute("categoryList",this.categoryDAO.list());
+		
+		return "view";
+	}*/
+
+	
+	@RequestMapping("/vieww")
+	public ModelAndView  categoryedit(@ModelAttribute("categoryTable") CategoryTable categoryTable) {
+	System.out.println("Error");
+	
+	
+     categoryDAO.update(categoryTable);
+	
+		ModelAndView modelAndView = new ModelAndView("view");
+	 
+		modelAndView.addObject("categoryList",categoryDAO.list());
+		
+		return modelAndView;
 	}
 	
 }
+
 
 
 

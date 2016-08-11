@@ -9,8 +9,8 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div id="admin">
-
+<div class=container id="admin">
+<br>
 <h1>Welcome Admin...............!!!!</h1>
 <br><br>
 <div class="container">

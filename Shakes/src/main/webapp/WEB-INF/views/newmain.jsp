@@ -8,39 +8,9 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <style type="text/css">
-.carousel-fade .carousel-inner .item {
-  opacity: 0;
-  -webkit-transition-property: opacity;
-  -moz-transition-property: opacity;
-  -o-transition-property: opacity;
-  transition-property: opacity;
-}
-.carousel-fade .carousel-inner .active {
-  opacity: 1;
-}
-.carousel-fade .carousel-inner .active.left,
-.carousel-fade .carousel-inner .active.right {
-  left: 0;
-  opacity: 0;
-  z-index: 1;
-}
-.carousel-fade .carousel-inner .next.left,
-.carousel-fade .carousel-inner .prev.right {
-  opacity: 1;
-}
-.carousel-fade .carousel-control {
-  z-index: 2;
-}
-</style>
+  
 
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('.carousel').carousel({
-      interval: 3000
-    })
-  });
-</script>
+
 <style type="text/css">
     .navbar {
         background-color:LightCoral;
@@ -75,30 +45,14 @@ li a:hover:not(.active) {
 
 
 <body>
+<%-- <nav class="navbar">
+
 <div class="container-fluid"  style=background-color:#FFFFE0>
      <div class="col-md-1 col-md-offset-1">
 		<font face="Matura MT Script Capitals"
 					style="color:MediumVioletRed "><h1><b>DoughyDelights</b></h1></font>
-		</div>
-		</div>
-		<nav class="navbar">
-  <div class="container-fluid">
-    <ul class="nav navbar-nav">
-      
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">WeddingCake</a></li>
-          <li><a href="#">BirthdayCake</a></li>
-          <li><a href="#">Cupcake</a></li>
-           <li><a href="#">PieceCake</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">AboutUs</a></li>
-      <li><a href="admin">Admin</a></li>
-    </ul>
-<ul class="nav navbar-nav navbar-right">
-<c:choose>
+					<ul class="nav navbar-nav navbar-right">
+					<c:choose>
 <c:when test="${empty loggedInUser}">
 
 
@@ -115,7 +69,59 @@ li a:hover:not(.active) {
 
       </c:when>
       </c:choose> 
+</ul>					
+
+		</div>
+		</div>
+		</nav> --%>
+		
+		<%-- <nav class="navbar">
+  <div class="container-fluid"style=background-color:#FFFFE0>
+    <ul class="nav navbar-nav navbar-left">
+    
+     
+      <font face="Matura MT Script Capitals" style="color:MediumVioletRed "><h2><b>DoughyDelights</b></h2></font>
+					</ul>
+<ul class="nav navbar-nav navbar-right">
+<c:choose>
+<c:when test="${empty loggedInUser}">
+
+
+<li><a href="login" style="color:MediumVioletRed"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+  <li><a href="signup" style="color:MediumVioletRed"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
+  
+
+  </c:when>  
+
+ <c:when test="${not empty loggedInUser}">
+      
+      <li><a href="logout"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+ 
+
+      </c:when>
+      </c:choose> 
     </ul>
+</div>
+</nav>
+		
+ --%>		
+		<nav class="navbar">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:#FFFFE0">Categories <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">WeddingCake</a></li>
+          <li><a href="#">BirthdayCake</a></li>
+          <li><a href="#">Cupcake</a></li>
+           <li><a href="#">PieceCake</a></li>
+        </ul>
+      </li>
+      <li><a href="#" style="color:#FFFFE0">Home</a></li>
+      <li><a href="#"style="color:#FFFFE0">AboutUs</a></li>
+      <li><a href="admin" style="color:#FFFFE0"style="color:MediumVioletRed">Admin</a></li>
+    </ul>
+
 </div>
 </nav>
 

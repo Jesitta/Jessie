@@ -23,7 +23,7 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Transactional
 	public void saveOrUpdate(UserTable userTable) {
-	
+		userTable.setEnabled(true);
 		userTable.setRole("user");
 		sessionFactory.getCurrentSession().saveOrUpdate(userTable);
 	}

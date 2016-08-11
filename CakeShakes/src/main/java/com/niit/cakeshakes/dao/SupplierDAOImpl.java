@@ -35,7 +35,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 	
 	@Transactional
 	public SupplierTable get(String id) {
-		String hql="from category where id =" + "'" + id + "'";
+		String hql="from SupplierTable where id =" + "'" + id + "'";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
 		
 		List<SupplierTable> listSupplier = query.list();

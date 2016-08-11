@@ -1,50 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <head>
-<meta charset="UTF-8">
-<title>loginpage</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#myModal").modal('show');
-	});
-</script>
+  <title>Loginpage</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<%@include file="newmain.jsp"%>
-	<div id="myModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h3 class="modal-title">LOGIN</h3>
-				</div>
-				<div class="modal-body">
-					 
-    <div class="form-group">
-    
-      <label for="username">Username</label>
-      <input type="text" class="form-control" class="col-sm-5" id="username" placeholder="Your name">
+
+<div class="container">
+<h3>${errorMessage}</h3>
+  <h2>LOGIN</h2>
+  <form action="login" method="post" id="login">
+     <div class="form-group">
+      <label for="email">UserID</label>
+      <input type="text" name="userid" class="form-control" id="userid" placeholder="Enter userid"/>
     </div>
     <div class="form-group">
       <label for="pwd">Password</label>
-      <input type="password" class="form-control" class="col-sm-5" id="pwd" placeholder="Enter password">
+      <input type="password" name="password" class="form-control" id="password" placeholder="Enter password"/>
+    </div> 
+    <div class="checkbox">
+      <label><input type="checkbox"> Remember me</label>
     </div>
-					<div class="checkbox">
-						<label><input type="checkbox"> Remember me</label>
-					</div>
-					<br>
-					<button type="submit" class="btn btn-primary">LOGIN</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
 
-				</div>
-			</div>
-		</div>
-	</div>
 </body>
 </html>
+

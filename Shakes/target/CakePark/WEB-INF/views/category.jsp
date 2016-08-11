@@ -7,72 +7,57 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title>Category add</title>
+<!-- <style>
+
+table{
+border-collapse: collapse;
+}
+table, tr,th,td {
+
+border: 1px solid black;
+}
+table
+{
+padding-left: 40%
+}
+</style> -->
 </head>
+
 <body>
+<%@include file="adminnavbar.jsp"%>
 
-<form:form action="category" method="post" commandName="categoryTable">
 
-
-<h1>${success}</h1>
-		<table>
-			<tr>
-				<td><form:label path="id">
-						<spring:message text="ID" />
-					</form:label></td>
-				<td><form:input path="id" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="name">
-						<spring:message text="Name" />
-					</form:label></td>
-				<td><form:input path="name" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="description">
-						<spring:message text="Description" />
-					</form:label></td>
-				<td><form:input path="description" /></td>
-			</tr>
-			 <tr>
-				<td><input type="submit" value="<spring:message text="Add"/>"/></td>
-				<td><input type="reset" value="<spring:message text="Reset"/>"/></td>
-		</tr> 
-			
-	 <!--  <tr>
-		<td colspan="2">
-		<c:if test="${! empty category.name}">
-		<input type="submit" value="<spring:message text="EditCategory"/>" />
-		</c:if>
-		<c:if test="${empty category.name}">
-		<input type="submit" value="<spring:message text="AddCategory"/>" />
-		</c:if></td>
-		</tr>-->
-	</table>
-		</form:form>
-<!-- 	<br>
-		<h3>Category List</h3>
  
- <c:if test="${!empty categoryList }">
-		<table class="tg">
-			<tr>
-				<th width="120">CATEGORYID</th>
-				<th width="120">CATEGORYNAME</th>
-				<th width="120">CATEGORYDESCRIPTION</th>
-				<th width="120">EDIT</th>
-				<th width="120">DELETE</th>
-			</tr>
-		 	<c:forEach items="${categoryList}" var="category">
-				<tr>
-					<td>${category.id}</td>
-					<td>${category.name}</td>
-					<td>${category.description}</td>
-					<td><a href="<c:url value='category/edit/${category.id}'/>">Edit</a></td>
-					<td><a href="<c:url value='category/remove/${category.id}'/>">Delete</a></td>
-				</tr>
-			</c:forEach>
-		</table>
-	</c:if>-->
+<div class="container"> 
+		<h3>${editcategory}</h3>
+<h3>${addcategory}</h3>
+<h1>${success}</h1>
+<form:form action="view" method="post" modelAttribute="categoryTable">
+
+ 
+      
+    <div class="form-group">
+      <label for="name">NAME</label>
+      <form:input path="name"  class="form-control" />
+    </div>
+     <div class="form-group">
+      <label for="description">DESCRIPTION</label>
+      <form:input path="description"  class="form-control" />
+      </div>
+
+  
+      <button type="submit" class="btn btn-primary">ADD</button>
+       <button type="reset" class="btn btn-primary">RESET</button>
+        
+
+         </form:form>
+    </div>
+     
 		
 		</body>
 		</html>

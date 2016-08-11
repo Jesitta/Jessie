@@ -35,7 +35,7 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	@Transactional
 	public ProductTable get(String id) {
-		String hql="from category where id =" + "'" + id + "'";
+		String hql="from ProductTable where id =" + "'" + id + "'";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
 		
 		List<ProductTable> listProduct = query.list();

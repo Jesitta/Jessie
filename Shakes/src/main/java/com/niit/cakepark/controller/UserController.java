@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.niit.cakeshakes.dao.UserDAO;
 
 import com.niit.cakeshakes.model.UserTable;
-import com.sun.swing.internal.plaf.metal.resources.metal;
+
 
 @Controller
 public class UserController {
@@ -26,9 +26,9 @@ AnnotationConfigApplicationContext context = new AnnotationConfigApplicationCont
 	@Autowired
 	private  UserTable userTable;
 	
-	@RequestMapping(value ="signup",method=RequestMethod.GET)
+	@RequestMapping(value ="/signup",method=RequestMethod.GET)
 	public ModelAndView signup(){
-		ModelAndView modelAndView = new ModelAndView("signup");
+		ModelAndView modelAndView = new ModelAndView("home");
 		modelAndView.addObject("userTable", userTable); 
 		modelAndView.addObject("isuserClickedRegisterHere", "true"); 
 		return modelAndView;
@@ -41,9 +41,9 @@ AnnotationConfigApplicationContext context = new AnnotationConfigApplicationCont
 		modelAndView.addObject("regsuccess", "Registered Successfully...!!!");   
 		return modelAndView;
 	}
-	@RequestMapping(value ="login",method=RequestMethod.GET)
+	@RequestMapping(value ="/login",method=RequestMethod.GET)
 	public ModelAndView login(){
-		ModelAndView modelAndView = new ModelAndView("login");
+		ModelAndView modelAndView = new ModelAndView("home");
 		modelAndView.addObject("userTable", userTable);
 		modelAndView.addObject("isuserClickedLoginHere", "true"); 
 		return modelAndView;
@@ -62,6 +62,7 @@ AnnotationConfigApplicationContext context = new AnnotationConfigApplicationCont
 			{	
 				modelAndView.addObject("isAdmin","true");
 				
+				
 			}else{
 				modelAndView.addObject("isAdmin","false");
 				modelAndView.addObject("loginsuccess", "LoggedIn Successfully");
@@ -78,9 +79,9 @@ AnnotationConfigApplicationContext context = new AnnotationConfigApplicationCont
 	}
 	
 	
-	@RequestMapping(value ="logout")
+	@RequestMapping(value ="/logout")
 	public ModelAndView logout(HttpServletRequest request,HttpSession session){
-		ModelAndView modelAndView = new ModelAndView("home");
+		ModelAndView modelAndView = new ModelAndView("/home");
 		session.invalidate();
 		session=request.getSession(true);
 		modelAndView.addObject("loggedOut", "true");

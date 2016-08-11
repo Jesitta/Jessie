@@ -8,8 +8,11 @@ import com.niit.cakeshakes.model.CategoryTable;
 public interface CategoryDAO {
 	
 		public List<CategoryTable> list();
-		public CategoryTable get(String id);
+		public CategoryTable get(int id);
 		public void saveOrUpdate(CategoryTable categoryTable);
-		public void delete(String id);
+		public void delete(int id);
+		public void save(CategoryTable categoryTable);
+		public void update(CategoryTable categoryTable);
+		
 
 }

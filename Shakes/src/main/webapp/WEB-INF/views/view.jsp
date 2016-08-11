@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>ViewCategory</title>
 <style>
 
 table{
@@ -20,9 +20,10 @@ table
 padding-left: 40%
 }
 </style>
+
 </head>
 <body>
-
+<%@include file="adminnavbar.jsp"%>
 	<h3>Category List</h3>
 
  <c:if test="${!empty categoryList }">
@@ -37,11 +38,11 @@ padding-left: 40%
 		<c:forEach items="${categoryList}" var="category">
 				<tr>
 					<td >${category.id}</td>
-			       <td>${category.name}</td>
+			        <td>${category.name}</td>
 					<td>${category.description}</td>
-					<td><a href='<c:url value="category/edit/${category.id}"/>'>Edit</a></td>
-					<td><a href='<c:url value="category/delete/${category.id}"/>'>Delete</a></td>
-				</tr>
+					<td><a href="<c:url value="category/edit/${category.id}"/>"> Edit</a></td>
+					<td><a href="<c:url value="category/delete/${category.id}"/>"> Delete</a></td>
+					
 			</c:forEach> 
 		</table>
 	</c:if>

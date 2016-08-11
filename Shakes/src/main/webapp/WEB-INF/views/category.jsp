@@ -29,7 +29,7 @@ padding-left: 40%
 </head>
 
 <body>
-
+<%@include file="adminnavbar.jsp"%>
 
 
  
@@ -39,24 +39,22 @@ padding-left: 40%
 <h1>${success}</h1>
 <form:form action="view" method="post" modelAttribute="categoryTable">
 
- <div class="form-group">
-      <label for="id">ID</label>
-      <form:input path="id" name="id" class="form-control"  />
-    </div>
+ 
+      
     <div class="form-group">
-      <label for="name">Name</label>
-      <form:input path="name" name="name" class="form-control" />
+      <label for="name">NAME</label>
+      <form:input path="name"  class="form-control" />
     </div>
      <div class="form-group">
-      <label for="description">Description</label>
-      <form:input path="description" name="description" class="form-control" />
+      <label for="description">DESCRIPTION</label>
+      <form:input path="description"  class="form-control" />
       </div>
-      <div>
-     <c:if test="${empty category.name}"></c:if>
+
+  
       <button type="submit" class="btn btn-primary">ADD</button>
-       <c:if test="${! empty category.name}">
-     <button type="submit" class="btn btn-primary">EDIT</button></c:if> 
-     </div>
+       <button type="reset" class="btn btn-primary">RESET</button>
+        
+
          </form:form>
     </div>
      

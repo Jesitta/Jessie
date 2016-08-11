@@ -22,15 +22,15 @@
     <div class="form-group">
     
       <label for="id">Category ID</label>
-      <input type="text" class="form-control" class="col-sm-5" name="categoryid" >
+      <form:input class="form-control" class="col-sm-5" path="categoryid" />
     </div>
     <div class="form-group">
       <label for="name">Category Name</label>
-      <input type="text" class="form-control" class="col-sm-5" name="categoryname" >
+      <form:input  class="form-control" class="col-sm-5" path="categoryname" />
     </div>
      <div class="form-group">
       <label for="description">Category Description</label>
-      <input type="text" class="form-control" class="col-sm-5" name="categorydescription" >
+      <form:input class="form-control" class="col-sm-5" path="categorydescription"/>
     </div>
    
    
