@@ -1,4 +1,4 @@
-package com.niit.cakeshakes.dao;
+/*package com.niit.cakeshakes.dao;
 
 import java.util.List;
 
@@ -11,3 +11,4 @@ public interface ProductDAO {
 	public void saveOrUpdate(ProductTable productTable);
 	public void delete(String id);
 }
+*/

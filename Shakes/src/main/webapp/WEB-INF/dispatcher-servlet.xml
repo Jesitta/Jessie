@@ -27,5 +27,15 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages"></property>
+	</bean>
+	<bean id="multipartResolver"
+  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+<!-- setting maximum upload size -->
+		<property name="maxUploadSize" value="100000"/>
+		</bean>
+	
 	
 </beans>

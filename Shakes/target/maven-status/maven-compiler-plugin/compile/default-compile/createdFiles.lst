@@ -1,3 +1,4 @@
 com\niit\cakepark\controller\LoginController.class
 com\niit\cakepark\controller\UserController.class
 com\niit\cakepark\controller\CategoryController.class
+com\niit\cakepark\controller\ProductController.class

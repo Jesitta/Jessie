@@ -37,24 +37,43 @@ padding-left: 40%
 		<h3>${editcategory}</h3>
 <h3>${addcategory}</h3>
 <h1>${success}</h1>
-<form:form action="view" method="post" modelAttribute="categoryTable">
 
+<c:url var="actionadd" value="view"></c:url>
+	<form:form action="${actionadd}" method="post"
+		modelAttribute="categoryTable">
  
+ <div>
+				<form:label path="id">
+						<spring:message text="ID" />
+					</form:label>
+				<c:choose>
+					<c:when test="${!empty categoryTable.id }">
+						 <form:input path="id" disabled="true" readonly="true" class="form-control" />
+					</c:when>
+					<c:otherwise>
+					 <form:input path="id"  class="form-control" />
+					</c:otherwise>
+				</c:choose>
+
+			</div>
       
     <div class="form-group">
-      <label for="name">NAME</label>
+      <form:label path="name"><spring:message text="NAME"/></form:label>
       <form:input path="name"  class="form-control" />
     </div>
      <div class="form-group">
-      <label for="description">DESCRIPTION</label>
+      <form:label path="description"><spring:message text="DESCRIPTION"/></form:label>
       <form:input path="description"  class="form-control" />
       </div>
-
-  
-      <button type="submit" class="btn btn-primary">ADD</button>
-       <button type="reset" class="btn btn-primary">RESET</button>
-        
-
+     
+      <div>
+				<c:if test="${!empty categoryTable.name }">
+				<input type="submit" value="EDIT" />
+				</c:if>
+<c:if test="${empty categoryTable.name }">
+     <input type="submit" value="ADD" />
+       </c:if>
+    </div>
          </form:form>
     </div>
      

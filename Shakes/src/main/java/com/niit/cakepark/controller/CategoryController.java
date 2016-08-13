@@ -43,22 +43,29 @@ public class CategoryController {
 	
 
 
-	@RequestMapping(value ="/view",method=RequestMethod.POST)
-	public ModelAndView  categoryadd(@ModelAttribute("categoryTable") CategoryTable categoryTable) {
-	categoryDAO.save(categoryTable);
-		ModelAndView modelAndView = new ModelAndView("view");
+	@RequestMapping(value ="/vieww",method=RequestMethod.POST)
+	public ModelAndView  addcategory(@ModelAttribute("categoryTable") CategoryTable categoryTable) {
+	
+		System.out.println(categoryTable.getId());
+		categoryDAO.saveOrUpdate(categoryTable);
+	
+	System.out.println(categoryTable.getId());
+	System.out.println(categoryTable.getName());
+	System.out.println(categoryTable.getDescription());
+		ModelAndView modelAndView = new ModelAndView("/view");
 	 
 		modelAndView.addObject("categoryList",categoryDAO.list());
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping(value ="/category/delete/{id}")
+	
+	@RequestMapping("/{id}")
 	public String deletecategory(@PathVariable("id") int id,ModelMap model) {
 		categoryDAO.delete(id);
 		model.addAttribute("categoryList",categoryDAO.list());
 		
-		return "view";
+		return "/view";
 	}
 	
 	/*@RequestMapping(value ="category/edit/{id}")
@@ -69,14 +76,15 @@ public class CategoryController {
 		return "category";
 
 */	
-	@RequestMapping(value ="/category/edit/{id}")
+	@RequestMapping(value ="/e{id}")
 	public String editcategory(@PathVariable("id") int id,Model model  ) {
 		categoryTable = categoryDAO.get(id); 
 		model.addAttribute("categoryTable", categoryTable);
 	
 		model.addAttribute("editcategory", "Edit category");  
+		System.out.println(categoryTable.getId());
+		return "/category";
 		
-		return "Edit";
 	}
 	/*@RequestMapping(value ="/vieww")
 	public String categoryedit(@PathVariable("id") int id,Model model  ) {
@@ -89,19 +97,20 @@ public class CategoryController {
 	}*/
 
 	
-	@RequestMapping("/vieww")
+	/*@RequestMapping("/error")
 	public ModelAndView  categoryedit(@ModelAttribute("categoryTable") CategoryTable categoryTable) {
-	System.out.println("Error");
-	
-	
-     categoryDAO.update(categoryTable);
+	System.out.println("No Error");
+	System.out.println(categoryTable.getId());
+	System.out.println(categoryTable.getName());
+    categoryDAO.update(categoryTable);
+     System.out.println("Error");
 	
 		ModelAndView modelAndView = new ModelAndView("view");
 	 
 		modelAndView.addObject("categoryList",categoryDAO.list());
 		
 		return modelAndView;
-	}
+	}*/
 	
 }
 

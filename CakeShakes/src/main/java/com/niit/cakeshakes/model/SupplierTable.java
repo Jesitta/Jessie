@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 public class SupplierTable {
          @Id
-		private String id;   //primarykey
+		private String id;   
 		private String name;
 		private String address;
 		public String getId() {

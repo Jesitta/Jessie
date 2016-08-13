@@ -16,15 +16,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.cakeshakes.dao.CategoryDAO;
 import com.niit.cakeshakes.dao.CategoryDAOImpl;
-import com.niit.cakeshakes.dao.ProductDAO;
-import com.niit.cakeshakes.dao.ProductDAOImpl;
+/*import com.niit.cakeshakes.dao.ProductDAO;
+import com.niit.cakeshakes.dao.ProductDAOImpl;*/
 import com.niit.cakeshakes.dao.SupplierDAO;
 import com.niit.cakeshakes.dao.SupplierDAOImpl;
 import com.niit.cakeshakes.dao.UserDAO;
 import com.niit.cakeshakes.dao.UserDAOImpl;
 import com.niit.cakeshakes.model.CategoryTable;
-import com.niit.cakeshakes.model.ProductTable;
-import com.niit.cakeshakes.model.SupplierTable;
+/*import com.niit.cakeshakes.model.ProductTable;
+*/import com.niit.cakeshakes.model.SupplierTable;
 import com.niit.cakeshakes.model.UserTable;
 
 
@@ -59,7 +59,7 @@ public class ApplicationContextConfig {
 		sessionBuilder.addProperties(getHibernateProperties());
 		sessionBuilder.addAnnotatedClass(CategoryTable.class);
 		sessionBuilder.addAnnotatedClass(SupplierTable.class);
-		sessionBuilder.addAnnotatedClass(ProductTable.class);
+		/*sessionBuilder.addAnnotatedClass(ProductTable.class);*/
 		sessionBuilder.addAnnotatedClass(UserTable.class);
 	
 		return sessionBuilder.buildSessionFactory();
@@ -87,12 +87,12 @@ public class ApplicationContextConfig {
 		   
 	return new SupplierDAOImpl(sessionFactory);
 	}
-	@Autowired
+	/*@Autowired
 	@Bean(name = "productDAO")
 	public ProductDAO getProductDAO(SessionFactory sessionFactory) {
 		   
 	return new ProductDAOImpl(sessionFactory);
-	}
+	}*/
 
 	@Autowired
 	@Bean(name = "userDAO")

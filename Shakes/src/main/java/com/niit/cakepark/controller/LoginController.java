@@ -16,7 +16,7 @@ public class LoginController {
 	@RequestMapping("/")
     public String main() {
         
-        return "home";
+        return "/home";
     }
 	@RequestMapping("viewcategory")
     public ModelAndView view() {

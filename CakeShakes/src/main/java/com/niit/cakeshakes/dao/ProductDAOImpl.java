@@ -1,4 +1,4 @@
-package com.niit.cakeshakes.dao;
+/*package com.niit.cakeshakes.dao;
 
 import java.util.List;
 import org.hibernate.Criteria;
@@ -58,3 +58,4 @@ public class ProductDAOImpl implements ProductDAO {
 	
 }
 
+*/

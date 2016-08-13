@@ -40,8 +40,9 @@ padding-left: 40%
 					<td >${category.id}</td>
 			        <td>${category.name}</td>
 					<td>${category.description}</td>
-					<td><a href="<c:url value="category/edit/${category.id}"/>"> Edit</a></td>
-					<td><a href="<c:url value="category/delete/${category.id}"/>"> Delete</a></td>
+					<td><a href="<c:url value= '/e${category.id}' />"> Edit</a></td>
+				
+					<td><a href="<c:url value= '/${category.id}' />"> Delete</a></td>
 					
 			</c:forEach> 
 		</table>

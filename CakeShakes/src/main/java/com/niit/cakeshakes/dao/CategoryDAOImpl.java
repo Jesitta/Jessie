@@ -47,7 +47,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	
 	@Transactional
 	public CategoryTable get(int id) {
-		String hql="from CategoryTable where id =" + "'" + id + "'";
+		String hql="from CategoryTable where id  =" + "'" + id + "'";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
 		
 		List<CategoryTable> listCategory = query.list();
@@ -60,7 +60,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 	
 	
-	@Transactional
+	@Transactional 
 	public List<CategoryTable> list() {
 		
 		@SuppressWarnings("unchecked")

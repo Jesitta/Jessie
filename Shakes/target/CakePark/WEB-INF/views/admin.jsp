@@ -29,7 +29,7 @@
 		<a href="#">VIEWSUPPLIER</a>
 		</div><br><br><br>
 		<div class="col-md-1 col-md-offset-1">
-		<a href="#">ADDPRODUCT</a>
+		<a href="product">ADDPRODUCT</a>
 		</div>
 	
 <div class="col-md-1 col-md-offset-1">
