@@ -7,19 +7,19 @@ import java.io.OutputStream;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class FileUpload {
-	public static void upload(String path, MultipartFile image, String name) {
-		if (!image.isEmpty()) {
+public class FileUtil {
+	public static void upload(String path, MultipartFile file, String name) {
+		if (!file.isEmpty()) {
 			InputStream inputStream = null;
 			OutputStream outputStream = null;
-			if (image.getSize() > 0) {
+			if (file.getSize() > 0) {
 				try {
-					inputStream = image.getInputStream();
+					inputStream = file.getInputStream();
 					outputStream = new FileOutputStream(path + name);
-					int bytes = 0;
+					int readbytes = 0;
 					byte[] buffer = new byte[1024];
-					while ((bytes = inputStream.read(buffer, 0, 1024)) != -1) {
-						outputStream.write(buffer, 0, bytes);
+					while ((readbytes = inputStream.read(buffer, 0, 1024)) != -1) {
+						outputStream.write(buffer, 0, readbytes);
 					}
 				}
 

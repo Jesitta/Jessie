@@ -3,12 +3,15 @@ package com.niit.cakepark.controller;
 
 
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +47,13 @@ public class CategoryController {
 
 
 	@RequestMapping(value ="/vieww",method=RequestMethod.POST)
-	public ModelAndView  addcategory(@ModelAttribute("categoryTable") CategoryTable categoryTable) {
+	public ModelAndView  addcategory(@Valid @ModelAttribute("categoryTable") CategoryTable categoryTable, BindingResult result) {
+		ModelAndView modelAndView = new ModelAndView();
+if(result.hasErrors()) {
+	modelAndView.addObject("addcategory", "Add Category");
+			modelAndView.setViewName("/category");
+		}
+else{
 	
 		System.out.println(categoryTable.getId());
 		categoryDAO.saveOrUpdate(categoryTable);
@@ -52,11 +61,13 @@ public class CategoryController {
 	System.out.println(categoryTable.getId());
 	System.out.println(categoryTable.getName());
 	System.out.println(categoryTable.getDescription());
-		ModelAndView modelAndView = new ModelAndView("/view");
-	 
+		
+		modelAndView.addObject("CategoryList", "CATEGORY LIST");
 		modelAndView.addObject("categoryList",categoryDAO.list());
 		
-		return modelAndView;
+		modelAndView.setViewName("/view");
+	}
+return modelAndView;
 	}
 	
 	
@@ -64,7 +75,7 @@ public class CategoryController {
 	public String deletecategory(@PathVariable("id") int id,ModelMap model) {
 		categoryDAO.delete(id);
 		model.addAttribute("categoryList",categoryDAO.list());
-		
+		model.addAttribute("CategoryList", "CATEGORY LIST");
 		return "/view";
 	}
 	

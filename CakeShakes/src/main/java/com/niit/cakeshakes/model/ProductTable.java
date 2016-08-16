@@ -1,6 +1,6 @@
-/*package com.niit.cakeshakes.model;
+package com.niit.cakeshakes.model;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,45 +19,74 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 
+
+
 @Entity
 @Table
 @Component("productTable")
 public class ProductTable {
 	
 	@Id
-	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String id; 
+	private int id; 
 	
-	@Column(name="name")
+	
 @Size(min=3,message="The field must be atleast 3 characters!")	
 	private String name;
 	@Length(min =3,max=30, message = "The field must be between 3 and 30 characters long!")
 	private String description;
+	
 	@Range(min=100,max=1000,message="Price should not be less than 100!")
-	private int price;
+private int price;
 @Transient	
-
 private MultipartFile image;
-@ManyToOne
+/*@ManyToOne
 @JoinColumn(name="CATEGORY_ID")
-private CategoryTable category_id;
+private CategoryTable category;
 
-
-
-
-public CategoryTable getCategory_id() {
-	return category_id;
+public CategoryTable getCategory() {
+	return category;
 }
-
-public void setCategory_id(CategoryTable category_id) {
-	this.category_id = category_id;
+public void setCategory(CategoryTable category) {
+	this.category = category;
+}*/
+/*@ManyToOne
+@JoinColumn(name="SUPPLIER_ID")
+private SupplierTable supplier;
+public SupplierTable getSupplier() {
+	return supplier;
 }
+public void setSupplier(SupplierTable supplier) {
+	this.supplier = supplier;
+}*/
 
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public String getDescription() {
+	return description;
+}
+public void setDescription(String description) {
+	this.description = description;
+}
+public int getPrice() {
+	return price;
+}
+public void setPrice(int price) {
+	this.price = price;
+}
 public MultipartFile getImage() {
 	return image;
 }
-
 public void setImage(MultipartFile image) {
 	this.image = image;
 }
@@ -65,50 +94,8 @@ public void setImage(MultipartFile image) {
 
 
 	
-	public String getId() {
-		return id;
-		
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-	
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	
-
-
-
-
-	
 	
 }
 
 
 
-
-*/

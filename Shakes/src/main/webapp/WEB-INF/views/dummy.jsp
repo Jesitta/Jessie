@@ -1,38 +1,81 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-  <title>LoginPage</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<title>Category add</title>
+
 </head>
+
 <body>
-<form:form name="signup" action="signup">
-<button type="submit">SIGNUP</button>
-</form:form>
-<%@include file="main.jsp" %>
-
+<div ng-app="myApp" ng-controller="catControllerl">
 <div class="container">
-  <h2>LOGIN</h2>
-  <form role="form">
-    <div class="form-group">
-    
-      <label for="username">Username</label>
-      <input type="username" class="form-control" class="col-sm-5" id="username" placeholder="Your name">
+ <form action="login" method="post" id="login">
+  <div class="form-group">
+ID <input type="text" class="form-control" ng-model="id"><br>
+NAME<input type="text" class="form-control" ng-model="name"><br>
+DESCRIPTION <input type="text" class="form-control" ng-model="description"><br>
+ <div>
+				<c:if test="${!empty categoryTable.name }">
+				<input type="submit" value="EDIT" />
+				</c:if>
+<c:if test="${empty categoryTable.name }">
+     <input type="submit" value="ADD" />
+       </c:if>
     </div>
-    <div class="form-group">
-      <label for="pwd">Password</label>
-      <input type="password" class="form-control" class="col-sm-5" id="pwd" placeholder="Enter password">
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox"> Remember me</label>
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
 </div>
+</form>
+</div>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('catController', function($scope) {
+    $scope.id= '1';
+    $scope.name= 'cake';
+    $scope.description= 'cake';
+});
+$scope.add=function(){
+$scope.listCat.push({
+	id: $scope.id,name: $scope.name,description: $scope.description
+});
+$scope.id= '';
+$scope.name= '';
+$scope.description= '';
+};
+</script>
+	</body>
+		</html>
+		
+<%-- <table cellpadding="2" cellspacing="2" border="1" >
+<tr>
+<th>ID</th>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+<th>OPTIONS</th>
+</tr>
+<tr ng-repeat="list">
 
-</body>
-</html>
+<td>{{category.id}} </td>
+<td>{{category.name}} </td>
+<td>{{category.description}} </td>
+<td><a href="<c:url value= '/e${category.id}' /> "ng-click="del(id)"> Edit</a>
+<a href="<c:url value= '/${category.id}' />" "ng-click="edit(id)"> Delete</a></td>
+</tr>
+
+</table--%>
+				
+
+
+
+
+
+	

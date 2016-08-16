@@ -22,18 +22,18 @@
 		<a href="viewcategory">VIEWCATEGORY</a>
 		</div><br><br><br>
 		<div class="col-md-1 col-md-offset-1">
-		<a href="#">ADDSUPPLIER</a>
+		<a href="supplierr">ADDSUPPLIER</a>
 		</div>
 	
 <div class="col-md-1 col-md-offset-1">
-		<a href="#">VIEWSUPPLIER</a>
+		<a href="viewsupplier">VIEWSUPPLIER</a>
 		</div><br><br><br>
 		<div class="col-md-1 col-md-offset-1">
-		<a href="product">ADDPRODUCT</a>
+		<a href="productt">ADDPRODUCT</a>
 		</div>
 	
 <div class="col-md-1 col-md-offset-1">
-		<a href="#">VIEWPRODUCT</a>
+		<a href="viewproduct">VIEWPRODUCT</a>
 		</div>
 </div>
 </div>

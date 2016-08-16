@@ -4,8 +4,8 @@ import com.niit.cakeshakes.model.SupplierTable;
 
 public interface SupplierDAO {
 	public List<SupplierTable> list();
-	public SupplierTable get(String id);
+	public SupplierTable get(int id);
 	public void saveOrUpdate(SupplierTable supplierTable);
-	public void delete(String id);
+	public void delete(int id);
 
 }

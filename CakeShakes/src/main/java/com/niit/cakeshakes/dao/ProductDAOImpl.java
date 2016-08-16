@@ -1,4 +1,4 @@
-/*package com.niit.cakeshakes.dao;
+package com.niit.cakeshakes.dao;
 
 import java.util.List;
 import org.hibernate.Criteria;
@@ -26,7 +26,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	
 	@Transactional
-	public void delete(String id) {
+	public void delete(int id) {
 		ProductTable productToDelete = new ProductTable();
 		productToDelete.setId(id);
 		sessionFactory.getCurrentSession().delete(productToDelete);
@@ -34,7 +34,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	
 	@Transactional
-	public ProductTable get(String id) {
+	public ProductTable get(int id) {
 		String hql="from ProductTable where id =" + "'" + id + "'";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
 		
@@ -58,4 +58,3 @@ public class ProductDAOImpl implements ProductDAO {
 	
 }
 
-*/

@@ -1,66 +1,80 @@
-/*package com.niit.cakepark.controller;
+package com.niit.cakepark.controller;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.cakeshakes.dao.ProductDAO;
-import com.niit.cakeshakes.model.FileUpload;
+import com.niit.cakeshakes.model.FileUtil;
 import com.niit.cakeshakes.model.ProductTable;
 
 
 
+@Controller
 public class ProductController {
-	String path = "F:\\Jessie\'Files";
-AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+	String path = "G:/Jessie/Files/";
 	
 	@Autowired
 	private  ProductDAO productDAO;
 	@Autowired
 	private  ProductTable productTable;
 	
-	@RequestMapping(value ="/product",method=RequestMethod.GET)
+	@RequestMapping(value="/productt",method=RequestMethod.GET)
 	public ModelAndView product(){
 		ModelAndView modelAndView = new ModelAndView("product");
-		modelAndView.addObject("ProductTable", productTable);  
-		
+		modelAndView.addObject("productTable", productTable);  
+		modelAndView.addObject("addproduct", "Add Product");
 		
 		return modelAndView;
 	}
-	@RequestMapping(value ="/file",method=RequestMethod.POST)
-	public ModelAndView addproduct(@ModelAttribute("productTable") ProductTable productTable){
-		productDAO.saveOrUpdate(productTable);
-		ModelAndView modelAndView = new ModelAndView("viewproduct");
-		modelAndView.addObject("productlList",productDAO.list());  
-		return modelAndView;
-	}
-
-	@RequestMapping(value ="/view",method=RequestMethod.POST)
-	public ModelAndView addproducts(@Valid @ModelAttribute("productTable") ProductTable productTable, BindingResult result) {
+	
+	@RequestMapping(value ="/viewproductt",method=RequestMethod.POST)
+	public ModelAndView addproduct(@Valid @ModelAttribute("productTable")ProductTable productTable, BindingResult result ){
 		ModelAndView modelAndView = new ModelAndView();
-		if(result.hasErrors()) {
-			
-			modelAndView.addObject("product", "product") ;
+if(result.hasErrors()) {
+	modelAndView.addObject("addproduct", "Add Product");
+			modelAndView.setViewName("/product");
 		}
-		else {
-		productDAO.saveOrUpdate(productTable);	
-		MultipartFile file=productTable.getImage();
-		FileUpload.upload(path, file, productTable.getId()+".jpg");
-		modelAndView.addObject("file",file);
-		modelAndView.addObject("manageproducts", "manageproducts");
-		modelAndView.addObject("productTable", productTable);
-		modelAndView.addObject("productList",this.productDAO.list());
-		}
+else{
+		productDAO.saveOrUpdate(productTable);
 		
-		return modelAndView;	
+		modelAndView.addObject("ProductList", "PRODUCT LIST");
+		
+	modelAndView.addObject("productList",productDAO.list()); 
+
+		MultipartFile file=productTable.getImage();
+		FileUtil.upload(path, file, productTable.getId()+".jpg");
+		modelAndView.setViewName("/view");
+}
+return modelAndView;
+	}
+	@RequestMapping(value ="/ep{id}")
+	public String editcategory(@PathVariable("id") int id,Model model  ) {
+		productTable = productDAO.get(id); 
+		model.addAttribute("productTable", productTable);
+	
+		model.addAttribute("editproduct", "Edit Product");  
+		System.out.println(productTable.getId());
+		return "/product";
+		
+	}
+	@RequestMapping("/p{id}")
+	public String deletecategory(@PathVariable("id") int id,ModelMap model) {
+		productDAO.delete(id);
+		model.addAttribute("productList",productDAO.list());
+		model.addAttribute("ProductList", "PRODUCT LIST");
+		return "/view";
 	}
 	
 }
-*/

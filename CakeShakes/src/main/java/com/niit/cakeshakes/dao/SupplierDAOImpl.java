@@ -22,11 +22,11 @@ public class SupplierDAOImpl implements SupplierDAO {
 	
 	@Transactional
 	public void saveOrUpdate(SupplierTable supplierTable) {
-		saveOrUpdate(supplierTable);
+		sessionFactory.getCurrentSession().saveOrUpdate(supplierTable);
 	}
 	
 	@Transactional
-	public void delete(String id) {
+	public void delete(int id) {
 		SupplierTable supplierToDelete = new SupplierTable();
 		supplierToDelete.setId(id);
 		sessionFactory.getCurrentSession().delete(supplierToDelete);
@@ -34,7 +34,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 	}
 	
 	@Transactional
-	public SupplierTable get(String id) {
+	public SupplierTable get(int id) {
 		String hql="from SupplierTable where id =" + "'" + id + "'";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
 		

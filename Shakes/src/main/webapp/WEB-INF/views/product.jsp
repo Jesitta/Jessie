@@ -7,7 +7,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title>Product</title>
 </head>
 <body>
@@ -15,19 +20,21 @@
 
 <div class="container">
 
-  <h2>Add Product</h2>
+	<h3>${editproduct}</h3>
+<h3>${addproduct}</h3>
+
  
-   <c:url var="addproduct" value="view"></c:url>
+   <c:url var="addproduct" value="viewproductt"></c:url>
   <form:form action="${addproduct}" method="post"
 			modelAttribute="productTable" enctype="multipart/form-data">
   
 			<div class="form-group">
-				<form:label path="id" class="control-label">
-					<spring:message text="ID" />
+				<form:label path="id">
+			<spring:message text="ID" />
 				</form:label>
-				<form:input path="id" class="form-control"/>
-				<form:errors path="id"/>
-				 <c:choose>
+				<form:input path="id" readonly="true" class="form-control"/>
+				</div>
+				<%--  <c:choose>
 					<c:when test="${!empty productTable.id }">
 						<td><form:input path="id" disabled="true" readonly="true" /></td>
 					</c:when>
@@ -35,35 +42,35 @@
 						<td><form:input path="id" /></td>
 					</c:otherwise>
 				</c:choose> 
-
-			</div>
+ --%>
+			
  
      
     <div class="form-group">
       <form:label path="name"><spring:message text="NAME"/></form:label>
-      <form:input path="name" class="form-control" required="true" placeholder="Enter name"/>
-   <form:errors path="name"/>
+      <form:input path="name" class="form-control"  placeholder="Enter name"/>
+   <form:errors path="name" />
     </div> 
      <div class="form-group">
      <form:label path="description"><spring:message text="DESCRIPTION"/></form:label>
-      <form:input path="description" class="form-control" required="true" placeholder="Enter description"/>
-      <form:errors path="description"/>
+      <form:input path="description" class="form-control" placeholder="Enter description"/>
+      <form:errors path="description" />
     </div> 
     <div class="form-group">
      <form:label path="price"><spring:message text="PRICE"/></form:label>
-      <form:input path="price" class="form-control" required="true" placeholder="Enter price"/>
-       <form:errors path="price"/>
+      <form:input path="price" class="form-control"  placeholder="Enter price"/>
+       <form:errors path="price" />
        </div> 
-       <div class="form-group">
+     <%--   <div class="form-group">
      <form:label path="category"><spring:message text="CATEGORY"/></form:label>
-      <form:select path="category.name" class="form-control" items="${categoryList}" itemValue="name" itemLabel="name" placeholder="Enter category"/>
+      <form:select path="categoryTable.name" class="form-control" items="${categoryList}" itemValue="name" itemLabel="name" placeholder="Enter category"/>
     
-      </div> 
-    <div class="form-group">
+      </div>  --%>
+    <%-- <div class="form-group">
      <form:label path="supplier"><spring:message text="SUPPLIER"/></form:label>
       <form:select path="supplier.name" class="form-control" items="${supplierList}" itemValue="name" itemLabel="name" placeholder="Enter supplier"/>
     
-     </div>
+     </div> --%>
      <div class="form-group">
 				<form:label path="image" class="control-label">
 					<spring:message text="IMAGE" />
@@ -72,11 +79,13 @@
     	 </div>
     <div class="form-group">
 
-				 <c:if test="${!empty productTable.name }">
-					<td><input type="submit" value="SAVE PRODUCT" /></td>
+				 <c:if test="${productTable.id > 0}">
+					<td><input type="submit" value="EDIT" />
+					 <input type="reset" value="RESET" /></td>
 				</c:if>
-				<c:if test="${empty productTable.name }">
-					<td><input type="submit" value="ADD PRODUCT" /></td>
+				<c:if test="${productTable.id eq 0 }">
+					<td><input type="submit" value="ADD" />
+					 <input type="reset" value="RESET" /></td>
 				</c:if> 
 			</div>
   </form:form>

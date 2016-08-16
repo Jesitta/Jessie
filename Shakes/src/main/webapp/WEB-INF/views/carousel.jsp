@@ -45,43 +45,69 @@
     })
   });
 </script> 
+<style type="text/css">
+
+.list-group-item {
+
+text-align: left;
+
+
+}
+</style>
 
 <title>Mainpage</title>
 </head>
 
 <body>
+<br>
+<div class="container">
+<div class="row" style="padding-top: 40px">
+<div class="col-sm-3"> 
+<div class="list-group">
+<button type="button" class="list-group-item list-group-item-danger" style="text-align: left">CATEGORIES</button>
+<a href="404" class="list-group-item list-group-item-action">Birthday Cakes</button></a>
+<a href="404" class="list-group-item list-group-item-action" >Wedding Cakes</a>
+<a href="404" class="list-group-item list-group-item-action" >Cup Cakes</a>
+<a href="404" class="list-group-item list-group-item-action" >Blackforest</a>
+<a href="404" class="list-group-item list-group-item-action" >Christmas Specials</a>
+<a href="404" class="list-group-item list-group-item-action" >Eggless Cakes</a>
+<a href="404" class="list-group-item list-group-item-action" >Premium Chocolatecakes</a>
+<a href="404" class="list-group-item list-group-item-action" >Piece Cakes</a>
+<a href="404" class="list-group-item list-group-item-action" >Premim Fruitcakes</a>
+ 
+</div>
+</div>
+<div class="col-sm-9"> 
 
-
-<div class="container-fluid">
-<div id="Carousel" class="carousel slide carousel-fade" style="padding-left:30%; padding-top: 70px; width:100%">
-        <ol class="carousel-indicators"style="padding-left:60%;width:100%" >
+<div id="Carousel" class="carousel slide carousel-fade" style="padding-left:0%;padding-top:0%; width:100%">
+        <ol class="carousel-indicators"style="padding-left:0%" >
             <li data-target="Carousel" data-slide-to="0" class="active"></li>
             <li data-target="Carousel" data-slide-to="1"></li>
             <li data-target="Carousel" data-slide-to="2"></li>
             <li data-target="Carousel" data-slide-to="3"></li>
-             <li data-target="Carousel" data-slide-to="4"></li>
+            <!--  <li data-target="Carousel" data-slide-to="4"></li>
             <li data-target="Carousel" data-slide-to="5"></li>         
              <li data-target="Carousel" data-slide-to="6"></li>
-            <li data-target="Carousel" data-slide-to="7"></li>
+            <li data-target="Carousel" data-slide-to="7"></li> -->
             
-            <li data-target="Carousel" data-slide-to="8"></li>
+           
         </ol>
         
 
         <div class="carousel-inner">
            <div class="item ">
-             <img src="resources/images/slide1.png" class="img-responsive">
+             <img src="resources/images/image1.jpg" style="width:100%;height:420px""class="img-responsive">
            </div>
            <div class="item active">
-             <img src="resources/images/slide2.png" class="img-responsive">
+             <img src="resources/images/image2.jpg" style="width:100%;height:420px"class="img-responsive">
             </div>
            <div class="item">
-             <img src="resources/images/slide3.png" class="img-responsive">
+             <img src="resources/images/image3.jpg" style="width:100%;height:420px"class="img-responsive">
             </div>
               <div class="item">
-             <img src="resources/images/slide4.png" class="img-responsive">
+             <img src="resources/images/6.jpg" style="width:100%;height:420px" class="img-responsive">
             </div> 
-           <div class="item">
+          <!--  <div class="item">
              <img src="resources/images/slide5.png" class="img-responsive">
             </div>
             <div class="item">
@@ -92,11 +118,13 @@
              </div>
            <div class="item">
              <img src="resources/images/slide8.png" class="img-responsive">
-            </div>                    
+            </div>                     -->
+        </div>
+        </div>
         </div>
         
 </div>
-</div>   
-
+ 
+</div>
 </body>
 </html>
