@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title>Category add</title>
@@ -25,10 +26,10 @@ ID <input type="text" readonly="true" class="form-control" ng-model="id"><br>
 NAME<input type="text" class="form-control" ng-model="name"><br>
 DESCRIPTION <input type="text" class="form-control" ng-model="description"><br>
  <div>
-				<c:if test="${!empty categoryTable.name }">
+				<c:if test="${!empty cakeCategory.name }">
 				<input type="submit" value="EDIT" />
 				</c:if>
-<c:if test="${empty categoryTable.name }">
+<c:if test="${empty cakeCategory.name }">
      <input type="submit" value="ADD" />
        </c:if>
     </div>
@@ -48,11 +49,13 @@ app.controller('catController', function($scope) {
 	</body>
 		</html>
 		 --%>
- <%@include file="adminnavbar.jsp"%>
-
-
  
-<div class="container"> 
+ 
+
+<%@include file="Loginheader.jsp"%>
+
+ <%@include file="mainheader.jsp"%>
+ <div class="container">
 		<h3>${editcategory}</h3>
 <h3>${addcategory}</h3>
 
@@ -63,38 +66,37 @@ app.controller('catController', function($scope) {
 
 
 	<form:form action="${actionadd}" method="post"
-		modelAttribute="categoryTable">
+		modelAttribute="cakeCategory">
  
-<div class="form-group">
+ <div class="form-group">
 				 <form:label path="id">
 				<spring:message text="ID" />
 					</form:label>
-					<form:input path="id" readonly="true" class="form-control" /> 
+					<form:input path="id"  readonly="true" class="form-control" /> 
 				
-			</div>
+			</div> 
       
     <div class="form-group">
       <form:label path="name"><spring:message text="NAME"/></form:label>
       <form:input path="name"  class="form-control" />
-
+ <form:errors style="color:red" path="name"/>
     </div>
      <div class="form-group">
       <form:label path="description"><spring:message text="DESCRIPTION"/></form:label>
       <form:input path="description"  class="form-control" />
-         <form:errors path="description"/>
+         <form:errors style="color:red" path="description"/>
       </div>
-     
-      <div>
-				<c:if test="${categoryTable.id > 0 }">
+       <div>
+				<c:if test="${cakeCategory.id > 0 }">
 				<input type="submit" value="EDIT" />
 				<input type="reset" value="RESET" />
 				</c:if>
-<c:if test="${categoryTable.id eq 0 }">
+<c:if test="${cakeCategory.id eq 0 }">
      <input type="submit" value="ADD" />
      <input type="reset" value="RESET" />
      
        </c:if>
-    </div>
+    </div> 
          </form:form>
     </div>
      

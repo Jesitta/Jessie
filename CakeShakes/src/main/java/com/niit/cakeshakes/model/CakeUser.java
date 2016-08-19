@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Table
 @Component
 
-public class UserTable {
+public class CakeUser {
 
 	private String address;
 
@@ -25,7 +25,7 @@ public class UserTable {
 	}
 
 	@Id
-	private String userid;
+	private String username;
 
 	private String password;
 
@@ -66,12 +66,13 @@ public class UserTable {
 		this.address = address;
 	}
 
-	public String getUserid() {
-		return userid;
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {

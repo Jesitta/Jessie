@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,48 +20,53 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 
-<title>nav</title>
+<title>Mainpage</title>
 <style type="text/css">
-.navbar {
-	background-color: MediumVioletRed;
-	background-image: none;
+/* body
+{
+background-image:url("resources/images/3.jpg");
+
+background-size:cover;
+} */
+.navbarmain {
+	background-color:LightCoral;
 	
+	
+
+	 	color:  #DAF7A6;
+	 
 }
 
 ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	overflow: hidden;
+	
 }
 
-li {
-	float: left;
-	color: red;
-}
+
 
 li a {
-	color:  #FFFFE0;
-	text-align: center;
+	color:  #DAF7A6;
+	
 	padding: 14px 16px;
 	text-decoration: None;
 }
 </style>
 </head>
-
-
 <body>
 
-	<div>
-		<nav class="navbar">
-			<div class="container-fluid"
-				style="color: #FFFFE0; background-color: LightCoral">
+<!-- <body background-image: <c:url value="resources/images/2.jpg"/>>
+ --><br><br>
+ <div class=container>
+		<nav class="navbarmain">
+			<div class="container-fluid">
 				<ul class="nav navbar-nav navbar-left">
 
 
-					<font face="Matura MT Script Capitals"><h2>
+					<font face="Jokerman"><h1>
 							<b>DoughyDelights</b>
-						</h2></font>
+						</h1></font>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<c:choose>
@@ -86,8 +91,10 @@ li a {
 					</c:choose>
 				</ul>
 			</div>
-			
+			<%-- <%@include file="mainheader.jsp"%> --%>
+	
 		</nav>
+</div>
 </div>
 </body>
 </html>

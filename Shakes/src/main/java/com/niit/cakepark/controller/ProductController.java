@@ -1,5 +1,7 @@
 package com.niit.cakepark.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,66 +17,87 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.niit.cakeshakes.dao.CategoryDAO;
 import com.niit.cakeshakes.dao.ProductDAO;
 import com.niit.cakeshakes.model.FileUtil;
-import com.niit.cakeshakes.model.ProductTable;
+import com.niit.cakeshakes.model.CakeCategory;
+import com.niit.cakeshakes.model.CakeProduct;
+import com.niit.cakeshakes.model.CakeSupplier;
 
 
 
 @Controller
 public class ProductController {
 	String path = "G:/Jessie/Files/";
-	
+	@Autowired
+	private  CategoryDAO categoryDAO;
 	@Autowired
 	private  ProductDAO productDAO;
 	@Autowired
-	private  ProductTable productTable;
+	private  CakeProduct cakeProduct;
+	@Autowired
+	private  CakeCategory cakeCategory;
+	
+	
+	
 	
 	@RequestMapping(value="/productt",method=RequestMethod.GET)
 	public ModelAndView product(){
 		ModelAndView modelAndView = new ModelAndView("product");
-		modelAndView.addObject("productTable", productTable);  
+		modelAndView.addObject("cakeProduct", cakeProduct);  
+		
 		modelAndView.addObject("addproduct", "Add Product");
 		
+		
+		/*modelAndView.addObject("categoryList",this.categoryDAO.list());*/
 		return modelAndView;
 	}
 	
 	@RequestMapping(value ="/viewproductt",method=RequestMethod.POST)
-	public ModelAndView addproduct(@Valid @ModelAttribute("productTable")ProductTable productTable, BindingResult result ){
+	public ModelAndView addproduct(@Valid @ModelAttribute("cakeProduct")CakeProduct cakeProduct, BindingResult result ){
 		ModelAndView modelAndView = new ModelAndView();
 if(result.hasErrors()) {
 	modelAndView.addObject("addproduct", "Add Product");
 			modelAndView.setViewName("/product");
 		}
 else{
-		productDAO.saveOrUpdate(productTable);
+		productDAO.saveOrUpdate(cakeProduct);
 		
 		modelAndView.addObject("ProductList", "PRODUCT LIST");
 		
-	modelAndView.addObject("productList",productDAO.list()); 
-
-		MultipartFile file=productTable.getImage();
-		FileUtil.upload(path, file, productTable.getId()+".jpg");
-		modelAndView.setViewName("/view");
+	
+		MultipartFile file=cakeProduct.getImage();
+		FileUtil.upload(path, file, cakeProduct.getId()+".jpg");
+		modelAndView.setViewName("redirect:/viewpro");
 }
 return modelAndView;
 	}
+	@RequestMapping("viewpro")
+    public ModelAndView viewproduct() {
+		ModelAndView mv=new ModelAndView("/viewproduct");
+		mv.addObject("ProductList", "PRODUCT LIST");
+		Gson gson=new Gson(); 
+		List<CakeProduct> product= productDAO.list();
+		String value=gson.toJson(product);
+		mv.addObject("value",value);
+        return mv;
+    }
 	@RequestMapping(value ="/ep{id}")
 	public String editcategory(@PathVariable("id") int id,Model model  ) {
-		productTable = productDAO.get(id); 
-		model.addAttribute("productTable", productTable);
+		cakeProduct = productDAO.get(id); 
+		model.addAttribute("cakeProduct", cakeProduct);
 	
 		model.addAttribute("editproduct", "Edit Product");  
-		System.out.println(productTable.getId());
+		
 		return "/product";
 		
 	}
 	@RequestMapping("/p{id}")
 	public String deletecategory(@PathVariable("id") int id,ModelMap model) {
 		productDAO.delete(id);
-		model.addAttribute("productList",productDAO.list());
-		model.addAttribute("ProductList", "PRODUCT LIST");
-		return "/view";
+		
+		return "redirect:/viewpro";
 	}
 	
 }

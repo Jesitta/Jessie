@@ -7,12 +7,8 @@
 <title>Error</title>
 </head>
 <body>
-<h3>
-Page Under Construction....<br>
-Cake lam tharamudiyathu....!!!<br>
 
+Page Under Construction....
 
-Come and shop later...
-<br>Eeeeeeeeeeeeeeeee....</h3>
 </body>
 </html>

@@ -14,28 +14,24 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <style type="text/css">
-.carousel-fade .carousel-inner .item {
+ .carousel-fade .carousel-inner .item {
   opacity: 0;
   -webkit-transition-property: opacity;
   -moz-transition-property: opacity;
   -o-transition-property: opacity;
   transition-property: opacity;
-}
-.carousel-fade .carousel-inner .active {
+} 
+ .carousel-fade .carousel-inner .active {
   opacity: 1;
-}
-.carousel-fade .carousel-inner .active.left,
-.carousel-fade .carousel-inner .active.right {
-  left: 0;
-  opacity: 0;
-  z-index: 1;
-}
-.carousel-fade .carousel-inner .next.left,
+} 
+
+ .carousel-fade .carousel-inner .next.left,
 .carousel-fade .carousel-inner .prev.right {
   opacity: 1;
-}
-.carousel-fade .carousel-control {
-  z-index: 2;
+} 
+.list-group-item-action{
+background-color:Beige  ;
+text-align: left;
 }
 </style> 
  <script type="text/javascript">
@@ -45,36 +41,27 @@
     })
   });
 </script> 
-<style type="text/css">
-
-.list-group-item {
-
-text-align: left;
-
-
-}
-</style>
 
 <title>Mainpage</title>
 </head>
 
 <body>
-<br>
+
 <div class="container">
-<div class="row" style="padding-top: 40px">
+	
+<div class="row" style="padding-top: 30px">
+
 <div class="col-sm-3"> 
 <div class="list-group">
-<button type="button" class="list-group-item list-group-item-danger" style="text-align: left">CATEGORIES</button>
-<a href="404" class="list-group-item list-group-item-action">Birthday Cakes</button></a>
-<a href="404" class="list-group-item list-group-item-action" >Wedding Cakes</a>
-<a href="404" class="list-group-item list-group-item-action" >Cup Cakes</a>
-<a href="404" class="list-group-item list-group-item-action" >Blackforest</a>
-<a href="404" class="list-group-item list-group-item-action" >Christmas Specials</a>
-<a href="404" class="list-group-item list-group-item-action" >Eggless Cakes</a>
-<a href="404" class="list-group-item list-group-item-action" >Premium Chocolatecakes</a>
-<a href="404" class="list-group-item list-group-item-action" >Piece Cakes</a>
-<a href="404" class="list-group-item list-group-item-action" >Premim Fruitcakes</a>
- 
+<button type="button" class="list-group-item list-group-item-danger" style="text-align: left;padding: 5px"><b><h4>CATEGORIES</h4></b></button>
+<a href="404" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Birthday Cakes</a>
+<a href="404" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Wedding Cakes</a>
+<a href="404" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Cup Cakes</a>
+<a href="404" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Blackforest / WhiteForest</a>
+<a href="404" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Christmas Specials</a>
+<a href="404" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Eggless Cakes</a>
+<a href="404" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Premium Chocolatecakes</a>
+
 </div>
 </div>
 <div class="col-sm-9"> 
@@ -95,10 +82,10 @@ text-align: left;
         
 
         <div class="carousel-inner">
-           <div class="item ">
+           <div class="item active ">
              <img src="resources/images/image1.jpg" style="width:100%;height:420px""class="img-responsive">
            </div>
-           <div class="item active">
+           <div class="item">
              <img src="resources/images/image2.jpg" style="width:100%;height:420px"class="img-responsive">
             </div>
            <div class="item">

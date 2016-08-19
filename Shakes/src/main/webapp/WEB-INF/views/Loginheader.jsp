@@ -22,12 +22,12 @@
 
 <title>Mainpage</title>
 <style type="text/css">
-/*  body
+/* body
 {
 background-image:url("resources/images/3.jpg");
 
 background-size:cover;
-}  */
+} */
 .navbarmain {
 	background-color:LightCoral;
 	
@@ -62,12 +62,12 @@ color:NavajoWhite;
 
 <!-- <body background-image: <c:url value="resources/images/2.jpg"/>>
  --><br><br>
-
+ 
+ 
  <div class=container>
 		<nav class="navbarmain">
 			<div class="container-fluid">
 			 <div class="navbar-header">
-			 
 		 <font face="Jokerman">	 <a class="navbar-brand">DoughyDelights</a>
     </font>
 						
@@ -103,61 +103,10 @@ color:NavajoWhite;
 					</c:choose>
 				</ul>
 			</div>
-		
+			
 	
 		</nav>
 </div>
-<div id="admin">
-
-
-		<c:if test="${isAdmin eq true }">
-		<%@include file="mainheader.jsp"%> 
-			<%@include file="admin.jsp"%>
-		</c:if>
-	</div>
-
-	<div id="user">
-
-		<c:if test="${isAdmin eq false }">
-		
-	
-		<div class="col-md-offset-1"><h4><b><i>Welcome ${loggedInUser}..!</i></b></h4></div>
-		      
-			<%@include file="carousel.jsp"%> 
-			
-		</c:if>
-
-	</div>
-	<%--  <div id=signup>
-
-		<c:if test="${isuserClickedRegisterHere eq true }">
-		<br>
-		<div class="col-md-offset-1"><h1><b><i>${regsuccess}</i></b></h1></div>
-			
-		</c:if> 
-	</div>  --%>
-	<%-- <div id=login>
-
-		<c:if
-			test="${isuserClickedLoginHere eq true || invalidCredentials eq true }">
-             
-			<%@include file="login.jsp"%>
-		</c:if>
-	</div> --%>
-	<div id=login>
-
-		<c:if
-			test="${empty loggedInUser }">
-			<br>
-<div class="col-md-offset-1"><h4><b><i>${logout}</i></b></h4></div>
-			
-         <div class="col-md-offset-1"><h4><b><i>${regsuccess}</i></b></h4></div>
-			<%@include file="carousel.jsp"%>
-		</c:if>
-	</div>
-
-
-
 
 </body>
 </html>

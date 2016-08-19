@@ -1,5 +1,6 @@
 package com.niit.cakeshakes.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
@@ -17,8 +18,8 @@ import com.sun.istack.internal.NotNull;
 
 @Entity
 @Table
-@Component("categoryTable")
-public class CategoryTable {
+@Component("cakeCategory")
+public class CakeCategory {
 	
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Id
@@ -28,10 +29,14 @@ public class CategoryTable {
 		this.id = id; 
 	}
 	
+	
 	@Size(min=3,message="The field must be atleast 3 characters!")	
+	@Column(unique=true)
 	private String name;
 	@Length(min =3,max=30, message = "The field must be between 3 and 30 characters long!")
 	private String description;
+	
+	
 /*	private Set<ProductTable> product;*/
 
 /*
@@ -62,6 +67,9 @@ public String getDescription() {
 public void setDescription(String description) {
 		this.description = description;
 	}
+
+
+
 	
 	
 }

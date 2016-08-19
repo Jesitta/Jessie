@@ -16,19 +16,19 @@
     .navbar {
         background-color: LightCoral;
         background-image: none;
-        text-align: center;
+       
 	width:100%;
        }
        .navbar-brand{
        color:#DAF7A6;
-	text-align: center;
+	
 	padding: 14px 16px;
-	 text-align: center;
+
 	text-decoration: None;
        }
      li a {
 	color: #DAF7A6;
-	text-align: center;
+
 	padding: 14px 16px;
 	text-decoration: None;
 }
@@ -36,20 +36,35 @@
 </style>
 <body>
 
+<div class="container">
+<nav class="navbar">
+ 
+    <ul class="nav navbar-nav">
+     
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Category <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="category">AddCategory</a></li>
+          <li><a href="viewcat">ViewCategory</a></li>
+          
+        </ul>
+         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Supplier <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="supplierr">AddSupplier</a></li>
+          <li><a href="viewsup">ViewSupplier</a></li>
+          
+        </ul>
+         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Product <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="productt">AddProduct</a></li>
+          <li><a href="viewpro">ViewProduct</a></li>
+          
+        </ul>
+      
+    </ul>
 
-
-   
-    <div class="navbar">
+</nav>
+</div>
   
-
-    <ul>
-     <li> <a class="navbar-brand" href="#">Home</a></li>
-<li> <a class="navbar-brand" href="#">AboutUs</a></li>
-<li> <a class="navbar-brand" href="#">ContactUs</a></li>
-
- </ul>
-    </div>
-   
 
  
 </nav>

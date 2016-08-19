@@ -17,14 +17,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 
-
-
-
-
 @Entity
 @Table
-@Component("productTable")
-public class ProductTable {
+@Component("cakeProduct")
+public class CakeProduct {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -36,29 +32,31 @@ public class ProductTable {
 	@Length(min =3,max=30, message = "The field must be between 3 and 30 characters long!")
 	private String description;
 	
-	@Range(min=100,max=1000,message="Price should not be less than 100!")
+	@Range(min=100,max=10000,message="Price should not be less than 100!")
 private int price;
 @Transient	
 private MultipartFile image;
-/*@ManyToOne
-@JoinColumn(name="CATEGORY_ID")
-private CategoryTable category;
 
-public CategoryTable getCategory() {
-	return category;
+/*public CakeCategory getCat() {
+	return cat;
 }
-public void setCategory(CategoryTable category) {
-	this.category = category;
-}*/
-/*@ManyToOne
-@JoinColumn(name="SUPPLIER_ID")
-private SupplierTable supplier;
-public SupplierTable getSupplier() {
+public void setCat(CakeCategory cat) {
+	this.cat = cat;
+}
+private CakeCategory cat;*/
+
+/*private CakeSupplier supplier;*/
+
+
+
+/*public CakeSupplier getSupplier() {
 	return supplier;
 }
-public void setSupplier(SupplierTable supplier) {
+public void setSupplier(CakeSupplier supplier) {
 	this.supplier = supplier;
-}*/
+}
+*/
+
 
 public int getId() {
 	return id;
@@ -90,6 +88,7 @@ public MultipartFile getImage() {
 public void setImage(MultipartFile image) {
 	this.image = image;
 }
+
 
 
 

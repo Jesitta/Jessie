@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.cakeshakes.model.SupplierTable;
+import com.niit.cakeshakes.model.CakeSupplier;
 
 @Repository("supplierDAO")
 public class SupplierDAOImpl implements SupplierDAO {
@@ -21,24 +21,24 @@ public class SupplierDAOImpl implements SupplierDAO {
 	}	
 	
 	@Transactional
-	public void saveOrUpdate(SupplierTable supplierTable) {
-		sessionFactory.getCurrentSession().saveOrUpdate(supplierTable);
+	public void saveOrUpdate(CakeSupplier cakeSupplier) {
+		sessionFactory.getCurrentSession().saveOrUpdate(cakeSupplier);
 	}
 	
 	@Transactional
 	public void delete(int id) {
-		SupplierTable supplierToDelete = new SupplierTable();
+		CakeSupplier supplierToDelete = new CakeSupplier();
 		supplierToDelete.setId(id);
 		sessionFactory.getCurrentSession().delete(supplierToDelete);
 		
 	}
 	
 	@Transactional
-	public SupplierTable get(int id) {
-		String hql="from SupplierTable where id =" + "'" + id + "'";
+	public CakeSupplier get(int id) {
+		String hql="from CakeSupplier where id =" + "'" + id + "'";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
 		
-		List<SupplierTable> listSupplier = query.list();
+		List<CakeSupplier> listSupplier = query.list();
 		
 		if(listSupplier!= null && !listSupplier.isEmpty()) {
 			return listSupplier.get(0);
@@ -49,10 +49,10 @@ public class SupplierDAOImpl implements SupplierDAO {
 	
 	
 	@Transactional
-	public List<SupplierTable> list() {
+	public List<CakeSupplier> list() {
 		
 		@SuppressWarnings("unchecked")
-		List<SupplierTable> listSupplier =(List<SupplierTable>) sessionFactory.getCurrentSession().createCriteria(SupplierTable.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		List<CakeSupplier> listSupplier =(List<CakeSupplier>) sessionFactory.getCurrentSession().createCriteria(CakeSupplier.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		return listSupplier;
 	}
 	

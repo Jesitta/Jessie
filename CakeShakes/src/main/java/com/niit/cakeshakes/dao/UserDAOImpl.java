@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.cakeshakes.model.UserTable;
+import com.niit.cakeshakes.model.CakeUser;
 
 @Repository("userDAO")
 public class UserDAOImpl implements UserDAO {
@@ -22,26 +22,26 @@ public class UserDAOImpl implements UserDAO {
 	}	
 	
 	@Transactional
-	public void saveOrUpdate(UserTable userTable) {
-		userTable.setEnabled(true);
-		userTable.setRole("user");
-		sessionFactory.getCurrentSession().saveOrUpdate(userTable);
+	public void saveOrUpdate(CakeUser cakeUser) {
+		cakeUser.setEnabled(true);
+		cakeUser.setRole("ROLE_USER");
+		sessionFactory.getCurrentSession().saveOrUpdate(cakeUser);
 	}
 	
 	@Transactional
 	public void delete(String id) {
-		UserTable userToDelete = new UserTable();
-		userToDelete.setUserid(id);
+		CakeUser userToDelete = new CakeUser();
+		userToDelete.setUsername(id);
 		sessionFactory.getCurrentSession().delete(userToDelete);
 		
 	}
 	
 	@Transactional
-	public UserTable get(String id) {
-		String hql="from UserTable where userid =" + "'" + id + "'";
+	public CakeUser get(String id) {
+		String hql="from CakeUser where username =" + "'" + id + "'";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
 		
-		List<UserTable> listUser = query.list();
+		List<CakeUser> listUser = query.list();
 		
 		if(listUser!= null && !listUser.isEmpty()) {
 			return listUser.get(0);
@@ -51,11 +51,11 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Transactional
-	public boolean isValidUser(String userid,String password) {
-		String hql="from UserTable where userid ='" + userid + "'and "+"password ='"+ password+"'";
+	public boolean isValidUser(String username,String password) {
+		String hql="from CakeUser where username ='" + username + "'and "+"password ='"+ password+"'";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
-		List<UserTable> listUser = query.list();
+		List<CakeUser> listUser = query.list();
 		
 		if(listUser!= null && !listUser.isEmpty()) {
 			return true;
@@ -64,10 +64,10 @@ public class UserDAOImpl implements UserDAO {
 		return false;
 	}
 	@Transactional
-	public List<UserTable> list() {
+	public List<CakeUser> list() {
 		
 		@SuppressWarnings("unchecked")
-		List<UserTable> listUser =(List<UserTable>) sessionFactory.getCurrentSession().createCriteria(UserTable.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		List<CakeUser> listUser =(List<CakeUser>) sessionFactory.getCurrentSession().createCriteria(CakeUser.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		return listUser;
 	}
 	

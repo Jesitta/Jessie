@@ -17,7 +17,8 @@
 </head>
 <body>
 
-
+<%@include file="Loginheader.jsp"%>
+<%@include file="mainheader.jsp"%>
 <div class="container">
 
 	<h3>${editproduct}</h3>
@@ -26,7 +27,7 @@
  
    <c:url var="addproduct" value="viewproductt"></c:url>
   <form:form action="${addproduct}" method="post"
-			modelAttribute="productTable" enctype="multipart/form-data">
+			modelAttribute="cakeProduct" enctype="multipart/form-data">
   
 			<div class="form-group">
 				<form:label path="id">
@@ -35,7 +36,7 @@
 				<form:input path="id" readonly="true" class="form-control"/>
 				</div>
 				<%--  <c:choose>
-					<c:when test="${!empty productTable.id }">
+					<c:when test="${!empty cakeProduct.id }">
 						<td><form:input path="id" disabled="true" readonly="true" /></td>
 					</c:when>
 					<c:otherwise>
@@ -49,41 +50,44 @@
     <div class="form-group">
       <form:label path="name"><spring:message text="NAME"/></form:label>
       <form:input path="name" class="form-control"  placeholder="Enter name"/>
-   <form:errors path="name" />
+   <form:errors style="color:red" path="name" />
     </div> 
      <div class="form-group">
      <form:label path="description"><spring:message text="DESCRIPTION"/></form:label>
       <form:input path="description" class="form-control" placeholder="Enter description"/>
-      <form:errors path="description" />
+      <form:errors style="color:red" path="description" />
     </div> 
     <div class="form-group">
      <form:label path="price"><spring:message text="PRICE"/></form:label>
       <form:input path="price" class="form-control"  placeholder="Enter price"/>
-       <form:errors path="price" />
+       <form:errors style="color:red" path="price" />
        </div> 
-     <%--   <div class="form-group">
-     <form:label path="category"><spring:message text="CATEGORY"/></form:label>
-      <form:select path="categoryTable.name" class="form-control" items="${categoryList}" itemValue="name" itemLabel="name" placeholder="Enter category"/>
-    
-      </div>  --%>
-    <%-- <div class="form-group">
-     <form:label path="supplier"><spring:message text="SUPPLIER"/></form:label>
-      <form:select path="supplier.name" class="form-control" items="${supplierList}" itemValue="name" itemLabel="name" placeholder="Enter supplier"/>
-    
+    <%--  <div class="form-group">
+     <form:label path="cat"><spring:message text="CATEGORY"/></form:label>
+      <form:select path="cat"  class="form-control"  placeholder="Enter category">
+     <form:option value="NONE" label="---Select---"/>
+     <form:options items="${categoryList}" itemLable="name" itemValue="name"/> 
+     </form:select>
+     </div>  --%> 
+       <%-- <div class="form-group">
+     <form:label path="supplier"><spring:message text="SuPPLIER"/></form:label>
+      <form:select path="supplier" items="${supplierList}" class="form-control"  placeholder="Enter supplier"/>
+     
+    <form:option value="{{supplier.name}}"></form:option>
      </div> --%>
      <div class="form-group">
 				<form:label path="image" class="control-label">
 					<spring:message text="IMAGE" />
 				</form:label>
-				<form:input type="file" path="image" class="form-control"/>
+				<form:input type="file"  path="image" class="form-control"/>
     	 </div>
     <div class="form-group">
 
-				 <c:if test="${productTable.id > 0}">
+				 <c:if test="${cakeProduct.id > 0}">
 					<td><input type="submit" value="EDIT" />
 					 <input type="reset" value="RESET" /></td>
 				</c:if>
-				<c:if test="${productTable.id eq 0 }">
+				<c:if test="${cakeProduct.id eq 0 }">
 					<td><input type="submit" value="ADD" />
 					 <input type="reset" value="RESET" /></td>
 				</c:if> 

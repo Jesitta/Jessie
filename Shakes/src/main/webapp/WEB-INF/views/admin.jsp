@@ -14,27 +14,30 @@
 <h1>Welcome Admin...............!!!!</h1>
 <br><br>
 <div class="container">
-	<div class="col-md-1 col-md-offset-1">
-		<a href="category">ADDCATEGORY</a>
+<div class="item" align="left">
+             <img src="resources/images/1.gif-c200" class="img-responsive">
+            </div>
+	<!-- <div class="col-md-1 col-md-offset-1">
+		<a href="category"><h4>ADDCATEGORY</h4></a>
 		</div>
 	
 <div class="col-md-1 col-md-offset-1">
-		<a href="viewcategory">VIEWCATEGORY</a>
+		<a href="viewcat"><h4>VIEWCATEGORY</h4></a>
 		</div><br><br><br>
 		<div class="col-md-1 col-md-offset-1">
-		<a href="supplierr">ADDSUPPLIER</a>
+		<a href="supplierr"><h4>ADDSUPPLIER</h4></a>
 		</div>
 	
 <div class="col-md-1 col-md-offset-1">
-		<a href="viewsupplier">VIEWSUPPLIER</a>
+		<a href="viewsup"><h4>VIEWSUPPLIER</h4></a>
 		</div><br><br><br>
 		<div class="col-md-1 col-md-offset-1">
-		<a href="productt">ADDPRODUCT</a>
+		<a href="productt"><h4>ADDPRODUCT</h4></a>
 		</div>
 	
 <div class="col-md-1 col-md-offset-1">
-		<a href="viewproduct">VIEWPRODUCT</a>
-		</div>
+		<a href="viewpro"><h4>VIEWPRODUCT</h4></a>
+		</div> -->
 </div>
 </div>
 	    

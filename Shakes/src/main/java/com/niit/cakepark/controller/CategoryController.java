@@ -2,11 +2,12 @@ package com.niit.cakepark.controller;
 
 
 
+import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.niit.cakeshakes.dao.CategoryDAO;
-import com.niit.cakeshakes.model.CategoryTable;
+import com.niit.cakeshakes.model.CakeCategory;
 
 
 
@@ -28,26 +30,42 @@ import com.niit.cakeshakes.model.CategoryTable;
 @Controller
 
 public class CategoryController {
-	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+	
 	
 	@Autowired
 	private  CategoryDAO categoryDAO;
 	@Autowired
-	private  CategoryTable categoryTable;
-	
+	private  CakeCategory cakeCategory;
 	@RequestMapping(value ="/category",method=RequestMethod.GET)
+	public String category(Model model){
+		model.addAttribute("cakeCategory",cakeCategory);
+		model.addAttribute("addcategory", "Add Category");
+		return "category";
+	}
+	
+	/*@RequestMapping(value ="/category",method=RequestMethod.GET)
 	public ModelAndView category(){
 		ModelAndView modelAndView = new ModelAndView("/category");
-		modelAndView.addObject("categoryTable", categoryTable);  
+		modelAndView.addObject("cakeCategory",cakeCategory);  
 		modelAndView.addObject("addcategory", "Add Category");
 		
 		return modelAndView;
-	}
+	}*/
+
+@RequestMapping("/viewcat")
+public ModelAndView viewcategory() {
+	ModelAndView mv=new ModelAndView("viewcategory");
+	mv.addObject("CategoryList", "CATEGORY LIST");
+	Gson gson=new Gson();
+	List<CakeCategory> category=categoryDAO.list();
+	String value=gson.toJson(category);
+	mv.addObject("value",value);
 	
 
-
+    return mv;
+}
 	@RequestMapping(value ="/vieww",method=RequestMethod.POST)
-	public ModelAndView  addcategory(@Valid @ModelAttribute("categoryTable") CategoryTable categoryTable, BindingResult result) {
+	public ModelAndView  addcategory(@Valid @ModelAttribute("cakeCategory") CakeCategory cakeCategory, BindingResult result) {
 		ModelAndView modelAndView = new ModelAndView();
 if(result.hasErrors()) {
 	modelAndView.addObject("addcategory", "Add Category");
@@ -55,74 +73,39 @@ if(result.hasErrors()) {
 		}
 else{
 	
-		System.out.println(categoryTable.getId());
-		categoryDAO.saveOrUpdate(categoryTable);
+		System.out.println(cakeCategory.getId());
+		categoryDAO.saveOrUpdate(cakeCategory);
 	
-	System.out.println(categoryTable.getId());
-	System.out.println(categoryTable.getName());
-	System.out.println(categoryTable.getDescription());
-		
-		modelAndView.addObject("CategoryList", "CATEGORY LIST");
-		modelAndView.addObject("categoryList",categoryDAO.list());
-		
-		modelAndView.setViewName("/view");
+	System.out.println(cakeCategory.getId());
+	System.out.println(cakeCategory.getName());
+	System.out.println(cakeCategory.getDescription());
+		modelAndView.setViewName("redirect:/viewcat");
 	}
 return modelAndView;
 	}
-	
+
+
 	
 	@RequestMapping("/{id}")
 	public String deletecategory(@PathVariable("id") int id,ModelMap model) {
 		categoryDAO.delete(id);
-		model.addAttribute("categoryList",categoryDAO.list());
-		model.addAttribute("CategoryList", "CATEGORY LIST");
-		return "/view";
+		/*model.addAttribute("categoryList",categoryDAO.list());*/
+		/*model.addAttribute("CategoryList", "CATEGORY LIST");*/
+		return "redirect:/viewcat";
 	}
 	
-	/*@RequestMapping(value ="category/edit/{id}")
-	public String editcategory(@PathVariable("id") String id, Model model) {
-		categoryTable = categoryDAO.get(id);
-		model.addAttribute("categoryTable", categoryTable);
-		model.addAttribute("categoryList",this.categoryDAO.list());
-		return "category";
 
-*/	
 	@RequestMapping(value ="/e{id}")
 	public String editcategory(@PathVariable("id") int id,Model model  ) {
-		categoryTable = categoryDAO.get(id); 
-		model.addAttribute("categoryTable", categoryTable);
+		cakeCategory = categoryDAO.get(id); 
+		model.addAttribute("cakeCategory",cakeCategory);
 	
 		model.addAttribute("editcategory", "Edit category");  
-		System.out.println(categoryTable.getId());
+		
 		return "/category";
 		
 	}
-	/*@RequestMapping(value ="/vieww")
-	public String categoryedit(@PathVariable("id") int id,Model model  ) {
-		categoryTable = categoryDAO.get(id); 
-		model.addAttribute("categoryTable", categoryTable);
-	
-		model.addAttribute("categoryList",this.categoryDAO.list());
-		
-		return "view";
-	}*/
 
-	
-	/*@RequestMapping("/error")
-	public ModelAndView  categoryedit(@ModelAttribute("categoryTable") CategoryTable categoryTable) {
-	System.out.println("No Error");
-	System.out.println(categoryTable.getId());
-	System.out.println(categoryTable.getName());
-    categoryDAO.update(categoryTable);
-     System.out.println("Error");
-	
-		ModelAndView modelAndView = new ModelAndView("view");
-	 
-		modelAndView.addObject("categoryList",categoryDAO.list());
-		
-		return modelAndView;
-	}*/
-	
 }
 
 

@@ -15,7 +15,8 @@
 <title>Supplier</title>
 </head>
 <body>
- <%@include file="adminnavbar.jsp"%>
+ <%@include file="Loginheader.jsp"%>
+<%@include file="mainheader.jsp"%>
 <div class="container"> 
 		<h3>${editsupplier}</h3>
 <h3>${addsupplier}</h3>
@@ -23,7 +24,7 @@
 
 <c:url var="actionadd" value="supplierview" ></c:url>
 <form:form action="${actionadd}" method="post"
-		modelAttribute="supplierTable">
+		modelAttribute="cakeSupplier">
  
 <div class="form-group">
 				 <form:label path="id">
@@ -36,21 +37,21 @@
     <div class="form-group">
       <form:label path="name"><spring:message text="NAME"/></form:label>
       <form:input path="name"  class="form-control" />
-      <form:errors path="name"/>
+      <form:errors style="color:red" path="name"/>
     </div>
      <div class="form-group">
       <form:label path="address"><spring:message text="ADDRESS"/></form:label>
       <form:input path="address"  class="form-control" />
-      <form:errors path="address"/>
+      <form:errors style="color:red" path="address"/>
       </div>
      
      
       <div>
-				<c:if test="${supplierTable.id > 0 }">
+				<c:if test="${cakeSupplier.id > 0 }">
 				<input type="submit" value="EDIT" />
 				 <input type="reset" value="RESET" />
 				</c:if>
-<c:if test="${ supplierTable.id eq 0 }">
+<c:if test="${ cakeSupplier.id eq 0 }">
      <input type="submit" value="ADD" />
       <input type="reset" value="RESET" />
        </c:if>

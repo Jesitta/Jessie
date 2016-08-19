@@ -18,17 +18,16 @@ import com.niit.cakeshakes.dao.CategoryDAO;
 import com.niit.cakeshakes.dao.CategoryDAOImpl;
 import com.niit.cakeshakes.dao.ProductDAO;
 import com.niit.cakeshakes.dao.ProductDAOImpl;
-/*import com.niit.cakeshakes.dao.ProductDAO;
-import com.niit.cakeshakes.dao.ProductDAOImpl;*/
+
+
 import com.niit.cakeshakes.dao.SupplierDAO;
 import com.niit.cakeshakes.dao.SupplierDAOImpl;
 import com.niit.cakeshakes.dao.UserDAO;
 import com.niit.cakeshakes.dao.UserDAOImpl;
-import com.niit.cakeshakes.model.CategoryTable;
-import com.niit.cakeshakes.model.ProductTable;
-/*import com.niit.cakeshakes.model.ProductTable;
-*/import com.niit.cakeshakes.model.SupplierTable;
-import com.niit.cakeshakes.model.UserTable;
+import com.niit.cakeshakes.model.CakeCategory;
+import com.niit.cakeshakes.model.CakeProduct;
+import com.niit.cakeshakes.model.CakeSupplier;
+import com.niit.cakeshakes.model.CakeUser;
 
 
 @Configuration
@@ -60,10 +59,10 @@ public class ApplicationContextConfig {
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 		LocalSessionFactoryBuilder sessionBuilder=new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addProperties(getHibernateProperties());
-		sessionBuilder.addAnnotatedClass(CategoryTable.class);
-		sessionBuilder.addAnnotatedClass(SupplierTable.class);
-		sessionBuilder.addAnnotatedClass(ProductTable.class);
-		sessionBuilder.addAnnotatedClass(UserTable.class);
+		sessionBuilder.addAnnotatedClass(CakeCategory.class);
+		sessionBuilder.addAnnotatedClass(CakeSupplier.class);
+		sessionBuilder.addAnnotatedClass(CakeProduct.class);
+		sessionBuilder.addAnnotatedClass(CakeUser.class);
 	
 		return sessionBuilder.buildSessionFactory();
 		

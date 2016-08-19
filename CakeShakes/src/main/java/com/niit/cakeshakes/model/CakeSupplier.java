@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table
-@Component
+@Component("cakeSupplier")
 
-public class SupplierTable {
+public class CakeSupplier {
          @Id
          @GeneratedValue(strategy=GenerationType.AUTO)
 		private int id;   

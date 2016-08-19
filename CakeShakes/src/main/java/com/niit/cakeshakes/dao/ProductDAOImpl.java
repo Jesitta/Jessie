@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.cakeshakes.model.ProductTable;
+import com.niit.cakeshakes.model.CakeProduct;
 
 @Repository("productDAO")
 public class ProductDAOImpl implements ProductDAO {
@@ -21,24 +21,24 @@ public class ProductDAOImpl implements ProductDAO {
 	}	
 	
 	@Transactional
-	public void saveOrUpdate(ProductTable productTable) {
-		sessionFactory.getCurrentSession().saveOrUpdate(productTable);
+	public void saveOrUpdate(CakeProduct cakeProduct) {
+		sessionFactory.getCurrentSession().saveOrUpdate(cakeProduct);
 	}
 	
 	@Transactional
 	public void delete(int id) {
-		ProductTable productToDelete = new ProductTable();
+		CakeProduct productToDelete = new CakeProduct();
 		productToDelete.setId(id);
 		sessionFactory.getCurrentSession().delete(productToDelete);
 		
 	}
 	
 	@Transactional
-	public ProductTable get(int id) {
-		String hql="from ProductTable where id =" + "'" + id + "'";
+	public CakeProduct get(int id) {
+		String hql="from CakeProduct where id =" + "'" + id + "'";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
 		
-		List<ProductTable> listProduct = query.list();
+		List<CakeProduct> listProduct = query.list();
 		
 		if(listProduct!= null && !listProduct.isEmpty()) {
 			return listProduct.get(0);
@@ -49,10 +49,10 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	
 	@Transactional
-	public List<ProductTable> list() {
+	public List<CakeProduct> list() {
 		
 		@SuppressWarnings("unchecked")
-		List<ProductTable> listProduct =(List<ProductTable>) sessionFactory.getCurrentSession().createCriteria(ProductTable.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		List<CakeProduct> listProduct =(List<CakeProduct>) sessionFactory.getCurrentSession().createCriteria(CakeProduct.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		return listProduct;
 	}
 	
