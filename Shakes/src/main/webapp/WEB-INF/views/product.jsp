@@ -62,13 +62,11 @@
       <form:input path="price" class="form-control"  placeholder="Enter price"/>
        <form:errors style="color:red" path="price" />
        </div> 
-    <%--  <div class="form-group">
+     <div class="form-group">
      <form:label path="cat"><spring:message text="CATEGORY"/></form:label>
-      <form:select path="cat"  class="form-control"  placeholder="Enter category">
-     <form:option value="NONE" label="---Select---"/>
-     <form:options items="${categoryList}" itemLable="name" itemValue="name"/> 
-     </form:select>
-     </div>  --%> 
+      <form:select path="cat.name"  class="form-control" items="${categoryList}" itemLabel="name" itemValue="name"  placeholder="Enter category"/>
+     
+     </div>  
        <%-- <div class="form-group">
      <form:label path="supplier"><spring:message text="SuPPLIER"/></form:label>
       <form:select path="supplier" items="${supplierList}" class="form-control"  placeholder="Enter supplier"/>

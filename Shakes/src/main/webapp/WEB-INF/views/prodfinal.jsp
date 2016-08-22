@@ -13,74 +13,37 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <title>View</title>
-<style>
-
- 
-table, th , td ,tr {
-  border: 2px solid grey;
-  border-collapse: collapse;
-  padding: 15px;
-  
-} 
-
-</style>
-
 </head>
 <body>
-<%@include file="Loginheader.jsp"%>
-<%@include file="mainheader.jsp"%>
-<div class="container">
-<br>
 
-
- <div>	
-		
-<div align="left"><h4><b>${CategoryList}</b></h4></div>
-	
-
-
-
- <br>
-		<div ng-app="myApp" ng-controller="catCtrl">
+<div ng-app="myApp" ng-controller="catCtrl">
  <div align="center"><label>Search:<input  ng-model="searchText"></label></div>
  <br>
 <table class="table">
 
- <thead> 
- <tr>
-				<th width="100">ID</th>
-				<th width="200">NAME</th>
-				<th width="200">DESCRIPTION</th>
-			   <th width="100">EDIT</th>
-				<th width="100">DELETE</th>
-				</tr>
-			</thead>
+ 
 <tbody>
-  <tr ng-repeat="category in list | filter:searchText">
-    <td>{{ category.id }}</td>
-    <td>{{ category.name }}</td>
-    <td>{{ category.description }}</td>
-    <td><a href="<c:url value= '/e{{category.id}}'/>"> Edit</a></td>
+  <tr ng-repeat="pro in list | filter:searchText">
+    
+    <td>{{ pro.name }}</td>
+    <td>{{ pro.description }}</td>
+     <td>{{ pro.price }}</td>
+
 				
-	<td><a href="<c:url value= '/{{category.id}}'/>"> Delete</a></td>
+	
   </tr>
   </tbody>
 </table>
 
 </div>
-
 <script>
-var temp=${value};
+var temp=${prodfinal};
 var myapp = angular.module('myApp', []);
 myapp.controller('catCtrl', function($scope) {
     $scope.list=temp;
 });
 </script>
-	
-</div> 
-<br>
-</div>
 
-
-</body>
-</html>
+  </body>
+  </html>
+  

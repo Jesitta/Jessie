@@ -24,7 +24,7 @@
    <c:url var="actionlogin" value="/login"></c:url>
   <form action="${actionlogin}" method="post" >
      <div class="form-group">
-      <label for="email">UserName</label>
+      <label for="name">UserName</label>
       <input type="text" name="username" class="form-control" id="username" placeholder="Enter userid"/>
     </div>
     <div class="form-group">

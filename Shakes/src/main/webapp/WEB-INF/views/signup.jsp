@@ -22,9 +22,9 @@
 			commandName="cakeUser">
 
 
-			<div class="form-group">
-				<label for="email">Name</label>
-				<form:input path="name" class="form-control" title="Example:xxxxx"
+			<div class="form-group ">
+				<label for="email">Name</label><br>
+				<form:input path="name" class="form-control" title="Example:xxxxx" 
 					pattern="^[a-zA-Z]+$" placeholder="Enter name" required="true" />
 					
 			</div>

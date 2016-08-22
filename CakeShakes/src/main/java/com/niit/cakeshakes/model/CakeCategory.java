@@ -1,12 +1,14 @@
 package com.niit.cakeshakes.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import com.sun.istack.internal.NotNull;
 
+ 
 
 @Entity
 @Table
@@ -36,17 +39,19 @@ public class CakeCategory {
 	@Length(min =3,max=30, message = "The field must be between 3 and 30 characters long!")
 	private String description;
 	
-	
-/*	private Set<ProductTable> product;*/
 
-/*
-@OneToMany(mappedBy="category",fetch=FetchType.EAGER)
-public Set<ProductTable> getProduct() {
-	return product;
-}
-public void setProduct(Set<ProductTable> product) {
-	this.product = product;
-}*/
+/*	
+	private Set<CakeProduct> product;
+@OneToMany(mappedBy="cat",fetch=FetchType.EAGER)
+public Set<CakeProduct> getProduct() {
+		return product;
+	}
+
+	public void setProduct(Set<CakeProduct> product) {
+		this.product = product;
+	}
+*/
+
 
 public String getName() {
 		return name;

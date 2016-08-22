@@ -43,16 +43,17 @@ public class ProductController {
 	
 	
 	@RequestMapping(value="/productt",method=RequestMethod.GET)
-	public ModelAndView product(){
-		ModelAndView modelAndView = new ModelAndView("product");
-		modelAndView.addObject("cakeProduct", cakeProduct);  
+	public String product(Model model){
 		
-		modelAndView.addObject("addproduct", "Add Product");
+		model.addAttribute("cakeProduct", cakeProduct);  
+		
+		model.addAttribute("addproduct", "Add Product");
 		
 		
-		/*modelAndView.addObject("categoryList",this.categoryDAO.list());*/
-		return modelAndView;
+		model.addAttribute("categoryList",this.categoryDAO.list());
+		return "product";
 	}
+	
 	
 	@RequestMapping(value ="/viewproductt",method=RequestMethod.POST)
 	public ModelAndView addproduct(@Valid @ModelAttribute("cakeProduct")CakeProduct cakeProduct, BindingResult result ){
@@ -62,10 +63,15 @@ if(result.hasErrors()) {
 			modelAndView.setViewName("/product");
 		}
 else{
-		productDAO.saveOrUpdate(cakeProduct);
+
+CakeCategory cakeCategory = categoryDAO.getByName(cakeProduct.getCat().getName());
+System.out.println(cakeCategory.getId());
+
+	cakeProduct.setCat(cakeCategory);
+	productDAO.saveOrUpdate(cakeProduct);
 		
 		modelAndView.addObject("ProductList", "PRODUCT LIST");
-		
+	
 	
 		MultipartFile file=cakeProduct.getImage();
 		FileUtil.upload(path, file, cakeProduct.getId()+".jpg");

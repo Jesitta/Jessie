@@ -75,11 +75,11 @@ color:NavajoWhite;
 			
         
 				<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="#"><span
+				<li class="active"><a href="gomain"><span
 									class="glyphicon glyphicon-home"></span>Home</a></li>
      
        
-          <li><a href="#">AboutUs</a></li>
+          <li><a href="about">AboutUs</a></li>
           <li><a href="#">ContactUs</a></li>
 					<c:choose>
 						<c:when test="${empty loggedInUser}">

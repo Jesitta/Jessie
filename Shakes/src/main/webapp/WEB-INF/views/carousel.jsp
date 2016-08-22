@@ -54,13 +54,13 @@ text-align: left;
 <div class="col-sm-3"> 
 <div class="list-group">
 <button type="button" class="list-group-item list-group-item-danger" style="text-align: left;padding: 5px"><b><h4>CATEGORIES</h4></b></button>
-<a href="404" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Birthday Cakes</a>
-<a href="404" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Wedding Cakes</a>
-<a href="404" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Cup Cakes</a>
-<a href="404" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Blackforest / WhiteForest</a>
-<a href="404" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Christmas Specials</a>
-<a href="404" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Eggless Cakes</a>
-<a href="404" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Premium Chocolatecakes</a>
+<a href="productlist?catname=Birthday Cakes" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Birthday Cakes</a>
+<a href="productlist?catname=Wedding Cakes" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Wedding Cakes</a>
+<a href="productlist?catname=Cup Cakes" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Cup Cakes</a>
+<a href="productlist?catname=Blackforest / WhiteForest" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Blackforest / WhiteForest</a>
+<a href="productlist?catname=Christmas Specials" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Christmas Specials</a>
+<a href="productlist?catname=Eggless Cakes" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Eggless Cakes</a>
+<a href="productlist?catname=Premium Chocolatecakes" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Premium Chocolatecakes</a>
 
 </div>
 </div>

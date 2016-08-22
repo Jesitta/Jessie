@@ -10,4 +10,8 @@ public interface ProductDAO {
 	public CakeProduct get(int id);
 	public void saveOrUpdate(CakeProduct cakeProduct);
 	public void delete(int id);
+	public List <CakeProduct> getByCategory(int categoryId);
+
+	
+	
 }

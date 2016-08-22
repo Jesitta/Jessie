@@ -72,7 +72,33 @@ $scope.description= '';
 </tr>
 
 </table--%>
+		
+<!-- @RequestMapping(value ="/proddesc")
+	public ModelAndView viewpage(HttpServletRequest req) {
+		String pdid=req.getParameter("pdid");
+		
+		CakeProduct cakeProduct = productDAO.getById(Integer.parseInt(pdid));
+		ModelAndView mv=new ModelAndView("prodfinal");
+		Gson gs=new Gson;
+		String page=gs.toJson(cakeProduct);
+		mv.addObject("finalpage",page);
+			
+		return mv;
+    } -->
+	<!-- 	@Transactional
+	public CakeProduct getById(int productId)
+	{
+		String hql="from CakeProduct where id  =" + "'" + productId + "'";
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
 				
+		List<CakeProduct> listProduct = query.list();
+		
+		if(listProduct!= null && !listProduct.isEmpty()) {
+			return listProduct.get(0);
+			
+		}
+		return null;
+	} -->	
 
 
 

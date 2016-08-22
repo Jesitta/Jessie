@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.niit.cakeshakes.model.CakeCategory;
 import com.niit.cakeshakes.model.CakeProduct;
 
 @Repository("productDAO")
@@ -47,6 +48,21 @@ public class ProductDAOImpl implements ProductDAO {
 		return null;
 	}
 	
+	@Transactional
+	public List <CakeProduct> getByCategory(int categoryId)
+	{
+		String hql="from CakeProduct where cat_id  =" + "'" + categoryId + "'";
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+				
+		List<CakeProduct> listProduct = query.list();
+		
+		if(listProduct!= null && !listProduct.isEmpty()) {
+			return listProduct;
+			
+		}
+		return null;
+	}
+
 	
 	@Transactional
 	public List<CakeProduct> list() {

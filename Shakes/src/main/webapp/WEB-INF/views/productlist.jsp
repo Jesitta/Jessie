@@ -12,7 +12,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<title>ViewProduct</title>
+<title>View</title>
 <style>
 
  
@@ -24,65 +24,64 @@ table, th , td ,tr {
 } 
 
 </style>
-<body><%@include file="Loginheader.jsp"%>
-<%@include file="mainheader.jsp"%>
 
+</head>
+<body>
+<%@include file="Loginheader.jsp"%>
 
+<div class="container">
 <br>
- <div class="container">
 
-<div align="left"><h4><b>${ProductList}</b></h4></div>
+
+ <div>	
+		
+<div align="left"><h4><b>${ViewProduct}</b></h4></div>
 	
 
 
 
  <br>
-		<div ng-app="myApp" ng-controller="proCtrl">
- <div align="center"><label>Search: <input ng-model="searchText"></label></div>
+		<div ng-app="myApp" ng-controller="catCtrl">
+ <div align="center"><label>Search:<input  ng-model="searchText"></label></div>
  <br>
 <table class="table">
 
  <thead> 
  <tr>
-				<th width="100">ID</th>
+				
 				<th width="200">NAME</th>
 				<th width="200">DESCRIPTION</th>
 				<th width="100">PRICE</th>
-			    <th width="100">CAT_ID</th>
-				<th width="100">EDIT</th>
-				<th width="100">DELETE</th>
+				<th width="100">INFO</th>
+				
 				</tr>
 			</thead>
 <tbody>
-  <tr ng-repeat="product in list | filter:searchText">
-    <td>{{ product.id }}</td>
-    <td>{{ product.name }}</td>
-    <td>{{ product.description }}</td>
-    <td>{{ product.price }}</td>
-    <td>{{ product.cat.id}}</td>
-    <td><a href="<c:url value= '/ep{{product.id}}' />"> Edit</a></td>
+  <tr ng-repeat="prodct in list | filter:searchText">
+    
+    <td>{{ prodct.name }}</td>
+    <td>{{ prodct.description }}</td>
+     <td>{{ prodct.price }}</td>
+    <td><a href="proddesc?pdid={{prodct.id}}">i</a></td>
 				
-    <td><a href="<c:url value= '/p{{product.id}}' />"> Delete</a></td>
+	
   </tr>
   </tbody>
 </table>
+
 </div>
 
-
 <script>
-var temp=${value};
+var temp=${prodlist};
 var myapp = angular.module('myApp', []);
-myapp.controller('proCtrl', function($scope) {
+myapp.controller('catCtrl', function($scope) {
     $scope.list=temp;
 });
-
 </script>
-
-</div>  
-
-
-
-
+	
+</div> 
+<br>
+</div>
 
 
 </body>

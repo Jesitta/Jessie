@@ -11,8 +11,8 @@ public interface CategoryDAO {
 		public CakeCategory get(int id);
 		public void saveOrUpdate(CakeCategory cakeCategory);
 		public void delete(int id);
-		public void save(CakeCategory cakeCategory);
-		public void update(CakeCategory cakeCategory);
+		public CakeCategory getByName(String name);
+	
 		
 
 }

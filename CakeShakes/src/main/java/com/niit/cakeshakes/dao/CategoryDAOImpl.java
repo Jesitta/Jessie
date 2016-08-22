@@ -24,18 +24,21 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public void saveOrUpdate(CakeCategory cakeCategory) {
 		sessionFactory.getCurrentSession().saveOrUpdate(cakeCategory);
 	}
-	@Transactional
-	public  void save(CakeCategory cakeCategory) {
-	
-	sessionFactory.getCurrentSession().save(cakeCategory);
-	}
 	
 	@Transactional
-	public void update(CakeCategory cakeCategory) {
-	
-		sessionFactory.getCurrentSession().update(cakeCategory);
+	public CakeCategory getByName(String name)
+	{
+		String hql="from CakeCategory where name  =" + "'" + name + "'";
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+				
+		List<CakeCategory> listCategory = query.list();
+		
+		if(listCategory!= null && !listCategory.isEmpty()) {
+			return listCategory.get(0);
+			
 		}
-
+		return null;
+	}
 	
 	@Transactional
 	public void delete(int id) {
