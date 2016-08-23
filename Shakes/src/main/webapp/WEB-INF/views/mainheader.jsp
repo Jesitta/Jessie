@@ -20,14 +20,14 @@
 	width:100%;
        }
        .navbar-brand{
-       color:#DAF7A6;
+       color:NavajoWhite;
 	
 	padding: 14px 16px;
 
 	text-decoration: None;
        }
      li a {
-	color: #DAF7A6;
+	color: NavajoWhite;
 
 	padding: 14px 16px;
 	text-decoration: None;

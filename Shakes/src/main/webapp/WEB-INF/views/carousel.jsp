@@ -72,10 +72,7 @@ text-align: left;
             <li data-target="Carousel" data-slide-to="1"></li>
             <li data-target="Carousel" data-slide-to="2"></li>
             <li data-target="Carousel" data-slide-to="3"></li>
-            <!--  <li data-target="Carousel" data-slide-to="4"></li>
-            <li data-target="Carousel" data-slide-to="5"></li>         
-             <li data-target="Carousel" data-slide-to="6"></li>
-            <li data-target="Carousel" data-slide-to="7"></li> -->
+           
             
            
         </ol>
@@ -92,20 +89,8 @@ text-align: left;
              <img src="resources/images/image3.jpg" style="width:100%;height:420px"class="img-responsive">
             </div>
               <div class="item">
-             <img src="resources/images/6.jpg" style="width:100%;height:420px" class="img-responsive">
-            </div> 
-          <!--  <div class="item">
-             <img src="resources/images/slide5.png" class="img-responsive">
-            </div>
-            <div class="item">
-             <img src="resources/images/slide6.png" class="img-responsive">
-            </div>
-           <div class="item">
-             <img src="resources/images/slide7.png" class="img-responsive">
-             </div>
-           <div class="item">
-             <img src="resources/images/slide8.png" class="img-responsive">
-            </div>                     -->
+             <img src="resources/images/image4.jpg" style="width:100%;height:420px" class="img-responsive">
+    </div>
         </div>
         </div>
         </div>

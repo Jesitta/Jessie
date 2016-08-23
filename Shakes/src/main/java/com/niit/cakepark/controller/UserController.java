@@ -2,11 +2,13 @@ package com.niit.cakepark.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,16 +31,22 @@ AnnotationConfigApplicationContext context = new AnnotationConfigApplicationCont
 	
 	@RequestMapping(value ="/signup",method=RequestMethod.GET)
 	public String signup(Model model){
-		model.addAttribute("cakeUser", cakeUser); 
+		model.addAttribute("cakeUser", new CakeUser()); 
 		model.addAttribute("isuserClickedRegisterHere", "true"); 
 		return "signup";
 	}
 	
 	@RequestMapping(value ="signup",method=RequestMethod.POST)
-	public ModelAndView signuppost(@ModelAttribute("cakeUser") CakeUser cakeUser) {
-	userDAO.saveOrUpdate(cakeUser);
-		ModelAndView modelAndView = new ModelAndView("home");
+	public ModelAndView signuppost(@Valid @ModelAttribute("cakeUser") CakeUser cakeUser,BindingResult result) {
+		ModelAndView modelAndView = new ModelAndView();
+		if(result.hasErrors()) {
+	modelAndView.setViewName("/signup");
+		}
+else{
+	      userDAO.saveOrUpdate(cakeUser);
 		modelAndView.addObject("regsuccess", "Registered Successfully...!!");   
+		modelAndView.setViewName("/home");
+}
 		return modelAndView;
 	}
 	@RequestMapping(value ="/gologin",method=RequestMethod.GET)

@@ -3,7 +3,9 @@ package com.niit.cakeshakes.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -11,9 +13,9 @@ import org.springframework.stereotype.Component;
 @Component
 
 public class CakeUser {
-
+	@Length(min =10,max=100, message = "The field must be between 10 and 100 characters long!")
 	private String address;
-
+	@Size(min=10,max=10,message="The field must contain ten digits!")	
 	private String mobilenumber;
 
 	public String getMobilenumber() {
@@ -25,10 +27,11 @@ public class CakeUser {
 	}
 
 	@Id
+	@Size(min=3,message="The field must be atleast 3 characters!")	
 	private String username;
-
+	@Size(min=5,message="The field must be atleast 5 characters!")	
 	private String password;
-
+	@Size(min=3,message="The field must be atleast 3 characters!")	
 	private String name;
 	private String role;
 

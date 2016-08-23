@@ -38,7 +38,7 @@ public class CategoryController {
 	private  CakeCategory cakeCategory;
 	@RequestMapping(value ="/category",method=RequestMethod.GET)
 	public String category(Model model){
-		model.addAttribute("cakeCategory",cakeCategory);
+		model.addAttribute("cakeCategory",new CakeCategory());
 		model.addAttribute("addcategory", "Add Category");
 		return "category";
 	}
@@ -89,8 +89,7 @@ return modelAndView;
 	@RequestMapping("/{id}")
 	public String deletecategory(@PathVariable("id") int id,ModelMap model) {
 		categoryDAO.delete(id);
-		/*model.addAttribute("categoryList",categoryDAO.list());*/
-		/*model.addAttribute("CategoryList", "CATEGORY LIST");*/
+		
 		return "redirect:/viewcat";
 	}
 	

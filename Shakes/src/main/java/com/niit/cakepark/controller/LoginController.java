@@ -54,12 +54,27 @@ public class LoginController {
 		CakeCategory cakeCategory = categoryDAO.getByName(catname);
 		
 		ModelAndView mv=new ModelAndView("productlist");
-		//List <CakeProduct> prodct=productDAO.list();
+	
 		mv.addObject("ViewProduct","VIEW PRODUCT");
 		List <CakeProduct> prodct = productDAO.getByCategory(cakeCategory.getId());
 		Gson gs=new Gson();
 		String prd=gs.toJson(prodct);
 		mv.addObject("prodlist", prd);
+         return mv;
+	}	
+	
+   @RequestMapping("/proddesc")
+    
+    public ModelAndView goList(HttpServletRequest req) {
+   String pdid=req.getParameter("pdid"); 
+    	cakeProduct=productDAO.get(Integer.parseInt(pdid));
+		ModelAndView mv=new ModelAndView("prodfinal");
+		//Gson gs=new Gson();
+		List <CakeProduct> pro=productDAO.getByProduct(cakeProduct.getId());
+		System.out.println("ProdctList"+ pro);
+		//String prd=gs.toJson(pro);
+		mv.addObject("prodfinal", pro);
+		
          return mv;
 	}	
 

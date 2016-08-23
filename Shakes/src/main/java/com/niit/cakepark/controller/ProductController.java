@@ -29,7 +29,7 @@ import com.niit.cakeshakes.model.CakeSupplier;
 
 @Controller
 public class ProductController {
-	String path = "G:/Jessie/Files/";
+	String path = "G:/WorkSpace/Shakes/src/main/webapp/resources/images/";
 	@Autowired
 	private  CategoryDAO categoryDAO;
 	@Autowired
@@ -45,7 +45,7 @@ public class ProductController {
 	@RequestMapping(value="/productt",method=RequestMethod.GET)
 	public String product(Model model){
 		
-		model.addAttribute("cakeProduct", cakeProduct);  
+		model.addAttribute("cakeProduct", new CakeProduct());  
 		
 		model.addAttribute("addproduct", "Add Product");
 		
@@ -60,12 +60,13 @@ public class ProductController {
 		ModelAndView modelAndView = new ModelAndView();
 if(result.hasErrors()) {
 	modelAndView.addObject("addproduct", "Add Product");
+	modelAndView.addObject("categoryList",this.categoryDAO.list());
 			modelAndView.setViewName("/product");
 		}
 else{
 
 CakeCategory cakeCategory = categoryDAO.getByName(cakeProduct.getCat().getName());
-System.out.println(cakeCategory.getId());
+//System.out.println(cakeCategory.getId());
 
 	cakeProduct.setCat(cakeCategory);
 	productDAO.saveOrUpdate(cakeProduct);
@@ -93,7 +94,7 @@ return modelAndView;
 	public String editcategory(@PathVariable("id") int id,Model model  ) {
 		cakeProduct = productDAO.get(id); 
 		model.addAttribute("cakeProduct", cakeProduct);
-	
+		model.addAttribute("categoryList",this.categoryDAO.list());
 		model.addAttribute("editproduct", "Edit Product");  
 		
 		return "/product";

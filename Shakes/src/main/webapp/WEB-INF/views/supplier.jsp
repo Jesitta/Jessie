@@ -20,20 +20,20 @@
 <div class="container"> 
 		<h3>${editsupplier}</h3>
 <h3>${addsupplier}</h3>
-
+<br>
 
 <c:url var="actionadd" value="supplierview" ></c:url>
 <form:form action="${actionadd}" method="post"
 		modelAttribute="cakeSupplier">
- 
+ <c:if test="${cakeSupplier.id > 0 }">
 <div class="form-group">
 				 <form:label path="id">
 				<spring:message text="ID" />
 					</form:label>
 					<form:input path="id" readonly="true" class="form-control" /> 
 				
-			</div>
-      
+			</div> 
+      </c:if>
     <div class="form-group">
       <form:label path="name"><spring:message text="NAME"/></form:label>
       <form:input path="name"  class="form-control" />
@@ -48,12 +48,12 @@
      
       <div>
 				<c:if test="${cakeSupplier.id > 0 }">
-				<input type="submit" value="EDIT" />
-				 <input type="reset" value="RESET" />
+			<button type="submit" class="btn btn-primary">EDIT</button>
+<button type="reset" class="btn btn-primary">RESET</button>
 				</c:if>
 <c:if test="${ cakeSupplier.id eq 0 }">
-     <input type="submit" value="ADD" />
-      <input type="reset" value="RESET" />
+    <button type="submit" class="btn btn-primary">ADD</button>
+<button type="reset" class="btn btn-primary">RESET</button>
        </c:if>
     </div>
          </form:form>

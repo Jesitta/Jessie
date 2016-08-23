@@ -22,13 +22,8 @@
 
 <title>Mainpage</title>
 <style type="text/css">
-/*  body
-{
-background-image:url("resources/images/3.jpg");
 
-background-size:cover;
-}  */
-.navbarmain {
+.navbar {
 	background-color:LightCoral;
 	color:NavajoWhite  ;
 	 
@@ -58,10 +53,10 @@ color:NavajoWhite;
 <body style="background-image:url(https://s3.amazonaws.com/Syntaxxx/background-gold-bokeh.jpg);">
 
 <!-- <body background-image: <c:url value="resources/images/2.jpg"/>>
- --><br><br>
+ --><br>
 
  <div class=container>
-		<nav class="navbarmain">
+		<nav class="navbar">
 			<div class="container-fluid">
 			 <div class="navbar-header">
 			 
@@ -138,8 +133,8 @@ color:NavajoWhite;
 		</c:if>
 	</div>
 <br>
-<%-- 
-<%@include file="footer.jsp"%> --%>
+
+ <%-- <%@include file="footer.jsp"%>   --%>
 
 </body>
 </html>

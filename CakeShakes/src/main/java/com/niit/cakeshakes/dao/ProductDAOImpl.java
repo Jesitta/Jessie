@@ -33,7 +33,20 @@ public class ProductDAOImpl implements ProductDAO {
 		sessionFactory.getCurrentSession().delete(productToDelete);
 		
 	}
-	
+	@Transactional
+	public List<CakeProduct> getByProduct(int id)
+	{
+		String hql="from CakeProduct where id  =" + "'" + id+ "'";
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+				
+		List<CakeProduct> listProduct = query.list();
+		
+		if(listProduct!= null && !listProduct.isEmpty()) {
+			return listProduct;
+			
+		}
+		return null;
+	}
 	@Transactional
 	public CakeProduct get(int id) {
 		String hql="from CakeProduct where id =" + "'" + id + "'";
@@ -62,6 +75,7 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 		return null;
 	}
+
 
 	
 	@Transactional

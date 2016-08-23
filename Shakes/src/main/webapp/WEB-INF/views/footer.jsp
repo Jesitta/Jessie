@@ -18,21 +18,42 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Footer</title>
+ <style type="text/css">
+
 <style type="text/css">
-.navba{
-	background-color:LightCoral;
-	color:NavajoWhite  ;
-	 
+    .navbar {
+        background-color: LightCoral;
+        background-image: none;
+       
+	width:100%;
+       }
+       .navbar-brand{
+       color:NavajoWhite;
+	
+	padding: 14px 16px;
+
+	text-decoration: None;
+       }
+     li a {
+	color: NavajoWhite;
+
+	padding: 14px 16px;
+	text-decoration: None;
 }
+
 </style>
 
+
+
+
 </head>
+
 <body>
 
 <div class="container">
 
-<nav class="navba">
+ <nav class="navbar">
 <footer> <p>Contact information: <a href="mailto:jesitta13@gmail.com">jesitta13@gmail.com</a>.</p>
 <p align="right">Copyright © Doughy Delights.com</p></footer>
 

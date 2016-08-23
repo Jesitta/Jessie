@@ -28,7 +28,7 @@ background-image:url("resources/images/3.jpg");
 
 background-size:cover;
 } */
-.navbarmain {
+.navbar {
 	background-color:LightCoral;
 	
 	
@@ -65,7 +65,7 @@ color:NavajoWhite;
  
  
  <div class=container>
-		<nav class="navbarmain">
+		<nav class="navbar">
 			<div class="container-fluid">
 			 <div class="navbar-header">
 		 <font face="Jokerman">	 <a class="navbar-brand">DoughyDelights</a>

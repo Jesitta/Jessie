@@ -15,34 +15,68 @@
 <title>View</title>
 </head>
 <body>
+<%@include file="Loginheader.jsp"%>
 
-<div ng-app="myApp" ng-controller="catCtrl">
- <div align="center"><label>Search:<input  ng-model="searchText"></label></div>
- <br>
-<table class="table">
-
- 
+<%--<div ng-app="myApp" ng-controller=proCtrl">
+ <table>
+<thead>
+<tr>
+<th>ID</th>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+<th>PRODUCT</th>
+</tr>
+</thead>
 <tbody>
-  <tr ng-repeat="pro in list | filter:searchText">
-    
-    <td>{{ pro.name }}</td>
-    <td>{{ pro.description }}</td>
-     <td>{{ pro.price }}</td>
+         
+ <c:forEach items="${prodfinal}" var="product" >
+ <tr >
+			<td>${product.id}</td>
+			<td>${product.name}</td>
+			<td>${product.description}</td>
+			<td>${product.price}</td>
+			</tr>
+			</c:forEach>
+ 
+</tbody>
+</table> --%>
 
-				
-	
-  </tr>
-  </tbody>
-</table>
+
+<br><br><br>
+<div class="container">
+
+<c:forEach items="${prodfinal}" var="product" >
+<div class="col-sm-4"> 
+<div class="item">
+             <img src="resources/images/${product.id}.jpg" width=300; heigt=300; class="img-responsive">
+            </div>
+            </div>
+<div class="col-sm-6"> 
+<br><br>
+<b>PROID:</b>  ${product.id}<br><br>
+<b>NAME:</b> ${product.name}<br><br>
+<b>DESCRIPTION:</b>  ${product.description}<br><br>
+<b>PRICE:  Rs.</b>${product.price}<br><br>
+<button type="#" class="btn btn-primary">BUY NOW</button>
+<button type="#" class="btn btn-primary">ADD TO CART</button>
+</div>
+
+</c:forEach>
 
 </div>
+
+
+  
+ 
+<!-- </div>
 <script>
 var temp=${prodfinal};
 var myapp = angular.module('myApp', []);
-myapp.controller('catCtrl', function($scope) {
+myapp.controller('proCtrl', function($scope) {
     $scope.list=temp;
+   
 });
-</script>
+</script> -->
 
   </body>
   </html>

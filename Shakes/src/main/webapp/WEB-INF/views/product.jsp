@@ -24,27 +24,22 @@
 	<h3>${editproduct}</h3>
 <h3>${addproduct}</h3>
 
- 
+ <br>
    <c:url var="addproduct" value="viewproductt"></c:url>
   <form:form action="${addproduct}" method="post"
-			modelAttribute="cakeProduct" enctype="multipart/form-data">
-  
-			<div class="form-group">
+			modelAttribute="cakeProduct" enctype="multipart/form-data"> 
+			
+			<c:if test="${cakeProduct.id > 0 }"> 
+			
+			
+   <div class="form-group">
 				<form:label path="id">
 			<spring:message text="ID" />
 				</form:label>
 				<form:input path="id" readonly="true" class="form-control"/>
-				</div>
-				<%--  <c:choose>
-					<c:when test="${!empty cakeProduct.id }">
-						<td><form:input path="id" disabled="true" readonly="true" /></td>
-					</c:when>
-					<c:otherwise>
-						<td><form:input path="id" /></td>
-					</c:otherwise>
-				</c:choose> 
- --%>
+				</div> 
 			
+			</c:if>
  
      
     <div class="form-group">
@@ -53,6 +48,7 @@
    <form:errors style="color:red" path="name" />
     </div> 
      <div class="form-group">
+     
      <form:label path="description"><spring:message text="DESCRIPTION"/></form:label>
       <form:input path="description" class="form-control" placeholder="Enter description"/>
       <form:errors style="color:red" path="description" />
@@ -65,7 +61,7 @@
      <div class="form-group">
      <form:label path="cat"><spring:message text="CATEGORY"/></form:label>
       <form:select path="cat.name"  class="form-control" items="${categoryList}" itemLabel="name" itemValue="name"  placeholder="Enter category"/>
-     
+      <form:errors style="color:red" path="cat.name"/>
      </div>  
        <%-- <div class="form-group">
      <form:label path="supplier"><spring:message text="SuPPLIER"/></form:label>
@@ -78,16 +74,17 @@
 					<spring:message text="IMAGE" />
 				</form:label>
 				<form:input type="file"  path="image" class="form-control"/>
+				 <form:errors style="color:red" path="image"/>
     	 </div>
     <div class="form-group">
 
 				 <c:if test="${cakeProduct.id > 0}">
-					<td><input type="submit" value="EDIT" />
-					 <input type="reset" value="RESET" /></td>
+					<td><button type="submit" class="btn btn-primary">EDIT</button>
+<button type="reset" class="btn btn-primary">RESET</button></td>
 				</c:if>
 				<c:if test="${cakeProduct.id eq 0 }">
-					<td><input type="submit" value="ADD" />
-					 <input type="reset" value="RESET" /></td>
+					<td><button type="submit" class="btn btn-primary">ADD</button>
+<button type="reset" class="btn btn-primary">RESET</button></td>
 				</c:if> 
 			</div>
   </form:form>

@@ -19,7 +19,7 @@
 
 <security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>     
 <security:form-login login-page="/login" default-target-url="/check"
- authentication-failure-url="/isValidUser?error=true"/>
+ authentication-failure-url="/gologin?error=true"/>
  <security:csrf disabled="true"/>
  </security:http>
  <security:authentication-manager>

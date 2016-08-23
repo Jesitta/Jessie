@@ -11,6 +11,8 @@ public interface ProductDAO {
 	public void saveOrUpdate(CakeProduct cakeProduct);
 	public void delete(int id);
 	public List <CakeProduct> getByCategory(int categoryId);
+	public List<CakeProduct> getByProduct(int id);
+
 
 	
 	

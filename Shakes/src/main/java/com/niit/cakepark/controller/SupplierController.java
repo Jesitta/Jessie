@@ -31,12 +31,12 @@ private CakeSupplier cakeSupplier;
 private SupplierDAO supplierDAO;
 
 	@RequestMapping(value ="/supplierr",method=RequestMethod.GET)
-	public ModelAndView supplier(){
-		ModelAndView modelAndView = new ModelAndView("/supplier");
-		modelAndView.addObject("cakeSupplier", cakeSupplier); 
-		modelAndView.addObject("addsupplier", "Add Supplier");
+	public String supplier(Model model){
+		
+		model.addAttribute("cakeSupplier", new CakeSupplier()); 
+		model.addAttribute("addsupplier", "Add Supplier");
 	
-		return modelAndView;
+		return "/supplier";
 	}
 	@RequestMapping(value ="/supplierview",method=RequestMethod.POST)
 	public ModelAndView addsupplier(@Valid @ModelAttribute("cakeSupplier")CakeSupplier cakeSupplier, BindingResult result ){
@@ -47,6 +47,7 @@ private SupplierDAO supplierDAO;
 					modelAndView.setViewName("/supplier");
 				}
 		else{
+			
 		supplierDAO.saveOrUpdate(cakeSupplier);
 		
 		modelAndView.addObject("SupplierList", "SUPPLIER LIST");
@@ -69,7 +70,7 @@ private SupplierDAO supplierDAO;
 	
 		cakeSupplier = supplierDAO.get(id); 
 		model.addAttribute("cakeSupplier", cakeSupplier);
-	
+
 		model.addAttribute("editsupplier", "Edit Supplier");  
 		
 		return "/supplier";

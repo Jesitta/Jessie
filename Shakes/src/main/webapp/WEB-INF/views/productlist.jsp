@@ -67,6 +67,7 @@ table, th , td ,tr {
 	
   </tr>
   </tbody>
+ 
 </table>
 
 </div>
@@ -80,7 +81,7 @@ myapp.controller('catCtrl', function($scope) {
 </script>
 	
 </div> 
-<br>
+<br> 
 </div>
 
 
