@@ -39,7 +39,7 @@ public class CategoryController {
 	@RequestMapping(value ="/category",method=RequestMethod.GET)
 	public String category(Model model){
 		model.addAttribute("cakeCategory",new CakeCategory());
-		model.addAttribute("addcategory", "Add Category");
+		model.addAttribute("addcategory", "ADD CATEGORY");
 		return "category";
 	}
 	
@@ -68,7 +68,7 @@ public ModelAndView viewcategory() {
 	public ModelAndView  addcategory(@Valid @ModelAttribute("cakeCategory") CakeCategory cakeCategory, BindingResult result) {
 		ModelAndView modelAndView = new ModelAndView();
 if(result.hasErrors()) {
-	modelAndView.addObject("addcategory", "Add Category");
+	modelAndView.addObject("addcategory", "ADD CATEGORY");
 			modelAndView.setViewName("/category");
 		}
 else{
@@ -99,7 +99,7 @@ return modelAndView;
 		cakeCategory = categoryDAO.get(id); 
 		model.addAttribute("cakeCategory",cakeCategory);
 	
-		model.addAttribute("editcategory", "Edit category");  
+		model.addAttribute("editcategory", "EDIT CATEGORY");  
 		
 		return "/category";
 		

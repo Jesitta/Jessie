@@ -14,10 +14,23 @@
 
 <title>View</title>
 </head>
+
+
+<style>
+
+ 
+table, th , td ,tr {
+  border: 2px solid grey;
+  border-collapse: collapse;
+  padding: 15px;
+  
+} 
+
+</style>
 <body>
 <%@include file="Loginheader.jsp"%>
 
-<%--<div ng-app="myApp" ng-controller=proCtrl">
+<%--<div ng-app="myApp" ng-control"src/main/webapp/WEB-INF/views/prodfinal.jsp"ler=proCtrl">
  <table>
 <thead>
 <tr>
@@ -45,6 +58,7 @@
 <br><br><br>
 <div class="container">
 
+<br>
 <c:forEach items="${prodfinal}" var="product" >
 <div class="col-sm-4"> 
 <div class="item">
@@ -53,19 +67,21 @@
             </div>
 <div class="col-sm-6"> 
 <br><br>
-<b>PROID:</b>  ${product.id}<br><br>
-<b>NAME:</b> ${product.name}<br><br>
-<b>DESCRIPTION:</b>  ${product.description}<br><br>
-<b>PRICE:  Rs.</b>${product.price}<br><br>
-<button type="#" class="btn btn-primary">BUY NOW</button>
-<button type="#" class="btn btn-primary">ADD TO CART</button>
+<b>PROID:</b>   ${product.id}<br><br>
+<b>NAME:</b>    ${product.name}<br><br>
+<b>DESCRIPTION: </b>  ${product.description}<br><br>
+<b>PRICE:       Rs.</b>${product.price}<br><br>
+<button type="#" class="btn btn-info">BUY NOW</button>
+<a href="<c:url value= '/cart${product.id}'/>"><button type="submit" class="btn btn-warning">ADD TO CART</button></a>
+
 </div>
 
 </c:forEach>
 
 </div>
 
-
+<br><br><br><br>
+	<%@include file="footer.jsp"%>
   
  
 <!-- </div>

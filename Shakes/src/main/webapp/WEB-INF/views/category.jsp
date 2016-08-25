@@ -26,18 +26,18 @@
 
 
 
- 
  <div class="container">
-		<h3>${editcategory}</h3>
-<h3>${addcategory}</h3>
+ <div class=col-sm-6>
+	<h4><b>${editcategory}</b></h4> 
+		
+<h4><b>${addcategory}</b></h4>
 
 
 <c:url var="actionadd" value="vieww"></c:url>
 
 <form:form action="${actionadd}" method="post"
 		modelAttribute="cakeCategory">
-		<c:if test="${cakeCategory.id eq 0 }">
-		---</c:if>
+		
 		
 		
   <c:if test="${cakeCategory.id > 0 }"> <div class="form-group">
@@ -60,19 +60,19 @@
       </div>
        <div>
 				<c:if test="${cakeCategory.id > 0 }">
-			<button type="submit" class="btn btn-primary">EDIT</button>
-<button type="reset" class="btn btn-primary">RESET</button>
+			<button type="submit" class="btn btn-sccess">EDIT</button>
+<button type="reset" class="btn btn-danger">RESET</button>
 				</c:if>
 <c:if test="${cakeCategory.id eq 0 }">
-<button type="submit" class="btn btn-primary">ADD</button>
-<button type="reset" class="btn btn-primary">RESET</button>
+<button type="submit" class="btn btn-success">ADD</button>
+<button type="reset" class="btn btn-danger">RESET</button>
    <!--   <input type="submit" value="ADD" />
      <input type="reset" value="RESET" /> -->
      
        </c:if>
     </div> 
          </form:form>
-    </div>
+    </div></div>
      
 		
 		</body>

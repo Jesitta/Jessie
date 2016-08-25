@@ -70,5 +70,7 @@ public class UserDAOImpl implements UserDAO {
 		List<CakeUser> listUser =(List<CakeUser>) sessionFactory.getCurrentSession().createCriteria(CakeUser.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		return listUser;
 	}
+
+	
 	
 }

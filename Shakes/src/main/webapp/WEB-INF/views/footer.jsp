@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
@@ -16,49 +17,48 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Footer</title>
- <style type="text/css">
-
 <style type="text/css">
-    .navbar {
-        background-color: LightCoral;
-        background-image: none;
-       
-	width:100%;
-       }
-       .navbar-brand{
-       color:NavajoWhite;
+body {
+    background-image: url("resources/images/bgimage.jpg");
+    
+    
+}
+#footer{background:black  ;color:LightCoral;border-top:6px solid #C52D2F;height:70px;margin-top:30px;}
+a {
+	color: white ;
 	
-	padding: 14px 16px;
-
-	text-decoration: None;
-       }
-     li a {
-	color: NavajoWhite;
-
-	padding: 14px 16px;
+	
 	text-decoration: None;
 }
-
 </style>
-
 
 
 
 </head>
 
 <body>
+ 
 
+		
+<div class="container">			
+		
+<footer id="footer">	
 <div class="container">
-
- <nav class="navbar">
-<footer> <p>Contact information: <a href="mailto:jesitta13@gmail.com">jesitta13@gmail.com</a>.</p>
-<p align="right">Copyright © Doughy Delights.com</p></footer>
-
-</nav></div>
-
+<div class="row">
+<div class="col-sm-6">
+<br>
+&copy; 2016 <a target="" href="#" title="DoughyDelights Official Website">DoughyDelights</a>. All Rights Reserved.
+</div>
+<div class="col-sm-6" style="padding-left: 26%">
+<br>
+Contact Us:<a  href="#"> jesitta13@gmail.com</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
 
 </body>
 </html>

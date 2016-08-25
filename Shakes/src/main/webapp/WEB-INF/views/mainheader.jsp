@@ -13,6 +13,10 @@
 
 </head>
 <style type="text/css">
+body {
+    background-image: url("resources/images/bgimage.jpg");
+    
+}
     .navbar {
         background-color: LightCoral;
         background-image: none;
@@ -67,6 +71,6 @@
   
 
  
-</nav>
+
 </body>
 </html>

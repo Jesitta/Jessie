@@ -39,6 +39,7 @@ Problems like non-functional website, lack of response and long delivery wait ti
   <div class="item" align="center">
              <img src="resources/images/about.jpg"  class="img-responsive">
             </div> 
-</div>
+</div><br><br><br>
+	<%@include file="footer.jsp"%>
 </body>
 </html>

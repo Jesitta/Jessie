@@ -34,7 +34,7 @@ private SupplierDAO supplierDAO;
 	public String supplier(Model model){
 		
 		model.addAttribute("cakeSupplier", new CakeSupplier()); 
-		model.addAttribute("addsupplier", "Add Supplier");
+		model.addAttribute("addsupplier", "ADD SUPPLIER");
 	
 		return "/supplier";
 	}
@@ -42,7 +42,7 @@ private SupplierDAO supplierDAO;
 	public ModelAndView addsupplier(@Valid @ModelAttribute("cakeSupplier")CakeSupplier cakeSupplier, BindingResult result ){
 		ModelAndView modelAndView = new ModelAndView();
 		if(result.hasErrors()) {
-			modelAndView.addObject("addsupplier", "Add Supplier");
+			modelAndView.addObject("addsupplier", "ADD SUPPLIER");
 			
 					modelAndView.setViewName("/supplier");
 				}
@@ -71,7 +71,7 @@ private SupplierDAO supplierDAO;
 		cakeSupplier = supplierDAO.get(id); 
 		model.addAttribute("cakeSupplier", cakeSupplier);
 
-		model.addAttribute("editsupplier", "Edit Supplier");  
+		model.addAttribute("editsupplier", "EDIT SUPPLIER");  
 		
 		return "/supplier";
 		

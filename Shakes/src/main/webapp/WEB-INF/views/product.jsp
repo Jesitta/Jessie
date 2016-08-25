@@ -20,9 +20,9 @@
 <%@include file="Loginheader.jsp"%>
 <%@include file="mainheader.jsp"%>
 <div class="container">
-
-	<h3>${editproduct}</h3>
-<h3>${addproduct}</h3>
+ <div class=col-sm-6>
+	<h4><b>${editproduct}</b></h4>
+<h4><b>${addproduct}</b></h4>
 
  <br>
    <c:url var="addproduct" value="viewproductt"></c:url>
@@ -79,15 +79,15 @@
     <div class="form-group">
 
 				 <c:if test="${cakeProduct.id > 0}">
-					<td><button type="submit" class="btn btn-primary">EDIT</button>
-<button type="reset" class="btn btn-primary">RESET</button></td>
+					<td><button type="submit" class="btn btn-success">EDIT</button>
+<button type="reset" class="btn btn-danger">RESET</button></td>
 				</c:if>
 				<c:if test="${cakeProduct.id eq 0 }">
-					<td><button type="submit" class="btn btn-primary">ADD</button>
-<button type="reset" class="btn btn-primary">RESET</button></td>
+					<td><button type="submit" class="btn btn-success">ADD</button>
+<button type="reset" class="btn btn-danger">RESET</button></td>
 				</c:if> 
 			</div>
   </form:form>
-</div>
+</div></div>
 </body>
 </html>

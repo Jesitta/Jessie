@@ -18,8 +18,11 @@
  <%@include file="Loginheader.jsp"%>
 <%@include file="mainheader.jsp"%>
 <div class="container"> 
-		<h3>${editsupplier}</h3>
-<h3>${addsupplier}</h3>
+ <div class=col-sm-6>
+	<h4><b>${editsupplier}</b></h4> 
+		
+<h4><b>${addsupplier}</b></h4>
+	
 <br>
 
 <c:url var="actionadd" value="supplierview" ></c:url>
@@ -48,16 +51,16 @@
      
       <div>
 				<c:if test="${cakeSupplier.id > 0 }">
-			<button type="submit" class="btn btn-primary">EDIT</button>
-<button type="reset" class="btn btn-primary">RESET</button>
+			<button type="submit" class="btn btn-success">EDIT</button>
+<button type="reset" class="btn btn-danger">RESET</button>
 				</c:if>
 <c:if test="${ cakeSupplier.id eq 0 }">
-    <button type="submit" class="btn btn-primary">ADD</button>
-<button type="reset" class="btn btn-primary">RESET</button>
+    <button type="submit" class="btn btn-success">ADD</button>
+<button type="reset" class="btn btn-danger">RESET</button>
        </c:if>
     </div>
          </form:form>
-    </div>
+    </div></div>
      
 </body>
 </html>

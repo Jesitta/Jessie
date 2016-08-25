@@ -60,15 +60,20 @@ table, th , td ,tr {
     <td>{{ product.description }}</td>
     <td>{{ product.price }}</td>
     <td>{{ product.cat.id}}</td>
-    <td><a href="<c:url value= '/ep{{product.id}}' />"> Edit</a></td>
+    <td><a href="<c:url value= '/ep{{product.id}}' />"><button type="submit" class="btn btn-success">EDIT</button></a></td>
 				
-    <td><a href="<c:url value= '/p{{product.id}}' />"> Delete</a></td>
+    <td><a onclick="myFunction()" href="<c:url value= '/p{{product.id}}' />"> <button type="submit" class="btn btn-danger">DELETE</button></a></td>
   </tr>
   </tbody>
 </table>
 
 </div>
+<script>
+function myFunction() {
+	alert("Are you sure you want to delete?");
 
+}
+</script>
 
 <script>
 var temp=${value};

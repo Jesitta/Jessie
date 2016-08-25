@@ -47,7 +47,7 @@ public class ProductController {
 		
 		model.addAttribute("cakeProduct", new CakeProduct());  
 		
-		model.addAttribute("addproduct", "Add Product");
+		model.addAttribute("addproduct", "ADD PRODUCT");
 		
 		
 		model.addAttribute("categoryList",this.categoryDAO.list());
@@ -59,7 +59,7 @@ public class ProductController {
 	public ModelAndView addproduct(@Valid @ModelAttribute("cakeProduct")CakeProduct cakeProduct, BindingResult result ){
 		ModelAndView modelAndView = new ModelAndView();
 if(result.hasErrors()) {
-	modelAndView.addObject("addproduct", "Add Product");
+	modelAndView.addObject("addproduct", "ADD PRODUCT");
 	modelAndView.addObject("categoryList",this.categoryDAO.list());
 			modelAndView.setViewName("/product");
 		}
@@ -95,7 +95,7 @@ return modelAndView;
 		cakeProduct = productDAO.get(id); 
 		model.addAttribute("cakeProduct", cakeProduct);
 		model.addAttribute("categoryList",this.categoryDAO.list());
-		model.addAttribute("editproduct", "Edit Product");  
+		model.addAttribute("editproduct", "EDIT PRODUCT");  
 		
 		return "/product";
 		

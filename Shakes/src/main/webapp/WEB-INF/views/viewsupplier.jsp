@@ -63,13 +63,29 @@ table, th , td ,tr {
     <td>{{ supplier.id }}</td>
     <td>{{ supplier.name }}</td>
     <td>{{ supplier.address }}</td>
-    <td><a href="<c:url value= '/es{{supplier.id}}' />"> Edit</a></td>
+    <td><a href="<c:url value= '/es{{supplier.id}}' />"> <button type="submit" class="btn btn-success">EDIT</button></a></td>
 				
-					<td><a href="<c:url value= '/s{{supplier.id}}' />"> Delete</a></td>
+
+					<td><a  href="<c:url value= '/s{{supplier.id}}' />"> <button onclick="myFunction()" class="btn btn-danger">DELETE</button></a></td>
   </tr>
   </tbody>
 </table>
 
+
+
+
+<script>
+function myFunction() {
+	
+ var x;
+    if (confirm("Press a button!") == true) {
+        x = "Item Deleted!";
+    } else {
+        x = "You pressed Cancel!";
+    }
+    document.getElementById("demo").innerHTML = x;
+}
+</script>
 </div>
 
 <script>

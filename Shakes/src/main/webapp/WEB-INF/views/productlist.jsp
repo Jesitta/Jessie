@@ -57,12 +57,16 @@ table, th , td ,tr {
 				</tr>
 			</thead>
 <tbody>
+
+
+
+
   <tr ng-repeat="prodct in list | filter:searchText">
     
     <td>{{ prodct.name }}</td>
     <td>{{ prodct.description }}</td>
      <td>{{ prodct.price }}</td>
-    <td><a href="proddesc?pdid={{prodct.id}}">i</a></td>
+     <td><a href="proddesc?pdid={{prodct.id}}"><button type="submit" class="btn btn-info">INFO</button></a></td>
 				
 	
   </tr>
@@ -71,6 +75,11 @@ table, th , td ,tr {
 </table>
 
 </div>
+</div> 
+
+</div>
+<br> <br><br><br><br><br><br><br><br>
+	<%@include file="footer.jsp"%>
 
 <script>
 var temp=${prodlist};
@@ -80,9 +89,6 @@ myapp.controller('catCtrl', function($scope) {
 });
 </script>
 	
-</div> 
-<br> 
-</div>
 
 
 </body>

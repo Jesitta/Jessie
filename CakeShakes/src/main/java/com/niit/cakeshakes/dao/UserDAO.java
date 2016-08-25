@@ -10,4 +10,5 @@ public interface UserDAO {
 	public void saveOrUpdate(CakeUser cakeUser);
 	public void delete(String id);
 	public boolean isValidUser(String username,String password);
+	
 }

@@ -60,15 +60,27 @@ table, th , td ,tr {
     <td>{{ category.id }}</td>
     <td>{{ category.name }}</td>
     <td>{{ category.description }}</td>
-    <td><a href="<c:url value= '/e{{category.id}}'/>"> Edit</a></td>
+    <td><a href="<c:url value= '/e{{category.id}}'/>"> <button type="submit" class="btn btn-success">EDIT</button></a></td>
 				
-	<td><a href="<c:url value= '/{{category.id}}'/>"> Delete</a></td>
+	<td><a onclick="myFunction()" href="<c:url value= '/{{category.id}}'/>"><button type="submit" class="btn btn-danger">DELETE</button></a></td>
   </tr>
   </tbody>
 </table>
 
 </div>
+<script>
+function myFunction() {
+	
 
+	    var x;
+	    if (confirm("Press a button!") == true) {
+	        x = "You pressed OK!";
+	    } else {
+	        x = "You pressed Cancel!";
+	    }
+	    document.getElementById("demo").innerHTML = x;
+	}
+</script>
 <script>
 var temp=${value};
 var myapp = angular.module('myApp', []);

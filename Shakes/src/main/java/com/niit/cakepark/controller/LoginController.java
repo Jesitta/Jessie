@@ -35,10 +35,10 @@ public class LoginController {
         return "/home";
     }
 	
-	@RequestMapping(value="/gomain")
+	@RequestMapping("/gomain")
     public String home() {
         
-        return "/home";
+		return "/home";
     }
 	@RequestMapping(value="/about")
     public String about() {

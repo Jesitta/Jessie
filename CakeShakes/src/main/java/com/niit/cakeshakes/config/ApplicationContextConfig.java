@@ -9,11 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.cakeshakes.dao.CartDAO;
+import com.niit.cakeshakes.dao.CartDAOImpl;
 import com.niit.cakeshakes.dao.CategoryDAO;
 import com.niit.cakeshakes.dao.CategoryDAOImpl;
 import com.niit.cakeshakes.dao.ProductDAO;
@@ -24,12 +27,13 @@ import com.niit.cakeshakes.dao.SupplierDAO;
 import com.niit.cakeshakes.dao.SupplierDAOImpl;
 import com.niit.cakeshakes.dao.UserDAO;
 import com.niit.cakeshakes.dao.UserDAOImpl;
+import com.niit.cakeshakes.model.CakeCart;
 import com.niit.cakeshakes.model.CakeCategory;
 import com.niit.cakeshakes.model.CakeProduct;
 import com.niit.cakeshakes.model.CakeSupplier;
 import com.niit.cakeshakes.model.CakeUser;
 
-
+/*@ImportResource({ "classpath:/Shakes/src/main/webapp/WEB-INF/spring-security.xml" })*/
 @Configuration
 @ComponentScan("com.niit")
 @EnableTransactionManagement
@@ -63,7 +67,7 @@ public class ApplicationContextConfig {
 		sessionBuilder.addAnnotatedClass(CakeSupplier.class);
 		sessionBuilder.addAnnotatedClass(CakeProduct.class);
 		sessionBuilder.addAnnotatedClass(CakeUser.class);
-	
+		sessionBuilder.addAnnotatedClass(CakeCart.class);
 		return sessionBuilder.buildSessionFactory();
 		
 	}
@@ -96,6 +100,12 @@ public class ApplicationContextConfig {
 	return new ProductDAOImpl(sessionFactory);
 	}
 
+	@Autowired
+	@Bean(name = "cartDAO")
+	public CartDAO getCartDAO(SessionFactory sessionFactory) {
+		   
+	return new CartDAOImpl(sessionFactory);
+	}
 	@Autowired
 	@Bean(name = "userDAO")
 	public UserDAO getUserDAO(SessionFactory sessionFactory) {

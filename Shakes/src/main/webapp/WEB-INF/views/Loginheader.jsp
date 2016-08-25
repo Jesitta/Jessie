@@ -22,12 +22,10 @@
 
 <title>Mainpage</title>
 <style type="text/css">
-/* body
-{
-background-image:url("resources/images/3.jpg");
-
-background-size:cover;
-} */
+body {
+    background-image: url("resources/images/bgimage.jpg");
+    
+}
 .navbar {
 	background-color:LightCoral;
 	
@@ -58,7 +56,7 @@ color:NavajoWhite;
 }
 </style>
 </head>
-<body style="background-image:url(https://s3.amazonaws.com/Syntaxxx/background-gold-bokeh.jpg);">
+<body>
 
 <!-- <body background-image: <c:url value="resources/images/2.jpg"/>>
  --><br><br>
@@ -75,12 +73,12 @@ color:NavajoWhite;
 			
         
 				<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="gomain"><span
+				<li class="active"><a href="/gomain"><span
 									class="glyphicon glyphicon-home"></span>Home</a></li>
      
        
           <li><a href="about">AboutUs</a></li>
-          <li><a href="#">ContactUs</a></li>
+            
 					<c:choose>
 						<c:when test="${empty loggedInUser}">
 
@@ -94,7 +92,7 @@ color:NavajoWhite;
 						</c:when>
 
 						<c:when test="${not empty loggedInUser}">
-
+<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a></li>
 							<li><a href="logout"><span
 									class="glyphicon glyphicon-user"></span> Logout</a></li>
 

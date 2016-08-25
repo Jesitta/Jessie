@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -56,8 +57,27 @@ else{
 		modelAndView.addObject("isuserClickedLoginHere", "true"); 
 		return modelAndView;
 	}
+	
+/*	@RequestMapping(value = "/gologin", method = RequestMethod.GET)
+	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
+		@RequestParam(value = "logout", required = false) String logout) {
+
+	  ModelAndView model = new ModelAndView();
+	  if (error != null) {
+		model.addObject("error", "Invalid username and password!");
+	  }
+
+	  if (logout != null) {
+		model.addObject("msg", "You've been logged out successfully.");
+	  }
+	  model.setViewName("/login");
+
+	  return model;
+
+	}*/
+	
 @RequestMapping(value ="login",method=RequestMethod.POST)
-	public ModelAndView loginpost(@RequestParam("username")String username,@RequestParam("password")String password, HttpSession session) {
+public ModelAndView loginpost(@RequestParam("username")String username,@RequestParam("password")String password, HttpSession session) {
 	
 		ModelAndView modelAndView = new ModelAndView("home");
 	
@@ -85,7 +105,6 @@ else{
 
 		return modelAndView;
 	}
-	
 	
 	@RequestMapping(value ="/logout")
 	public ModelAndView logout(HttpServletRequest request,HttpSession session){

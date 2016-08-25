@@ -53,7 +53,7 @@ text-align: left;
 
 <div class="col-sm-3"> 
 <div class="list-group">
-<button type="button" class="list-group-item list-group-item-danger" style="text-align: left;padding: 5px"><b><h4>CATEGORIES</h4></b></button>
+<button type="button" class="list-group-item list-group-item-danger" style="text-align: left;padding: 5px"><b><h4>  CATEGORIES</h4></b></button>
 <a href="productlist?catname=Birthday Cakes" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Birthday Cakes</a>
 <a href="productlist?catname=Wedding Cakes" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Wedding Cakes</a>
 <a href="productlist?catname=Cup Cakes" class="list-group-item list-group-item-action" style="padding: 16px;color:brown">Cup Cakes</a>

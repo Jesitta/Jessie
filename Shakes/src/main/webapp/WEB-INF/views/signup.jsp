@@ -14,10 +14,18 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </head>
-<body style="background-image:url(https://s3.amazonaws.com/Syntaxxx/background-gold-bokeh.jpg);">
+<style type="text/css">
+body {
+    background-image: url("resources/images/bgimage.jpg");
+    
+}
+</style>
+<body>
 <%@include file="Loginheader.jsp"%>
 	<div class="container">
-		<h2>SIGNUP</h2>
+	
+	<div class=col-sm-6>
+	<h3><b>SIGNUP</b></h3> 
 		<form:form action="signup" id="signup" method="post"
 			commandName="cakeUser">
 
@@ -57,11 +65,11 @@
 					placeholder="Enter mobilenumber" required="true" />
 					<form:errors style="color:red" path="mobilenumber"/>
 			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-success">Submit</button>
 
 		</form:form>
-	</div>
-
+	</div></div><br>
+	<%@include file="footer.jsp"%>
 	
 </body>
 </html>
