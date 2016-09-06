@@ -3,8 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@taglib  uri="http://www.springframework.org/security/tags"prefix="security"%>
 <%@page session="true"%>
 <html>
 <head>
@@ -23,6 +22,7 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script> 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 
@@ -77,20 +77,23 @@ li a {
 				<ul class="nav navbar-nav navbar-right">
 					<c:if test="${pageContext.request.userPrincipal.name != null}">
 				 <li><a href="#"><span
-								class="glyphicon glyphicon-user"></span> ${pageContext.request.userPrincipal.name}</a></li></c:if>
+								class="glyphicon glyphicon-user"></span> ${pageContext.request.userPrincipal.name}</a></li>
+								<li class="active"><a href="home"><span
+							class="glyphicon glyphicon-home"></span>Home</a></li></c:if>
 								
-					<li class="active"><a href="gomainpage"><span
-							class="glyphicon glyphicon-home"></span>Home</a></li>
+		<!-- 			 <li class="active"><a href="gomainpage"><span
+							class="glyphicon glyphicon-home"></span>Home</a></li>  -->
 
 
 					<li><a href="about">AboutUs</a></li>
 
 					<c:if test="${pageContext.request.userPrincipal.name == null}">
 
-
+                       <li class="active"><a href="./"><span
+							class="glyphicon glyphicon-home"></span>Home</a></li>
 						<li><a href="goologin"><span
 								class="glyphicon glyphicon-log-in"></span> Login</a></li>
-						<li><a href="signup"><span
+						<li><a href="registration.obj"><span
 								class="glyphicon glyphicon-user"></span> SignUp</a></li>
 
 					</c:if>
@@ -100,11 +103,11 @@ li a {
 					<c:if test="${pageContext.request.userPrincipal.name != null}">
 
 						
- 					<sec:authorize access="hasRole('ROLE_USER')">
+ 					<security:authorize access="hasRole('ROLE_USER')">
 
 							<li><a href="viewcartt"><span
 									class="glyphicon glyphicon-shopping-cart"></span>Cart(${cartSize})</a></li>
-						</sec:authorize>
+						</security:authorize>
 
 						<li><a href="goologin?logout"><span
 								class="glyphicon glyphicon-log-out"></span> Logout</a></li>

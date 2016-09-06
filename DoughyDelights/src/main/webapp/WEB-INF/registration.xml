@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<on-start>
+		<evaluate expression="registrationHandler.initFlow()" result="flowScope.cakeUser" />
+	</on-start>
+
+	<view-state id="start" view="signup" model="cakeUser">
+		<transition on="submit" to="validate" />
+	</view-state>
+
+	<action-state id="validate">
+		<evaluate
+			expression="registrationHandler.validateDetails(cakeUser,messageContext)"></evaluate>
+		<transition on="success" to="confirmDetails" />
+		<transition on="failure" to="start" />
+
+	</action-state>
+
+	<view-state id="confirmDetails" view="confirmDetails" model="cakeUser">
+		<transition on="edit" to="start" />
+		<transition on="submit" to="confirm" />
+	</view-state>
+<action-state id="confirm">
+		<evaluate
+			expression="registrationHandler.registerUser(cakeUser)"></evaluate>
+		<transition on="success" to="welcome" />
+		
+
+	</action-state>
+
+	<end-state id="welcome" view="index" />
+
+
+
+</flow>   

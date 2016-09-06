@@ -47,7 +47,7 @@ li a {
 	<%@include file="header.jsp"%>
 
 
-	<sec:authorize access="hasRole('ROLE_USER')">
+	<security:authorize access="hasRole('ROLE_USER')">
 		<div class="col-md-offset-1">
 		
 		
@@ -60,15 +60,15 @@ li a {
 		<%@include file="carousel.jsp"%>
 
 
-	</sec:authorize>
+	</security:authorize>
 
-	<sec:authorize access="hasRole('ROLE_ADMIN')">
+	<security:authorize access="hasRole('ROLE_ADMIN')">
 		<%@include file="mainheader.jsp"%>
 		<%@include file="admin.jsp"%>
 
-	</sec:authorize>
+</security:authorize>
 
 
-	<%@include file="footer.jsp"%>
+<%@include file="footer.jsp"%>
 </body>
 </html>

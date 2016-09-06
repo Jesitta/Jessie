@@ -5,16 +5,7 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 
 <title>View</title>
 <style>
@@ -57,33 +48,44 @@ th, td,tr {
 
 			<br>
 			<div data-ng-app="myApp" data-ng-controller="catCtrl">
-				<div align="center">
-					<label>Search:<input data-ng-model="searchText"></label>
-				</div>
-				<br>
+				<div class="col-sm-4"></div>
+<div class="col-sm-4">
+<div class="input-group">
+   <input type="text"  ng-model="searchText" placeholder="Search"  class="form-control"/>
+    <span class="input-group-addon">
+        <i class="fa fa-search"></i>
+    </span>
+</div>
+<br>
+
+</div>
 				<table class="table">
 
 					<thead>
 						<tr>
 							<th style="width: 100; color: #C52D2F; text-align: center">CAT_ID</th>
-							<th style="width: 200; color: #C52D2F; text-align: center">CAT_NAME</th>
+							<th style="width: 200; color: #C52D2F; text-align: center"
+							ng-click="sortType = 'name'; sortReverse = !sortReverse">
+							CAT_NAME
+							<span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                          <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span></th>
 							<th style="width: 200; color: #C52D2F; text-align: center">CAT_DESCRIPTION</th>
 							<th style="width: 100; color: #C52D2F; text-align: center">EDIT</th>
 							<th style="width: 100; color: #C52D2F; text-align: center">DELETE</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr data-ng-repeat="category in list | filter:searchText">
+						<tr data-ng-repeat="category in list|orderBy:sortType:sortReverse | filter:searchText">
 							<td>CAT {{ category.id }}</td>
 							<td>{{ category.name }}</td>
 							<td>{{ category.description }}</td>
 							<td><a href="<c:url value= '/admincatedit{{category.id}}'/>">
-									<button type="submit" class="btn btn-success">EDIT</button>
+									<button type="submit" class="btn btn-success"> <span class="glyphicon glyphicon-pencil"></span></button>
 							</a></td>
 
 							<td><a
 								href="<c:url value= '/admincatdel{{category.id}}'/>"  onclick="return confirm('Are you sure you want to Remove?')"><button
-										type="submit" class="btn btn-danger">DELETE</button></a></td>
+										type="submit" class="btn btn-danger"> <span class="glyphicon glyphicon-remove"></span></button></a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -100,8 +102,8 @@ th, td,tr {
 
 		</div>
 		<br>
+
 	</div>
-
-
+	<%@include file="footer.jsp"%>
 </body>
 </html>
