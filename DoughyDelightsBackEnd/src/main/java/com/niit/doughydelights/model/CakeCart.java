@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -19,18 +20,6 @@ public class CakeCart {
 	private int id;
 	private Long TotalAmount;
  private  int quantity;
-// private Long total;
- /*public Long getTotal() {
-	return total;
-}
-
-public void setTotal(Long total) {
-	this.total = total;
-}
-
-
-*/
-
 
 
 
@@ -39,9 +28,18 @@ public void setTotal(Long total) {
 private String productname;
  @Column(name="USER_NAME")
  private String username;
+ @OneToOne
+ private CakeProduct product;
  
- 
- public String getUsername() {
+ public CakeProduct getProduct() {
+	return product;
+}
+
+public void setProduct(CakeProduct product) {
+	this.product = product;
+}
+
+public String getUsername() {
 	return username;
 }
 

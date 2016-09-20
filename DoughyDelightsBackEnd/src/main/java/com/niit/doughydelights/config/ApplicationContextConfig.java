@@ -19,6 +19,8 @@ import com.niit.doughydelights.dao.CartDAO;
 import com.niit.doughydelights.dao.CartDAOImpl;
 import com.niit.doughydelights.dao.CategoryDAO;
 import com.niit.doughydelights.dao.CategoryDAOImpl;
+import com.niit.doughydelights.dao.OrderDAO;
+import com.niit.doughydelights.dao.OrderDAOImpl;
 import com.niit.doughydelights.dao.ProductDAO;
 import com.niit.doughydelights.dao.ProductDAOImpl;
 import com.niit.doughydelights.dao.SupplierDAO;
@@ -27,6 +29,7 @@ import com.niit.doughydelights.dao.UserDAO;
 import com.niit.doughydelights.dao.UserDAOImpl;
 import com.niit.doughydelights.model.CakeCart;
 import com.niit.doughydelights.model.CakeCategory;
+import com.niit.doughydelights.model.CakeOrder;
 import com.niit.doughydelights.model.CakeProduct;
 import com.niit.doughydelights.model.CakeSupplier;
 import com.niit.doughydelights.model.CakeUser;
@@ -65,7 +68,10 @@ public class ApplicationContextConfig {
 		sessionBuilder.addAnnotatedClass(CakeSupplier.class);
 		sessionBuilder.addAnnotatedClass(CakeProduct.class);
 		sessionBuilder.addAnnotatedClass(CakeUser.class);
+
 		sessionBuilder.addAnnotatedClass(CakeCart.class);
+
+		sessionBuilder.addAnnotatedClass(CakeOrder.class);
 		return sessionBuilder.buildSessionFactory();
 		
 	}
@@ -109,6 +115,12 @@ public class ApplicationContextConfig {
 	public UserDAO getUserDAO(SessionFactory sessionFactory) {
 		   
 	return new UserDAOImpl(sessionFactory);
+	}
+	@Autowired
+	@Bean(name = "orderDAO")
+	public OrderDAO getOrderDAO(SessionFactory sessionFactory) {
+		   
+	return new OrderDAOImpl(sessionFactory);
 	}
 }
 	

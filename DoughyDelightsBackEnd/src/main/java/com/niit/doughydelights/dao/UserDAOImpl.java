@@ -37,7 +37,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Transactional
-	public CakeUser get(String id) {
+	public CakeUser get(int id) {
 		String hql="from CakeUser where username =" + "'" + id + "'";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
 		
@@ -49,6 +49,19 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return null;
 	}
+	@Transactional
+	public CakeUser getUser(String loggedInUser){
+	String hql="from CakeUser where username =" + "'" + loggedInUser+ "'";
+	Query query=sessionFactory.getCurrentSession().createQuery(hql);
+	
+	List<CakeUser> listUser = query.list();
+	
+	if(listUser!= null && !listUser.isEmpty()) {
+		return listUser.get(0);
+		
+	}
+	return null;
+}
 	
 	@Transactional
 	public boolean isValidUser(String username,String password) {
@@ -69,6 +82,21 @@ public class UserDAOImpl implements UserDAO {
 		@SuppressWarnings("unchecked")
 		List<CakeUser> listUser =(List<CakeUser>) sessionFactory.getCurrentSession().createCriteria(CakeUser.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		return listUser;
+	}
+
+	@Transactional
+	public CakeUser getByUserName(String username) {
+		
+		String hql="from CakeUser where username =" + "'" + username + "'";
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		
+		List<CakeUser> listUser = query.list();
+		
+		if(listUser!= null && !listUser.isEmpty()) {
+			return listUser.get(0);
+			
+		}
+		return null;
 	}
 
 	

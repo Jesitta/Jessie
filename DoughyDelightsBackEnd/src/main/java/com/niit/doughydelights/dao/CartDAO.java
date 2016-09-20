@@ -13,5 +13,7 @@ public interface CartDAO {
 	public void delete(int id);
 	public Long getTotalAmount(String loggedInUser);
 	
+		
+	
    
 }

@@ -15,6 +15,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
@@ -48,9 +50,11 @@ private MultipartFile image;
 @JoinColumn(name="cat_id")
 private CakeCategory cat;
 
-@ManyToOne (cascade=CascadeType.ALL)
+@ManyToOne 
 @JoinColumn(name="sup_id")
 private CakeSupplier sup;
+
+
 
 
 public CakeCategory getCat() {

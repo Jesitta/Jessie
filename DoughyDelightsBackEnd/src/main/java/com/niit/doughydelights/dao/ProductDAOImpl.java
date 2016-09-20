@@ -85,6 +85,19 @@ public class ProductDAOImpl implements ProductDAO {
 		List<CakeProduct> listProduct =(List<CakeProduct>) sessionFactory.getCurrentSession().createCriteria(CakeProduct.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		return listProduct;
 	}
-	
+
+	@Override
+	public List<CakeProduct> getBySupplier(int id) {
+		String hql="from CakeProduct where sup_id  =" + "'" + id + "'";
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+				
+		List<CakeProduct> listProduct = query.list();
+		
+		if(listProduct!= null && !listProduct.isEmpty()) {
+			return listProduct;
+			
+		}
+		return null;
+	}
 }
 

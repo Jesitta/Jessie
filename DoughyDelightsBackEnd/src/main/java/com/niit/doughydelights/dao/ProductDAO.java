@@ -12,6 +12,7 @@ public interface ProductDAO {
 	public void delete(int id);
 	public List <CakeProduct> getByCategory(int categoryId);
 	public List<CakeProduct> getByProduct(int id);
+	public List<CakeProduct> getBySupplier(int id);
 
 
 	
