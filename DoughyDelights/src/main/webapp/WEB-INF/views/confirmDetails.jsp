@@ -7,12 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>ConfirmDetails</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </head>
 <style type="text/css">
@@ -72,12 +66,12 @@ body {
 
 				</div>
 				<div class="form-group">
-					<label for="password">Password</label>
-					<form:input path="password" class="form-control" pattern=".{5,}"
-						title="Five or more characters" placeholder="Enter password"
-						readonly="true"/>
+					<label for="email">Email</label>
+					<form:input path="email" class="form-control"
+						placeholder="Enter email"  />
 
 				</div>
+				
 				<div class="form-group">
 					<label for="address">Address</label>
 					<form:input path="address" class="form-control"

@@ -21,7 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.niit.doughydelights.dao.CategoryDAO;
+import com.niit.doughydelights.dao.ProductDAO;
 import com.niit.doughydelights.model.CakeCategory;
+import com.niit.doughydelights.model.CakeProduct;
 
 
 
@@ -34,6 +36,8 @@ public class CategoryController {
 	@Autowired
 	private  CategoryDAO categoryDAO;
 	@Autowired
+	private  ProductDAO productDAO;
+	@Autowired
 	private  CakeCategory cakeCategory;
 	@RequestMapping(value ="/admincategory",method=RequestMethod.GET)
 	public String category(Model model){
@@ -42,14 +46,7 @@ public class CategoryController {
 		return "category";
 	}
 	
-	/*@RequestMapping(value ="/category",method=RequestMethod.GET)
-	public ModelAndView category(){
-		ModelAndView modelAndView = new ModelAndView("/category");
-		modelAndView.addObject("cakeCategory",cakeCategory);  
-		modelAndView.addObject("addcategory", "Add Category");
-		
-		return modelAndView;
-	}*/
+
 
 @RequestMapping("/adminviewcat")
 public ModelAndView viewcategory() {
@@ -88,7 +85,12 @@ return modelAndView;
 
 	
 	@RequestMapping("/admincatdel{id}")
-	public String deletecategory(@PathVariable("id") int id,ModelMap model) {
+	public String deletecategory(@PathVariable("id") int id) {
+		
+		List<CakeProduct> product=productDAO.getByCategory(id);
+		for(CakeProduct cakeProduct:product){
+		productDAO.delete(cakeProduct.getId());
+	}
 		categoryDAO.delete(id);
 		
 		return "redirect:/adminviewcat";

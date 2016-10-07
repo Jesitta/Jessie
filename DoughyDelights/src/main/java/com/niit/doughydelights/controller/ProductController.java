@@ -24,8 +24,7 @@ import com.niit.doughydelights.dao.SupplierDAO;
 import com.niit.doughydelights.model.CakeCategory;
 import com.niit.doughydelights.model.CakeProduct;
 import com.niit.doughydelights.model.CakeSupplier;
-import com.niit.doughydelights.model.FileUtil;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import com.niit.doughydelights.util.FileUtil;
 
 
 
@@ -39,10 +38,11 @@ public class ProductController {
 	@Autowired
 	private  CakeProduct cakeProduct;
 	@Autowired
+	private  CakeCategory cakeCategory;
+	@Autowired
 	private  SupplierDAO supplierDAO;
 	
-	
-	
+
 	
 	@RequestMapping(value="/adminproduct",method=RequestMethod.GET)
 	public String product(Model model){
@@ -65,14 +65,17 @@ if(result.hasErrors()) {
 	modelAndView.addObject("addproduct", "ADD PRODUCT");
 	modelAndView.addObject("categoryList",this.categoryDAO.list());
 	modelAndView.addObject("supplierList",this.supplierDAO.list());
+
 			modelAndView.setViewName("product");
 		}
 else{
 
 CakeCategory cakeCategory = categoryDAO.getByName(cakeProduct.getCat().getName());
+
 CakeSupplier cakeSupplier= supplierDAO.getByName(cakeProduct.getSup().getName());
 System.out.println(cakeProduct.getCat().getName());
 System.out.println(cakeCategory.getId());
+
 cakeProduct.setSup(cakeSupplier);
 	cakeProduct.setCat(cakeCategory);
 	productDAO.saveOrUpdate(cakeProduct);
@@ -103,6 +106,7 @@ return modelAndView;
 		model.addAttribute("categoryList",this.categoryDAO.list());
 		model.addAttribute("supplierList",this.supplierDAO.list());
 		model.addAttribute("editproduct", "EDIT PRODUCT");  
+	
 		
 		return "/product";
 		

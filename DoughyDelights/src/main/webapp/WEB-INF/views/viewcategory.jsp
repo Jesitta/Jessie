@@ -52,9 +52,10 @@ th, td,tr {
 <div class="col-sm-4">
 <div class="input-group">
    <input type="text"  ng-model="searchText" placeholder="Search"  class="form-control"/>
-    <span class="input-group-addon">
-        <i class="fa fa-search"></i>
-    </span>
+    <div class="input-group-addon input-sm">
+      <span class="glyphicon glyphicon-search"></span>
+    </div>
+    
 </div>
 <br>
 

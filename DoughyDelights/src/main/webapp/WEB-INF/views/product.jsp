@@ -7,12 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<!-- 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
- <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+
 <title>Product</title>
 </head>
 <body>
@@ -58,6 +53,11 @@
       <form:input path="price" class="form-control" pattern="[0-9].{0,}" title="Price must be in digits" placeholder="Enter price"/>
        <form:errors style="color:red" path="price" />
        </div> 
+       <div class="form-group">
+     <form:label path="stock"><spring:message text="STOCK"/></form:label>
+      <form:input path="stock" class="form-control" pattern="[0-9].{0,}" title="Stock must be in digits" placeholder="Enter stock"/>
+       <form:errors style="color:red" path="stock" />
+       </div> 
      <div class="form-group">
      <form:label path="cat"><spring:message text="CATEGORY"/></form:label>
       <form:select path="cat.name"  class="form-control" items="${categoryList}" itemLabel="name" itemValue="name" required="true" placeholder="Enter category"/>
@@ -71,7 +71,7 @@
 				<form:label path="image" class="control-label">
 					<spring:message text="IMAGE" />
 				</form:label>
-				<form:input type="file"  path="image" class="form-control" required="true"/>
+				<form:input type="file"  path="image" class="form-control" required="true" />
 				
     	 </div>
     <div class="form-group">

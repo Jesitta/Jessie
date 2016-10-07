@@ -66,6 +66,13 @@ li a {
 					<li><a href="adminviewprod">ViewProduct</a></li>
 
 				</ul>
+					<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown">Orders <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="adminvieworder">Order</a></li>
+					<li><a href="">User Order</a></li>
+
+				</ul>
 		</ul>
 
 		</nav>

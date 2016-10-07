@@ -6,12 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
- <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+ 
 <title>View</title>
 </head>
 
@@ -30,29 +25,6 @@ table, th , td ,tr {
 <body>
 <%@include file="header.jsp"%>
 
-<%--<div ng-app="myApp" ng-control"src/main/webapp/WEB-INF/views/prodfinal.jsp"ler=proCtrl">
- <table>
-<thead>
-<tr>
-<th>ID</th>
-<th>NAME</th>
-<th>DESCRIPTION</th>
-<th>PRODUCT</th>
-</tr>
-</thead>
-<tbody>
-         
- <c:forEach items="${prodfinal}" var="product" >
- <tr >
-			<td>${product.id}</td>
-			<td>${product.name}</td>
-			<td>${product.description}</td>
-			<td>${product.price}</td>
-			</tr>
-			</c:forEach>
- 
-</tbody>
-</table> --%>
 
 
 <br><br><br>
@@ -72,8 +44,15 @@ table, th , td ,tr {
 <b>DESCRIPTION: </b>  ${product.description}<br><br>
 <b>SELLER: </b>${product.sup.name}<br><br>
 <b>PRICE:       Rs.</b>${product.price}<br><br>
-<a href=final><button type="submit" class="btn btn-info">ORDER NOW</button></a>
+
+<%-- <a href="<c:url value= '/final${product.id}'/>"><button type="submit" class="btn btn-info">ORDER NOW</button></a> --%>
+
+<c:if test="${product.stock > 0 }">
 <a href="<c:url value= '/cart${product.id}'/>"><button type="submit" class="btn btn-warning">ADD TO CART</button></a>
+</c:if>
+<c:if test="${product.stock == 0 }">
+<p style="color: red"><b>OUT OF STOCK..!</b></p>
+</c:if>
 
 </div>
 

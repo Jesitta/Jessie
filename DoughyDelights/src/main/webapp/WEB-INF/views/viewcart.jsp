@@ -5,11 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 <title>View</title>
 </head>
 <style>
@@ -41,6 +37,19 @@ th, td,tr {
     margin: 1px 1px;
     cursor: pointer;
      }
+     .blink {
+  animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 
 </style>
 <body>
@@ -49,31 +58,49 @@ th, td,tr {
  <br>
  
  <div class="container">
+ <c:if test="${empty cartList}">
+ <br><br><br><br><br><br><br><br><br>
+ <div align="center" class="blink" style="color: red"><h4><b>${noitems}</b></h4></div>
+ 
+  </c:if>
+  
+  <c:if test="${not empty cartList }">
  <div align="left"><h4><b>${CartList}</b></h4></div>
+ 
+ 
  <br>
+ 
 <table class="table">
 <thead> 
  <tr>
- <!-- <th width="40">IMAGE</th> -->
-				<th style="width: 40; color: #C52D2F; text-align: center">CARTID</th>
-				<th style="width: 200; color: #C52D2F; text-align: center">PRODUCTNAME</th>
-				<th  style="width: 200; color: #C52D2F; text-align: center">QUANTITY</th>
+ 
+ <!-- <th width="40">IMAGE</th> -->  
+ <th  style="width: 100; color: #C52D2F; text-align: center">ACTION</th>
+				<th style="width: 200; color: #C52D2F; text-align: center">CAKE</th>
+				<th style="width: 100; color: #C52D2F; text-align: center">PRODUCTNAME</th>
+				<th  style="width: 100; color: #C52D2F; text-align: center">QUANTITY</th>
 			   <th  style="width: 100; color: #C52D2F; text-align: center">PRICE</th>
-				<th  style="width: 100; color: #C52D2F; text-align: center">ACTION</th>
+			   <th  style="width: 100; color: #C52D2F; text-align: center">TOTAL</th>
+				
 				</tr>
 			</thead>
 
 <tbody>
 <c:forEach items="${cartList}" var="cart">
 								<tr>
-									 <%-- <td> <img src="/resources/images/${cart.pdid.id}.jpg"  width=60; height=60; class="img-responsive"></td> --%>
-									<td>${cart.id}</td>
-									<td>${cart.productname}</td>
-									<td>${cart.quantity}</td>
-									<td>${cart.price}</td>
-							
+								
 									<td><a
 										href=" <c:url value="/delcart${cart.id}"/>"><button class="button button1" type="submit" onclick="return confirm('Are you sure you want to Remove?')" class="btn btn-danger">DELETE <span class="glyphicon glyphicon-remove"></span></button></a></td>
+									
+									 <td> <img src="resources/images/${cart.product.id}.jpg"  width=60; height=60; ></td> 
+									<td>${cart.productname}</td>
+									
+								
+<td><a href="minus${cart.id}"> <button type="submit">-</button></a>  <input type="text" size="1" value=" ${cart.quantity}"> <a href="plus${cart.id}"> <button type="submit">+</button></a></td>
+									<td>${cart.price}</td>
+									<td>${cart.total}</td>
+							
+									
 												
 								</tr>
 							</c:forEach>
@@ -84,10 +111,23 @@ th, td,tr {
 </tbody>
 </table>
 <br><br>
-<h4 align="center"><b>TOTAL COST : ${totalAmount }</b></h4><br><br>
-<a href=final><button type="submit" class="btn btn-success">ORDER NOW</button></a>
+
+<div class="row">
+ <div class="col-md-9"></div>
+  <div class="col-md-3"><h4><b> GRAND TOTAL : ${totalAmount }</b></h4></div>
+</div>
+<br>
+<div class="row">
+ <div class="col-md-10"></div>
+  <div class="col-md-2"><a href="<c:url value= '/address'/>" ><button type="submit" class="btn btn-success">CHECKOUT</button></a></div>
+</div>
+</c:if>
 
 </div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+	<%@include file="footer.jsp"%>
+
 
 </body>
 </html>

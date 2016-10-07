@@ -1,5 +1,6 @@
 package com.niit.doughydelights.controller;
- 
+
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,94 +24,82 @@ import com.niit.doughydelights.model.CakeProduct;
 
 @Controller
 public class LoginController {
-	
+
 	@Autowired
-	private  CategoryDAO categoryDAO;
+	private CategoryDAO categoryDAO;
 	@Autowired
-	private  ProductDAO productDAO;
+	private ProductDAO productDAO;
 	@Autowired
-	private  CakeProduct cakeProduct;
+	private CakeProduct cakeProduct;
 	@Autowired
-	private  CartDAO cartDAO;
-	
+	private CartDAO cartDAO;
+
 	@RequestMapping("/")
-    public String main(HttpServletRequest req) {
-        System.out.println(req.getContextPath());
-        return "index";
-    }
-	
-	
-	
-	/*@RequestMapping(value="/gomainpage")
-    public String homepage() {
-        
-		return "home";
-    }*/
-	@RequestMapping(value="/about")
-    public String about() {
-        
-        return "AboutUs";
-    }
-	@RequestMapping(value="/final")
-    public ModelAndView finalpage(HttpServletRequest req) {
-		ModelAndView mv= new ModelAndView();
-		String loggedInUser =req.getRemoteUser();
-		if(req.getRemoteUser()!=null){
-			List <CakeCart> cartList=cartDAO.list(loggedInUser);
+	public ModelAndView main(HttpServletRequest req) {
+		System.out.println(req.getContextPath());
+		ModelAndView mv = new ModelAndView("index");
+
+		mv.addObject("categoryList", categoryDAO.list());
+		return mv;
+	}
+
+	@RequestMapping(value = "/about")
+	public String about() {
+
+		return "AboutUs";
+	}
+
+	@RequestMapping(value = "/final")
+	public ModelAndView finalpage(HttpServletRequest req, Principal principal) {
+		ModelAndView mv = new ModelAndView();
+		String loggedInUser = principal.getName();
+		if (req.getRemoteUser() != null) {
+			List<CakeCart> cartList = cartDAO.list(loggedInUser);
 			mv.addObject("cartSize", cartList.size());
-        
-			 mv.setViewName("Thanks");
-		}
-		else{
+
+			mv.setViewName("Thanks");
+		} else {
 			mv.addObject("logincart", "Please Login to buy your yummy cake");
-			
+
 			mv.setViewName("login");
 		}
-       return mv;
+		return mv;
 	}
-   
-	
-	
-    @RequestMapping("/productlist")
-    
-    public ModelAndView goListPrdct(HttpServletRequest req) {
-		String catname=req.getParameter("catname"); 
+
+	@RequestMapping("/productlist")
+
+	public ModelAndView goListPrdct(HttpServletRequest req, Principal principal) {
+		String catname = req.getParameter("catname");
 		CakeCategory cakeCategory = categoryDAO.getByName(catname);
-		
-		ModelAndView mv=new ModelAndView("productlist");
-		String loggedInUser =req.getRemoteUser();
-		List <CakeCart> cartList=cartDAO.list(loggedInUser);
+		System.out.println(cakeCategory);
+		String loggedInUser = req.getRemoteUser();
+		List<CakeCart> cartList = cartDAO.list(loggedInUser);
+
+		ModelAndView mv = new ModelAndView("productlist");
 		mv.addObject("cartSize", cartList.size());
-		mv.addObject("ViewProduct","CHOOSE YOUR CAKE..!");
-		List <CakeProduct> prodct = productDAO.getByCategory(cakeCategory.getId());
-		System.out.println(cakeCategory.getId());
-		Gson gs=new Gson();
-		String prd=gs.toJson(prodct);
+		mv.addObject("ViewProduct", "CHOOSE YOUR CAKE..!");
+		List<CakeProduct> prodct = productDAO.getByCategory(cakeCategory.getId());
+		System.out.println(cakeCategory.getName());
+		Gson gs = new Gson();
+		String prd = gs.toJson(prodct);
 		mv.addObject("prodlist", prd);
-         return mv;
-	}	
-	
-   @RequestMapping("/proddesc")
-    
-    public ModelAndView goList(HttpServletRequest req) {
-   String pdid=req.getParameter("pdid"); 
-    	cakeProduct=productDAO.get(Integer.parseInt(pdid));
-		ModelAndView mv=new ModelAndView("prodfinal");
-		String loggedInUser =req.getRemoteUser();
-		List <CakeCart> cartList=cartDAO.list(loggedInUser);
+		return mv;
+	}
+
+	@RequestMapping("/proddesc")
+
+	public ModelAndView goList(HttpServletRequest req, Principal principal) {
+		String pdid = req.getParameter("pdid");
+		cakeProduct = productDAO.get(Integer.parseInt(pdid));
+		String loggedInUser = req.getRemoteUser();
+		List<CakeCart> cartList = cartDAO.list(loggedInUser);
+		ModelAndView mv = new ModelAndView("prodfinal");
 		mv.addObject("cartSize", cartList.size());
-		//Gson gs=new Gson();
-		List <CakeProduct> product=productDAO.getByProduct(cakeProduct.getId());
+		List<CakeProduct> product = productDAO.getByProduct(cakeProduct.getId());
 		System.out.println(cakeProduct.getId());
-		System.out.println("ProdctList"+ product);
-		//String prd=gs.toJson(pro);
+		System.out.println("ProdctList" + product);
 		mv.addObject("prodfinal", product);
-		
-         return mv;
-	}	
+		return mv;
+	}
 
- 
-
-}	
-	 
-   
+}

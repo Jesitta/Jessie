@@ -26,14 +26,6 @@ public void saveOrUpdate(CakeOrder cakeOrder) {
 	sessionFactory.getCurrentSession().saveOrUpdate(cakeOrder);
 }
 
-@Transactional
-public void delete(int id) {
-	CakeOrder cartToDelete = new CakeOrder();
-	cartToDelete.setOrderid(id);
-	sessionFactory.getCurrentSession().delete(cartToDelete);
-	
-}
-
 
 @Transactional
 public CakeOrder get(int id) {
@@ -54,11 +46,11 @@ public CakeOrder get(int id) {
 public List<CakeOrder> list() {
 	
 	@SuppressWarnings("unchecked")
-	List<CakeOrder> listCart =(List<CakeOrder>)
+	List<CakeOrder> listorder =(List<CakeOrder>)
 	sessionFactory.getCurrentSession()
 	.createCriteria(CakeOrder.class)
 	.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-	return listCart;
+	return listorder;
 }
 
 @Transactional

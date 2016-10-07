@@ -8,4 +8,6 @@ public interface OrderDAO {
 	public List<CakeOrder> list(String loggedInUser);
 	public CakeOrder get(int id);
 	public void saveOrUpdate(CakeOrder cakeOrder);
+	//public Object getTotalAmount(String loggedInUser);
+	public List<CakeOrder> list();
 }

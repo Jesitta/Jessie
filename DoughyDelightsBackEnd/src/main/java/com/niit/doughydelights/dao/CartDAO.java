@@ -12,6 +12,8 @@ public interface CartDAO {
 	public void saveOrUpdate(CakeCart cakeCart);
 	public void delete(int id);
 	public Long getTotalAmount(String loggedInUser);
+	public Long getGrandTotalAmount(String loggedInUser);
+	
 	
 		
 	

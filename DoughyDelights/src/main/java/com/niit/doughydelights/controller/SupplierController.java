@@ -17,16 +17,20 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.niit.doughydelights.dao.ProductDAO;
 import com.niit.doughydelights.dao.SupplierDAO;
 import com.niit.doughydelights.model.CakeCategory;
+import com.niit.doughydelights.model.CakeProduct;
 import com.niit.doughydelights.model.CakeSupplier;
-import com.niit.doughydelights.model.FileUtil;
+import com.niit.doughydelights.util.FileUtil;
 
 @Controller
 public class SupplierController {
 
 @Autowired
 private CakeSupplier cakeSupplier;
+@Autowired
+private ProductDAO productDAO;
 @Autowired
 private SupplierDAO supplierDAO;
 
@@ -77,12 +81,15 @@ private SupplierDAO supplierDAO;
 		
 	}
 	@RequestMapping("/admindelsupl{id}")
-	public String deletecategory(@PathVariable("id") int id,ModelMap model) {
+	public String deletecategory(@PathVariable("id") int id) {
+		List<CakeProduct> product=productDAO.getBySupplier(id);
+		for(CakeProduct cakeProduct:product){
+		productDAO.delete(cakeProduct.getId());
+	}
 		supplierDAO.delete(id);
-		/*model.addAttribute("supplierList",supplierDAO.list());
-		model.addAttribute("SupplierList", "SUPPLIER LIST");*/
+		
 		return "redirect:/adminviewsupl";
 	}
-	
+
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.doughydelights.model.CakeCart;
+import com.niit.doughydelights.model.CakeCategory;
 
 @Repository("cartDAO")
 public class CartDAOImpl implements CartDAO  {
@@ -65,7 +66,7 @@ public List<CakeCart> list() {
 
 @Transactional
 public List<CakeCart> list(String loggedInUser) {
-	String hql="from CakeCart where username  =" + "'" + loggedInUser + "'";
+	String hql="from CakeCart where username  =" + "'" + loggedInUser + "'and status =" + "'N'"   ;
 	Query query=sessionFactory.getCurrentSession().createQuery(hql);
 	
 	List<CakeCart> listCart = query.list();
@@ -78,9 +79,22 @@ public List<CakeCart> list(String loggedInUser) {
 
 @Transactional
 public Long getTotalAmount(String loggedInUser) {
-	String hql="select sum(price)from CakeCart where username  =" + "'" + loggedInUser + "'";
+	String hql="select sum(total)from CakeCart where username  =" + "'" + loggedInUser +  "'and status =" + "'N'";
 	Query query=sessionFactory.getCurrentSession().createQuery(hql);
 	Long sum=(Long) query.uniqueResult();
 	return sum;
 }
+
+@Transactional
+public Long getGrandTotalAmount(String loggedInUser) {
+	
+	
+	String hql="select sum(total)from CakeCart where username  =" + "'" + loggedInUser +  "'and status =" + "'N'";
+	Query query=sessionFactory.getCurrentSession().createQuery(hql);
+	Long sum=(Long) query.uniqueResult();
+	return sum;
+}
+
+
+
 }

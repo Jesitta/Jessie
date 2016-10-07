@@ -5,12 +5,6 @@
   
 <html>
 <head>
-<!-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
- <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 
 <title>ViewSupplier</title>
 <style>
@@ -55,9 +49,9 @@ th, td,tr {
 <div class="col-sm-4">
 <div class="input-group">
    <input type="text"  ng-model="searchText" placeholder="Search"  class="form-control"/>
-    <span class="input-group-addon">
-        <i class="fa fa-search"></i>
-    </span>
+    <div class="input-group-addon input-sm">
+      <span class="glyphicon glyphicon-search"></span>
+    </div>
 </div>
 <br>
 

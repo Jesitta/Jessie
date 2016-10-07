@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +31,7 @@ public class CakeUser implements Serializable {
 	private String address;
 	
 	private String mobilenumber;
+	private String email;
 
 	public String getMobilenumber() {
 		return mobilenumber;
@@ -40,6 +42,18 @@ public class CakeUser implements Serializable {
 	}
 
 	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	public String getRole() {
 		return role;

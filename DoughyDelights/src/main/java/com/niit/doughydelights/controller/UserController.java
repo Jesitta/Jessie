@@ -1,5 +1,6 @@
 package com.niit.doughydelights.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,67 +21,68 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.doughydelights.dao.CartDAO;
+import com.niit.doughydelights.dao.CategoryDAO;
 import com.niit.doughydelights.dao.UserDAO;
 import com.niit.doughydelights.model.CakeCart;
 import com.niit.doughydelights.model.CakeUser;
 
-
 @Controller
 public class UserController {
-AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-	
-	@Autowired
-	private  UserDAO userDAO;
-	@Autowired
-	private  CartDAO cartDAO;
-	@Autowired
-	private  CakeUser cakeUser;
-	
+	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 
-@RequestMapping(value ="/signup",method=RequestMethod.GET)
-	public String signup(Model model){
-		model.addAttribute("cakeUser", new CakeUser()); 
-		model.addAttribute("isuserClickedRegisterHere", "true"); 
+	@Autowired
+	private UserDAO userDAO;
+	@Autowired
+	private CartDAO cartDAO;
+	@Autowired
+	private CategoryDAO categoryDAO;
+
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public String signup(Model model) {
+		model.addAttribute("cakeUser", new CakeUser());
+		model.addAttribute("isuserClickedRegisterHere", "true");
 		return "signup";
 	}
-	
-	@RequestMapping(value ="signup",method=RequestMethod.POST)
-	public ModelAndView signuppost(@Valid @ModelAttribute("cakeUser") CakeUser cakeUser,BindingResult result) {
+
+	@RequestMapping(value = "signup", method = RequestMethod.POST)
+	public ModelAndView signuppost(@Valid @ModelAttribute("cakeUser") CakeUser cakeUser, BindingResult result) {
 		ModelAndView modelAndView = new ModelAndView();
-		if(result.hasErrors()) {
-	modelAndView.setViewName("/signup");
+		if (result.hasErrors()) {
+			modelAndView.setViewName("/signup");
+		} else {
+			userDAO.saveOrUpdate(cakeUser);
+			modelAndView.addObject("regsuccess", "Registered Successfully...!!");
+			modelAndView.setViewName("/home");
 		}
-else{
-	      userDAO.saveOrUpdate(cakeUser);
-		modelAndView.addObject("regsuccess", "Registered Successfully...!!");   
-		modelAndView.setViewName("/home");
-}
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("/home")
-    public ModelAndView index(HttpServletRequest req,HttpSession session) {
-		//String loggedInUser = null;
-		String loggedInUser =req.getRemoteUser();
-		ModelAndView mv= new ModelAndView("home");
-		 session.setAttribute("loggedInUser",req.getRemoteUser());
-		mv.addObject("loggedInUser",loggedInUser);
-		
-		List <CakeCart> cartList=cartDAO.list(loggedInUser);
+	public ModelAndView index(HttpServletRequest req, HttpSession session, Principal principal) {
+
+		String loggedInUser = principal.getName();
+
+		ModelAndView mv = new ModelAndView("home");
+		System.out.println(principal.getName());
+		session.setAttribute("loggedInUser", principal.getName());
+		System.out.println(loggedInUser);
+		mv.addObject("loggedInUser", loggedInUser);
+		mv.addObject("categoryList", categoryDAO.list());
+		List<CakeCart> cartList = cartDAO.list(loggedInUser);
 		mv.addObject("cartSize", cartList.size());
-		 return mv;
-    }
-	
-	@RequestMapping(value="/403")
-	 public String error() {
-	        
-	        return "403";
-	    }
-	
-	
+		return mv;
+	}
+
+	@RequestMapping(value = "/403")
+	public String error() {
+
+		return "403";
+	}
+
 	@RequestMapping(value = "/goologin", method = RequestMethod.GET)
 	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
-		@RequestParam(value = "logout", required = false) String logout ,HttpSession session,HttpServletRequest req) {
+			@RequestParam(value = "logout", required = false) String logout, HttpSession session,
+			HttpServletRequest req) {
 
 		ModelAndView model = new ModelAndView();
 		if (error != null) {
@@ -90,88 +92,31 @@ else{
 		if (logout != null) {
 			SecurityContextHolder.getContext().setAuthentication(null);
 			session.invalidate();
-			//session=req.getSession();
+			// session=req.getSession();
 			model.addObject("msg", "You've been logged out successfully.");
 			model.setViewName("index");
+			model.addObject("categoryList", categoryDAO.list());
 		}
-		
-		
-		else{
-		     model.setViewName("login");
+
+		else {
+			model.setViewName("loginneww");
 		}
 		return model;
 
 	}
-	
-	
-
-	
-	
-	
-	
-	/*@RequestMapping(value ="/goologin",method=RequestMethod.GET)
-	public ModelAndView login(){
-		ModelAndView modelAndView = new ModelAndView("login");
-		modelAndView.addObject("cakeUser", cakeUser);
-		modelAndView.addObject("isuserClickedLoginHere", "true"); 
-		return modelAndView;
+	@RequestMapping("/reset")
+public String reset(Model model){
+		model.addAttribute("cakeUser",new CakeUser());
+		return "password";
 	}
-*//*	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
-		@RequestParam(value = "logout", required = false) String logout) {
-
-	  ModelAndView model = new ModelAndView();
-	  if (error != null) {
-		model.addObject("error", "Invalid username and password!");
-	  }
-
-	  if (logout != null) {
-		model.addObject("msg", "You've been logged out successfully.");
-	  }
-	  model.setViewName("/login");
-
-	  return model;
-
-	}*/
-	
-/*@RequestMapping(value ="springlogin",method=RequestMethod.POST)
-public ModelAndView loginpost(@RequestParam("username")String username,@RequestParam("password")String password, HttpSession session) {
-	
-		ModelAndView modelAndView = new ModelAndView("home");
-	
-		boolean isValidUser=userDAO.isValidUser(username,password);
-		if(isValidUser==true)
-		{
-			cakeUser=userDAO.get(username);
-			session.setAttribute("loggedInUser",cakeUser.getName());
-			if(cakeUser.getRole().equals("ROLE_ADMIN"))
-			{	
-				modelAndView.addObject("isAdmin","true");
-				
-				
-			}else{
-				modelAndView.addObject("isAdmin","false");
-				modelAndView.addObject("loginsuccess", "LoggedIn Successfully");
-				
-				}	
-		}
-		else{
-			modelAndView.addObject("invalidCredentials","true");
-			modelAndView.addObject("errorMessage","Invalid Credentials. Not Yet Registered..!");
-			modelAndView.setViewName("login");
-			}
-
-		return modelAndView;
-	}*/
-	
-	/*@RequestMapping(value ="/logout")
-	public ModelAndView logout(HttpServletRequest request,HttpSession session){
-		ModelAndView modelAndView = new ModelAndView("/home");
-		session.invalidate();
-		session=request.getSession(true);
-		
-		modelAndView.addObject("logout", "Loggedout Successfully");
-		return modelAndView;
-	}*/
+	@RequestMapping(value = "resetpwd", method = RequestMethod.POST)
+	public ModelAndView signuppost(@ModelAttribute("cakeUser") CakeUser cakeUser,HttpServletRequest req){
+		ModelAndView mv=new ModelAndView("home");
+		String loggedInUser=req.getRemoteUser();
+ CakeUser cakeUser1=userDAO.getUser(loggedInUser);
+ cakeUser1.setPassword(cakeUser.getPassword());
+		userDAO.saveOrUpdate(cakeUser1);
+		mv.addObject("categoryList", categoryDAO.list());
+	return mv;
+	}
 }

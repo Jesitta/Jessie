@@ -6,12 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>signuppage</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 
 </head>
 <style type="text/css">
@@ -59,19 +54,20 @@ body {
 						</c:forEach>
 			</div>
 			<div class="form-group">
-				<label for="password">Password</label>
-				<form:password path="password" class="form-control" pattern=".{5,}"
-					title="Five or more characters" placeholder="Enter password"
+				<label for="email">Email</label>
+				<form:input path="email" class="form-control" 
+					title="Enter valid email" placeholder="Enter email"
 					 />
 					
 					<c:forEach
-							items="${flowRequestContext.messageContext.getMessagesBySource('password')}"
+							items="${flowRequestContext.messageContext.getMessagesBySource('email')}"
 							var="error">
 							<div>
 								<span  style="color:red">${error.text}</span>
 							</div>
 						</c:forEach>
 			</div>
+			
 			<div class="form-group">
 				<label for="address">Address</label>
 				<form:input path="address" class="form-control"
