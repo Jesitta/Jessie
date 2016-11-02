@@ -28,7 +28,7 @@ public class CakeUser implements Serializable {
 		
 	private String name;
 	private String role;
-	private String address;
+
 	
 	private String mobilenumber;
 	private String email;
@@ -81,13 +81,6 @@ public class CakeUser implements Serializable {
 		this.name = name;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
 
 
 	public String getUsername() {

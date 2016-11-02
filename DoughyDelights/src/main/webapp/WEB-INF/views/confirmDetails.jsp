@@ -20,7 +20,7 @@ body {
 
 		<div class=col-sm-6>
 			<h3>
-				<b>SIGNUP</b>
+				<b>CONFIRM YOUR DETAILS</b>
 			</h3>
 			<form:form   method="post"
 				commandName="cakeUser">
@@ -68,16 +68,11 @@ body {
 				<div class="form-group">
 					<label for="email">Email</label>
 					<form:input path="email" class="form-control"
-						placeholder="Enter email"  />
+						placeholder="Enter email" readonly="true" />
 
 				</div>
 				
-				<div class="form-group">
-					<label for="address">Address</label>
-					<form:input path="address" class="form-control"
-						placeholder="Enter address" readonly="true" />
-
-				</div>
+				
 				<div class="form-group">
 					<label for="mobilenumber">Mobilenumber</label>
 					<form:input path="mobilenumber" class="form-control"
@@ -95,7 +90,7 @@ body {
 			</form:form>
 		</div>
 	</div>
-	<br>
+	<br><br><br>
 	<%@include file="footer.jsp"%>
 
 </body>

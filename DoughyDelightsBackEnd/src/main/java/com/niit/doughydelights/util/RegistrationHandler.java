@@ -56,11 +56,7 @@ public class RegistrationHandler {
 			status = "failure";
 		}
 		
-		if (cakeUser.getAddress().isEmpty()) {
-			messageContext.addMessage(
-					new MessageBuilder().error().source("address").defaultText("Address cannot be Empty").build());
-			status = "failure";
-		}
+		
 		
 		return status;
 	}

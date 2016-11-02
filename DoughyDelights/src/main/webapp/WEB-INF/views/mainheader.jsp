@@ -70,7 +70,7 @@ li a {
 				data-toggle="dropdown">Orders <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="adminvieworder">Order</a></li>
-					<li><a href="">User Order</a></li>
+					
 
 				</ul>
 		</ul>

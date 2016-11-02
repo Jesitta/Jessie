@@ -49,21 +49,7 @@ public class CartController {
 		CakeProduct cakeProduct = productDAO.get(id);
 		ModelAndView mv = new ModelAndView();
 		String loggedInUser = req.getRemoteUser();
-		/*List<CakeCart> cartList = cartDAO.list(loggedInUser);
-		  if(cartList !=  null){
-			     for (int i=0; i < cartList.size(); i++){
-			         if(cakeProduct.getId() == cartList.get(i).getProduct().getId())
-			        	cakeCart= cartList.get(i);
-			      
-			 		cakeCart.setQuantity(cakeCart.getQuantity()+1);
-			 		cakeCart.setTotal(cakeProduct.getPrice() * cakeCart.getQuantity());
-			 		cartDAO.saveOrUpdate(cakeCart);
-			 		
-			 		mv.setViewName("redirect:/viewcartt");
-			 		
-			     }
-		  }
-		*/
+		
 		System.out.println("inside controller");
 		System.out.println(productDAO.get(id).getName() + " " + "answer");
 		
@@ -118,65 +104,6 @@ public class CartController {
 		return "redirect:/viewcartt";
 	}
 	
-	/*@RequestMapping("/final{id}")
-	public ModelAndView cartfinal(@PathVariable("id") int id, HttpSession session, HttpServletRequest req) {
-		ModelAndView mv = new ModelAndView("home");
-
-		CakeProduct cakeProduct = productDAO.get(id);
-
-		System.out.println("inside controller");
-		System.out.println(productDAO.get(id).getName() + " " + "answer");
-		CakeOrder cakeOrder = new CakeOrder();
-		String loggedInUser = req.getRemoteUser();
-		CakeUser cakeUser = userDAO.getUser(loggedInUser);
-
-		cakeOrder.setProductname(cakeProduct.getName());
-		cakeOrder.setAddress(cakeUser.getAddress());
-		cakeOrder.setMobilenumber(cakeUser.getMobilenumber());
-		cakeOrder.setUsername(loggedInUser);
-		cakeOrder.setTotal(cakeProduct.getPrice());
-		orderDAO.saveOrUpdate(cakeOrder);
-
-		return mv;
-	}
-
-	@RequestMapping("/checkout")
-	public ModelAndView checkout(HttpSession session, HttpServletRequest req)
-
-	{
-		cartDAO.saveOrUpdate(cakeCart);
-		ModelAndView mv = new ModelAndView("addressdetails");
-		CakeOrder cakeOrder = new CakeOrder();
-		mv.addObject("ordersum", "ORDER SUMMARY");
-		String loggedInUser = req.getRemoteUser();
-		List<CakeCart> cartList = cartDAO.list(loggedInUser);
-		CakeUser cakeUser = userDAO.getUser(loggedInUser);
-		for (CakeCart cake : cartList) {
-
-			cakeOrder.setProductname(cake.getProductname());
-
-			cakeOrder.setAddress(cakeUser.getAddress());
-			cakeOrder.setMobilenumber(cakeUser.getMobilenumber());
-
-			cakeOrder.setUsername(loggedInUser);
-			cakeOrder.setTotal(cake.getPrice());
-			orderDAO.saveOrUpdate(cakeOrder);
-
-		}
-		// CakeUser cakeUser=userDAO.getUser(loggedInUser);
-		List<CakeCart> order = cartDAO.list(loggedInUser);
-		mv.addObject("order", order);
-		mv.addObject("ordermobilenumber", cakeUser.getMobilenumber());
-		mv.addObject("orderaddress", cakeUser.getAddress());
-		mv.addObject("totalAmount", cartDAO.getTotalAmount(loggedInUser));
-		List<CakeCart> cart = cartDAO.list(loggedInUser);
-		for (CakeCart cakeCart : cart) {
-			cartDAO.delete(cakeCart.getId());
-
-		}
-
-		return mv;
-	}*/
 
 	@RequestMapping("plus{id}")
 	public ModelAndView plus(@PathVariable("id") int id) {

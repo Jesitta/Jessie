@@ -15,7 +15,7 @@
 <div class=col-sm-6>
  <c:url var="addres" value="checkout"></c:url>
 <form:form  action="${addres}" modelAttribute="addressDetails" method="post">
-				<h4 style="color: black;">ADDRESS DETAILS</h4>
+				<h4 style="color: black;">SHIPPING ADDRESS</h4>
 				<div class="form-group">
 					<label for="doornumber">Door Number</label>
 					<form:input path="doornumber" placeholder="Enter doornumber" 

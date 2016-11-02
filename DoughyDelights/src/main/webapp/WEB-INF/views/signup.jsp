@@ -28,7 +28,7 @@ body {
 			<div class="form-group ">
 				<label for="name">Name</label><br>
 				<form:input path="name" class="form-control" 
-					 placeholder="Enter name"  />
+					 placeholder="Enter name" title="Example:XXxxx" pattern="^[a-zA-Z]+$"/>
 					
 					  <c:forEach
 							items="${flowRequestContext.messageContext.getMessagesBySource('name')}"
@@ -53,10 +53,10 @@ body {
 							</div>
 						</c:forEach>
 			</div>
-			<div class="form-group">
+			<div class="form-group">																	
 				<label for="email">Email</label>
-				<form:input path="email" class="form-control" 
-					title="Enter valid email" placeholder="Enter email"
+				<form:input path="email" class="form-control"  pattern="[a-z0-9._%+-]+@gmail+\.[a-z]{2,3}$"
+					title="Enter valid emailid Example:xxxxx124@gmail.com" placeholder="Enter email"
 					 />
 					
 					<c:forEach
@@ -68,19 +68,7 @@ body {
 						</c:forEach>
 			</div>
 			
-			<div class="form-group">
-				<label for="address">Address</label>
-				<form:input path="address" class="form-control"
-					placeholder="Enter address"  />
-					
-						<c:forEach
-							items="${flowRequestContext.messageContext.getMessagesBySource('address')}"
-							var="error">
-							<div>
-								<span style="color:red">${error.text}</span>
-							</div>
-						</c:forEach>
-			</div>
+	
 			<div class="form-group">
 				<label for="mobilenumber">Mobilenumber</label>
 				<form:input path="mobilenumber" class="form-control"
@@ -96,11 +84,12 @@ body {
 							</div>
 						</c:forEach>
 			</div>
+			<br>
 		<input type="submit" name="_eventId_submit"
 							class="btn btn-success" value="SIGNUP" />
 
 		</form:form>
-	</div></div><br>
+	</div></div><br><br><br><br>
 	<%@include file="footer.jsp"%>
 	
 </body>

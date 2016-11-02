@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,16 +25,13 @@ import com.niit.doughydelights.dao.CartDAO;
 import com.niit.doughydelights.dao.CategoryDAO;
 import com.niit.doughydelights.dao.OrderDAO;
 import com.niit.doughydelights.dao.ProductDAO;
-import com.niit.doughydelights.dao.TestDAO;
 import com.niit.doughydelights.dao.UserDAO;
 import com.niit.doughydelights.dao.UserOrderDAO;
 import com.niit.doughydelights.model.AddressDetails;
 import com.niit.doughydelights.model.CakeCart;
-import com.niit.doughydelights.model.CakeCategory;
 import com.niit.doughydelights.model.CakeOrder;
 import com.niit.doughydelights.model.CakeProduct;
 import com.niit.doughydelights.model.CakeUser;
-import com.niit.doughydelights.model.OrderTest;
 import com.niit.doughydelights.model.UserOrder;
 
 @Controller
@@ -60,16 +58,29 @@ public class OrderController {
 
 	@Autowired
 	private ProductDAO productDAO;
-	@Autowired
-	private TestDAO testorderDAO;
-	@Autowired
-	private OrderTest ordertest;
+	
 
 	@RequestMapping(value = "/address", method = RequestMethod.GET)
 	public String address(Model model) {
 		model.addAttribute("addressDetails", new AddressDetails());
 
 		return "addressdetails";
+	}
+
+	@RequestMapping(value = "/addres{id}", method = RequestMethod.GET)
+	public ModelAndView addres(@PathVariable("id") int id,Model model,HttpServletRequest req) {
+		ModelAndView mv=new ModelAndView();
+		
+		if (req.getRemoteUser() != null) {
+		model.addAttribute("addressDetails", new AddressDetails());
+
+		mv.setViewName("addressdetails");
+		}else {
+			mv.addObject("logincart", "Please Login to buy your yummy cake");
+
+			mv.setViewName("loginneww");
+		}
+		return mv;
 	}
 
 	@RequestMapping(value = "/checkout", method = RequestMethod.POST)

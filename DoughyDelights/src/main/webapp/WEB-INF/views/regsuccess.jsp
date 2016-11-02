@@ -16,11 +16,13 @@
 	
 <div class="container">
 
-<h3 align="center">Hi ${cakeUser.name}</h3>
-<h4 align="center">You have been registered successfully</h4>
+<h3 align="center">Hi ${cakeUser.name}..!</h3>
+<h4 align="center">You have registered successfully..!</h4>
+<h4 align="center">We have sent you an otp..</h4>
+<h4 align="center">Use otp to login with  our site..!!</h4>
 
-<center><a class="btn btn-success" href="<c:url value = "/" />">HOME</a></center>
-</div>
+<center><a class="btn btn-success" href="<c:url value = "goologin" />">LOGIN</a></center>
+</div><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <%@include file="footer.jsp"%>
 </body>
 </html>
