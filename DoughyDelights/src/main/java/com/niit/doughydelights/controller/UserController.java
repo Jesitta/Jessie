@@ -20,11 +20,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.niit.doughydelights.dao.CartDAO;
 import com.niit.doughydelights.dao.CategoryDAO;
+import com.niit.doughydelights.dao.ProductDAO;
 import com.niit.doughydelights.dao.UserDAO;
 import com.niit.doughydelights.model.CakeCart;
+import com.niit.doughydelights.model.CakeProduct;
 import com.niit.doughydelights.model.CakeUser;
+import com.niit.doughydelights.model.CartItemList;
 
 @Controller
 public class UserController {
@@ -36,11 +40,13 @@ public class UserController {
 	private CartDAO cartDAO;
 	@Autowired
 	private CategoryDAO categoryDAO;
-
+	@Autowired
+	private ProductDAO productDAO;
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup(Model model) {
 		model.addAttribute("cakeUser", new CakeUser());
 		model.addAttribute("isuserClickedRegisterHere", "true");
+		model.addAttribute("categoryList",categoryDAO.list());
 		return "signup";
 	}
 
@@ -48,10 +54,13 @@ public class UserController {
 	public ModelAndView signuppost(@Valid @ModelAttribute("cakeUser") CakeUser cakeUser, BindingResult result) {
 		ModelAndView modelAndView = new ModelAndView();
 		if (result.hasErrors()) {
+			modelAndView.addObject("categoryList",categoryDAO.list());
 			modelAndView.setViewName("/signup");
+			
 		} else {
 			userDAO.saveOrUpdate(cakeUser);
 			modelAndView.addObject("regsuccess", "Registered Successfully...!!");
+			modelAndView.addObject("categoryList",categoryDAO.list());
 			modelAndView.setViewName("/home");
 		}
 		return modelAndView;
@@ -68,8 +77,14 @@ public class UserController {
 		System.out.println(loggedInUser);
 		mv.addObject("loggedInUser", loggedInUser);
 		mv.addObject("categoryList", categoryDAO.list());
-		List<CakeCart> cartList = cartDAO.list(loggedInUser);
+		CakeUser cakeUser = userDAO.getUser(loggedInUser);
+		List<CartItemList> cartList = cartDAO.list(cakeUser.getUserCart().getCartId());
 		mv.addObject("cartSize", cartList.size());
+		mv.addObject("categoryList",categoryDAO.list());
+		List<CakeProduct> productlist =  productDAO.list();
+		Gson gson=new Gson();
+		String item=gson.toJson(productlist);
+		mv.addObject("items",item);
 		return mv;
 	}
 
@@ -87,6 +102,7 @@ public class UserController {
 		ModelAndView model = new ModelAndView();
 		if (error != null) {
 			model.addObject("errorMessage", "Invalid username and password...!");
+		
 		}
 
 		if (logout != null) {
@@ -94,20 +110,33 @@ public class UserController {
 			session.invalidate();
 			// session=req.getSession();
 			model.addObject("msg", "You've been logged out successfully.");
-			model.setViewName("index");
 			model.addObject("categoryList", categoryDAO.list());
+			List<CakeProduct> productlist =  productDAO.list();
+			Gson gson=new Gson();
+			String item=gson.toJson(productlist);
+			model.addObject("items",item);
+			model.setViewName("index");
+			
 		}
 
 		else {
-			model.setViewName("loginneww");
+			model.addObject("categoryList",categoryDAO.list());
+			model.setViewName("login");
 		}
 		return model;
 
 	}
 	@RequestMapping("/reset")
-public String reset(Model model){
-		model.addAttribute("cakeUser",new CakeUser());
-		return "password";
+public ModelAndView  reset(HttpServletRequest req){
+		ModelAndView mv=new ModelAndView("password");
+		mv.addObject("cakeUser",new CakeUser());
+		String loggedInUser=req.getRemoteUser();
+		CakeUser cakeUser = userDAO.getUser(loggedInUser);
+		List<CartItemList> cartList = cartDAO.list(cakeUser.getUserCart().getCartId());
+		mv.addObject("cartSize", cartList.size());
+		mv.addObject("categoryList", categoryDAO.list());
+	return mv;
+		
 	}
 	@RequestMapping(value = "resetpwd", method = RequestMethod.POST)
 	public ModelAndView signuppost(@ModelAttribute("cakeUser") CakeUser cakeUser,HttpServletRequest req){
@@ -116,7 +145,15 @@ public String reset(Model model){
  CakeUser cakeUser1=userDAO.getUser(loggedInUser);
  cakeUser1.setPassword(cakeUser.getPassword());
 		userDAO.saveOrUpdate(cakeUser1);
+		
+		List<CartItemList> cartList = cartDAO.list(cakeUser1.getUserCart().getCartId());
+		mv.addObject("cartSize", cartList.size());
 		mv.addObject("categoryList", categoryDAO.list());
+		List<CakeProduct> productlist =  productDAO.list();
+		Gson gson=new Gson();
+		String item=gson.toJson(productlist);
+		mv.addObject("items",item);
 	return mv;
+	
 	}
 }

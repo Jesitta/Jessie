@@ -7,55 +7,21 @@
 <head>
 <meta charset="UTF-8">
 <title>ConfirmDetails</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </head>
-<style type="text/css">
-body {
-	background-image: url("resources/pictures/bgimage.jpg");
-}
-</style>
+
 <body>
 	<%@include file="header.jsp"%>
 	<div class="container">
-
+	<br>
+<div class=col-sm-3></div>
 		<div class=col-sm-6>
 			<h3>
-				<b>SIGNUP</b>
+				<b>CONFIRM YOUR DETAILS</b>
 			</h3>
 			<form:form   method="post"
 				commandName="cakeUser">
-<%-- <table>
-<tr>
-<td>Name:</td>
-<td><form:input path="name"/></td>
-</tr>
 
-<tr>
-<td>Address:</td>
-<td><form:input path="address"/></td>
-</tr>
-
-<tr>
-<td>Password:</td>
-<td><form:password path="password"/></td>
-</tr>
-<tr>
-<td>Mobile number:</td>
-<td><form:input path="mobilenumber"/></td>
-</tr>
-<tr>
-<td>User name:</td>
-<td><form:input path="username"/></td>
-</tr>
-
-</table>
-  --%>
 				<div class="form-group ">
 					<label for="name">Name</label><br>
 					<form:input path="name" class="form-control"
@@ -72,18 +38,13 @@ body {
 
 				</div>
 				<div class="form-group">
-					<label for="password">Password</label>
-					<form:input path="password" class="form-control" pattern=".{5,}"
-						title="Five or more characters" placeholder="Enter password"
-						readonly="true"/>
+					<label for="email">Email</label>
+					<form:input path="email" class="form-control"
+						placeholder="Enter email" readonly="true" />
 
 				</div>
-				<div class="form-group">
-					<label for="address">Address</label>
-					<form:input path="address" class="form-control"
-						placeholder="Enter address" readonly="true" />
-
-				</div>
+				
+				
 				<div class="form-group">
 					<label for="mobilenumber">Mobilenumber</label>
 					<form:input path="mobilenumber" class="form-control"

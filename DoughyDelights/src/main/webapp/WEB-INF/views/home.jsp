@@ -15,11 +15,7 @@
 
 <style type="text/css">
 
-body {
-	background-image: url("resources/pictures/bgimage.jpg");
-	padding-bottom: 0px;
-	margin-bottom: 0px;
-}
+
 
 .navbar {
 	background-color: LightCoral;
@@ -48,14 +44,7 @@ li a {
 
 
 	<security:authorize access="hasRole('ROLE_USER')">
-		<div class="col-md-offset-1">
 		
-		
-			<h4>
-				<b><i>Welcome ${loggedInUser}..!</i></b></h4>
-				
-			
-		</div>
 
 		<%@include file="carousel.jsp"%>
 
@@ -63,7 +52,8 @@ li a {
 	</security:authorize>
 
 	<security:authorize access="hasRole('ROLE_ADMIN')">
-		<%@include file="mainheader.jsp"%>
+	<br><br><br><br>
+		
 		<%@include file="admin.jsp"%>
 
 </security:authorize>

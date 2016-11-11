@@ -14,7 +14,7 @@
   </servlet-mapping>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/dispatcher-servlet.xml,/WEB-INF/spring-security.xml </param-value>
+    <param-value>/WEB-INF/dispatcher-servlet.xml,/WEB-INF/spring-security.xml,/WEB-INF/mailsender-bean.xml </param-value>
   </context-param>
   <filter>
     <filter-name>springSecurityFilterChain</filter-name>
@@ -26,5 +26,5 @@
   </filter-mapping>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
+  </listener> 
 </web-app>

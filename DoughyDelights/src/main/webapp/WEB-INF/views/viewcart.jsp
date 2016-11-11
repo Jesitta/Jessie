@@ -55,20 +55,23 @@ th, td,tr {
 <body>
 
  <%@include file="header.jsp"%>
- <br>
- 
+
  <div class="container">
- <c:if test="${empty cartList}">
- <br><br><br><br><br><br><br><br><br>
- <div align="center" class="blink" style="color: red"><h4><b>${noitems}</b></h4></div>
+ <c:if test="${empty cartList}"><br><br>
+ <div align="center" class="blink" style="color: red"><h4><b>Cart is Empty</b></h4></div>
  
   </c:if>
   
   <c:if test="${not empty cartList }">
- <div align="left"><h4><b>${CartList}</b></h4></div>
- 
- 
- <br>
+  <div class="row">
+ <div class="col-md-2"><a href="<c:url value= '/continue'/>"><button type="submit"
+					class="btn btn-warning"><span
+										class="glyphicon glyphicon-chevron-left"></span> CONTINUE SHOPPING</button></a></div>
+ <div class="col-md-8"><center><h4><b>CART LIST</b></h4></center></div>
+ <div class="col-md-1"></div>
+ <div class="col-md-1"><a href="<c:url value= '/address'/>" ><button type="submit" class="btn btn-success">CHECKOUT <span
+										class="glyphicon glyphicon-chevron-right"></span></button></a></div>
+</div>
  
 <table class="table">
 <thead> 
@@ -89,16 +92,16 @@ th, td,tr {
 <c:forEach items="${cartList}" var="cart">
 								<tr>
 								
-									<td><a
-										href=" <c:url value="/delcart${cart.id}"/>"><button class="button button1" type="submit" onclick="return confirm('Are you sure you want to Remove?')" class="btn btn-danger">DELETE <span class="glyphicon glyphicon-remove"></span></button></a></td>
-									
-									 <td> <img src="resources/images/${cart.product.id}.jpg"  width=60; height=60; ></td> 
-									<td>${cart.productname}</td>
+								 	<td><a
+										href=" <c:url value="/delcart${cart.cartItemId}"/>"><button class="button button1" type="submit" onclick="return confirm('Are you sure you want to Remove?')" class="btn btn-danger">DELETE <span class="glyphicon glyphicon-remove"></span></button></a></td>
+									 
+									 <td> <img src="resources/images/${cart.products.id}.jpg"  width=60; height=60; ></td> 
+									<td>${cart.products.name}</td>
 									
 								
-<td><a href="minus${cart.id}"> <button type="submit">-</button></a>  <input type="text" size="1" value=" ${cart.quantity}"> <a href="plus${cart.id}"> <button type="submit">+</button></a></td>
+<td><a href="minus${cart.cartItemId}"> <button type="submit">-</button></a>  <input type="text" size="1" value=" ${cart.quantity}"> <a href="plus${cart.cartItemId}"> <button type="submit">+</button></a></td>
 									<td>${cart.price}</td>
-									<td>${cart.total}</td>
+									<td>${cart.totalPrice}</td>
 							
 									
 												
@@ -110,22 +113,17 @@ th, td,tr {
 
 </tbody>
 </table>
-<br><br>
+
 
 <div class="row">
  <div class="col-md-9"></div>
   <div class="col-md-3"><h4><b> GRAND TOTAL : ${totalAmount }</b></h4></div>
 </div>
-<br>
-<div class="row">
- <div class="col-md-10"></div>
-  <div class="col-md-2"><a href="<c:url value= '/address'/>" ><button type="submit" class="btn btn-success">CHECKOUT</button></a></div>
-</div>
+
+
 </c:if>
 
-</div>
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
+</div><br><br>
 	<%@include file="footer.jsp"%>
 
 

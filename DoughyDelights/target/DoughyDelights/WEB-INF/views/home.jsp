@@ -8,18 +8,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <title>Home Page</title>
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ <!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 
 <style type="text/css">
 
-body {
-	background-image: url("resources/pictures/bgimage.jpg");
-	padding-bottom: 0px;
-	margin-bottom: 0px;
-}
+
 
 .navbar {
 	background-color: LightCoral;
@@ -47,28 +43,22 @@ li a {
 	<%@include file="header.jsp"%>
 
 
-	<sec:authorize access="hasRole('ROLE_USER')">
-		<div class="col-md-offset-1">
+	<security:authorize access="hasRole('ROLE_USER')">
 		
-		
-			<h4>
-				<b><i>Welcome ${loggedInUser}..!</i></b></h4>
-				
-			
-		</div>
 
 		<%@include file="carousel.jsp"%>
 
 
-	</sec:authorize>
+	</security:authorize>
 
-	<sec:authorize access="hasRole('ROLE_ADMIN')">
-		<%@include file="mainheader.jsp"%>
+	<security:authorize access="hasRole('ROLE_ADMIN')">
+	<br><br><br><br>
+		
 		<%@include file="admin.jsp"%>
 
-	</sec:authorize>
+</security:authorize>
 
 
-	<%@include file="footer.jsp"%>
+<%@include file="footer.jsp"%>
 </body>
 </html>

@@ -6,8 +6,8 @@
 
 	<on-start>
 		<evaluate expression="registrationHandler.initFlow()" result="flowScope.cakeUser" />
+		
 	</on-start>
-
 	<view-state id="start" view="signup" model="cakeUser">
 		<transition on="submit" to="validate" />
 	</view-state>

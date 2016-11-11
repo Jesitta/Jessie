@@ -28,20 +28,22 @@ import com.niit.doughydelights.dao.SupplierDAO;
 import com.niit.doughydelights.dao.SupplierDAOImpl;
 import com.niit.doughydelights.dao.UserDAO;
 import com.niit.doughydelights.dao.UserDAOImpl;
-import com.niit.doughydelights.dao.UserOrderDAO;
-import com.niit.doughydelights.dao.UserOrderDAOImpl;
+
 import com.niit.doughydelights.model.AddressDetails;
-import com.niit.doughydelights.model.CakeCart;
+
 import com.niit.doughydelights.model.CakeCategory;
 import com.niit.doughydelights.model.CakeOrder;
 import com.niit.doughydelights.model.CakeProduct;
 import com.niit.doughydelights.model.CakeSupplier;
 import com.niit.doughydelights.model.CakeUser;
-import com.niit.doughydelights.model.UserOrder;
+import com.niit.doughydelights.model.CartItemList;
+import com.niit.doughydelights.model.PurchasedItems;
+import com.niit.doughydelights.model.UserCart;
 
 @Configuration
 @ComponentScan("com.niit")
 @EnableTransactionManagement
+
 public class ApplicationContextConfig {
 
 	@Bean(name = "dataSource")
@@ -72,13 +74,11 @@ public class ApplicationContextConfig {
 		sessionBuilder.addAnnotatedClass(CakeSupplier.class);
 		sessionBuilder.addAnnotatedClass(CakeProduct.class);
 		sessionBuilder.addAnnotatedClass(CakeUser.class);
-	
-		sessionBuilder.addAnnotatedClass(UserOrder.class);
-		sessionBuilder.addAnnotatedClass(CakeCart.class);
+	    sessionBuilder.addAnnotatedClass(UserCart.class);
+	    sessionBuilder.addAnnotatedClass(CakeOrder.class);
 		sessionBuilder.addAnnotatedClass(AddressDetails.class);
-
-		sessionBuilder.addAnnotatedClass(CakeOrder.class);
-
+		sessionBuilder.addAnnotatedClass(CartItemList.class);
+		sessionBuilder.addAnnotatedClass(PurchasedItems.class);
 		return sessionBuilder.buildSessionFactory();
 
 	}
@@ -133,12 +133,7 @@ public class ApplicationContextConfig {
 		return new OrderDAOImpl(sessionFactory);
 	}
 
-	@Autowired
-	@Bean(name = "userorderDAO")
-	public UserOrderDAO getUserOrderDAO(SessionFactory sessionFactory) {
-
-		return new UserOrderDAOImpl(sessionFactory);
-	}
+	
 	
 	@Autowired
 	@Bean(name = "addressDAO")

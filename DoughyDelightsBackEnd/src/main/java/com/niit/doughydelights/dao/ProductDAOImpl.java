@@ -59,7 +59,19 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 		return null;
 	}
-	
+	@Transactional
+	public CakeProduct getProductStock(int stock) {
+		String hql="from CakeProduct where stock =" + "'" + stock + "'";
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		
+		List<CakeProduct> listProduct = query.list();
+		
+		if(listProduct!= null && !listProduct.isEmpty()) {
+			return listProduct.get(0);
+			
+		}
+		return null;
+	}
 	@Transactional
 	public List <CakeProduct> getByCategory(int categoryId)
 	{
@@ -85,7 +97,7 @@ public class ProductDAOImpl implements ProductDAO {
 		return listProduct;
 	}
 
-	@Override
+	@Transactional
 	public List<CakeProduct> getBySupplier(int id) {
 		String hql="from CakeProduct where sup_id  =" + "'" + id + "'";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);

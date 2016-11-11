@@ -6,24 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>signuppage</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 
 </head>
 <style type="text/css">
-body {
-    background-image: url("resources/pictures/bgimage.jpg");
-    
-}
+
 </style>
 <body>
 <%@include file="header.jsp"%>
 	<div class="container">
-	
+	<br>
+	<div class=col-sm-3></div>
 	<div class=col-sm-6>
 	<h3><b>SIGNUP</b></h3> 
 		<form:form method="post"
@@ -33,7 +26,7 @@ body {
 			<div class="form-group ">
 				<label for="name">Name</label><br>
 				<form:input path="name" class="form-control" 
-					 placeholder="Enter name"  />
+					 placeholder="Enter name" title="Example:XXxxx" pattern="^[a-zA-Z]+$"/>
 					
 					  <c:forEach
 							items="${flowRequestContext.messageContext.getMessagesBySource('name')}"
@@ -58,33 +51,22 @@ body {
 							</div>
 						</c:forEach>
 			</div>
-			<div class="form-group">
-				<label for="password">Password</label>
-				<form:password path="password" class="form-control" pattern=".{5,}"
-					title="Five or more characters" placeholder="Enter password"
+			<div class="form-group">																	
+				<label for="email">Email</label>
+				<form:input path="email" class="form-control"  pattern="[a-z0-9._%+-]+@[gmail|yahoo]+\.[a-z]{2,3}$"
+					title="Enter valid emailid Example:xxxxx124@gmail.com" placeholder="Enter email"
 					 />
 					
 					<c:forEach
-							items="${flowRequestContext.messageContext.getMessagesBySource('password')}"
+							items="${flowRequestContext.messageContext.getMessagesBySource('email')}"
 							var="error">
 							<div>
 								<span  style="color:red">${error.text}</span>
 							</div>
 						</c:forEach>
 			</div>
-			<div class="form-group">
-				<label for="address">Address</label>
-				<form:input path="address" class="form-control"
-					placeholder="Enter address"  />
-					
-						<c:forEach
-							items="${flowRequestContext.messageContext.getMessagesBySource('address')}"
-							var="error">
-							<div>
-								<span style="color:red">${error.text}</span>
-							</div>
-						</c:forEach>
-			</div>
+			
+	
 			<div class="form-group">
 				<label for="mobilenumber">Mobilenumber</label>
 				<form:input path="mobilenumber" class="form-control"
@@ -100,6 +82,7 @@ body {
 							</div>
 						</c:forEach>
 			</div>
+			<br>
 		<input type="submit" name="_eventId_submit"
 							class="btn btn-success" value="SIGNUP" />
 

@@ -11,8 +11,9 @@
 </head>
 <body>
  <%@include file="header.jsp"%>
-<%@include file="mainheader.jsp"%>
+
 <div class="container"> 
+<br><br>
  <div class=col-sm-6>
 	<h4><b>${editsupplier}</b></h4> 
 		

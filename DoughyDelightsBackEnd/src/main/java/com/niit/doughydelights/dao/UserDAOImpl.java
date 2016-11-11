@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,7 @@ public class UserDAOImpl implements UserDAO {
 	public void saveOrUpdate(CakeUser cakeUser) {
 		cakeUser.setEnabled(true);
 		cakeUser.setRole("ROLE_USER");
+		
 		sessionFactory.getCurrentSession().saveOrUpdate(cakeUser);
 	}
 	

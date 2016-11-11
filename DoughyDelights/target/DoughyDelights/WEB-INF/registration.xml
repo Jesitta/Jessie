@@ -6,8 +6,8 @@
 
 	<on-start>
 		<evaluate expression="registrationHandler.initFlow()" result="flowScope.cakeUser" />
+		
 	</on-start>
-
 	<view-state id="start" view="signup" model="cakeUser">
 		<transition on="submit" to="validate" />
 	</view-state>
@@ -22,17 +22,24 @@
 
 	<view-state id="confirmDetails" view="confirmDetails" model="cakeUser">
 		<transition on="edit" to="start" />
-		<transition on="submit" to="confirm" />
+		<transition on="submit" to="otp" />
 	</view-state>
-<action-state id="confirm">
-		<evaluate
-			expression="registrationHandler.registerUser(cakeUser)"></evaluate>
-		<transition on="success" to="welcome" />
+	<action-state id="otp">
+		<evaluate expression="registrationHandler.mailSender(cakeUser)" result="flowScope.cakeUser"></evaluate>
+		<transition on="success" to="save" />
+	</action-state>
+	<!-- <view-state id="confirm" view="otpverification" model="cakeUser">
 		
+		<transition on="submit" to="save" />
+	</view-state> -->
+	
+	<action-state id="save">
+		<evaluate expression="registrationHandler.registerUser(cakeUser)"></evaluate>
+		<transition on="success" to="welcome" />
 
 	</action-state>
-
-	<end-state id="welcome" view="index" />
+	
+	<end-state id="welcome" view="regsuccess" />
 
 
 

@@ -88,9 +88,11 @@ return modelAndView;
 	public String deletecategory(@PathVariable("id") int id) {
 		
 		List<CakeProduct> product=productDAO.getByCategory(id);
+		if(product != null && !product.isEmpty()) {
 		for(CakeProduct cakeProduct:product){
 		productDAO.delete(cakeProduct.getId());
 	}
+		}
 		categoryDAO.delete(id);
 		
 		return "redirect:/adminviewcat";

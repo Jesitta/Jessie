@@ -4,11 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -32,7 +31,16 @@ public class CakeUser implements Serializable {
 	
 	private String mobilenumber;
 	private String email;
+	
+	@OneToOne
+    @JoinColumn(name = "addressId")
+    private AddressDetails address;
 
+
+	@OneToOne
+    @JoinColumn(name = "cartId")    
+    private UserCart userCart; 
+    
 	public String getMobilenumber() {
 		return mobilenumber;
 	}
@@ -99,4 +107,34 @@ public class CakeUser implements Serializable {
 		this.password = password;
 	}
 
+
+
+	public UserCart getUserCart() {
+		return userCart;
+	}
+
+	public void setUserCart(UserCart userCart) {
+		this.userCart = userCart;
+	}
+
+	public AddressDetails getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressDetails address) {
+		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "CakeUser [username=" + username + ", password=" + password + ", name=" + name + ", role=" + role
+				+ ", mobilenumber=" + mobilenumber + ", email=" + email + ", address=" + address + ", userCart="
+				+ userCart + ", enabled=" + enabled + "]";
+	}
+
+	
+
+	
+	
+	
 }

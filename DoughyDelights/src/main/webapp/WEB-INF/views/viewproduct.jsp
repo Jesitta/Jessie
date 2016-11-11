@@ -26,7 +26,7 @@ th, td,tr {
 </style>
 </head>
 <body><%@include file="header.jsp"%>
-<%@include file="mainheader.jsp"%>
+
 
 
 <br>

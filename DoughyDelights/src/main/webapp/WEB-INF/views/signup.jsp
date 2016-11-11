@@ -10,15 +10,13 @@
 
 </head>
 <style type="text/css">
-body {
-    background-image: url("resources/pictures/bgimage.jpg");
-    
-}
+
 </style>
 <body>
 <%@include file="header.jsp"%>
 	<div class="container">
-	
+	<br>
+	<div class=col-sm-3></div>
 	<div class=col-sm-6>
 	<h3><b>SIGNUP</b></h3> 
 		<form:form method="post"
@@ -55,7 +53,7 @@ body {
 			</div>
 			<div class="form-group">																	
 				<label for="email">Email</label>
-				<form:input path="email" class="form-control"  pattern="[a-z0-9._%+-]+@gmail+\.[a-z]{2,3}$"
+				<form:input path="email" class="form-control"  pattern="[a-z0-9._%+-]+@[gmail|yahoo]+\.[a-z]{2,3}$"
 					title="Enter valid emailid Example:xxxxx124@gmail.com" placeholder="Enter email"
 					 />
 					
@@ -89,7 +87,7 @@ body {
 							class="btn btn-success" value="SIGNUP" />
 
 		</form:form>
-	</div></div><br><br><br><br>
+	</div></div><br>
 	<%@include file="footer.jsp"%>
 	
 </body>

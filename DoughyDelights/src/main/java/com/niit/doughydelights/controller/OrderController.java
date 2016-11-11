@@ -26,13 +26,15 @@ import com.niit.doughydelights.dao.CategoryDAO;
 import com.niit.doughydelights.dao.OrderDAO;
 import com.niit.doughydelights.dao.ProductDAO;
 import com.niit.doughydelights.dao.UserDAO;
-import com.niit.doughydelights.dao.UserOrderDAO;
+
 import com.niit.doughydelights.model.AddressDetails;
 import com.niit.doughydelights.model.CakeCart;
 import com.niit.doughydelights.model.CakeOrder;
 import com.niit.doughydelights.model.CakeProduct;
 import com.niit.doughydelights.model.CakeUser;
-import com.niit.doughydelights.model.UserOrder;
+import com.niit.doughydelights.model.CartItemList;
+import com.niit.doughydelights.model.UserCart;
+import com.niit.doughydelights.model.PurchasedItems;
 
 @Controller
 public class OrderController {
@@ -40,8 +42,7 @@ public class OrderController {
 	private CartDAO cartDAO;
 	@Autowired
 	private UserDAO userDAO;
-	@Autowired
-	private UserOrderDAO userorderDAO;
+
 	@Autowired
 	private CakeOrder cakeOrder;
 	@Autowired
@@ -58,67 +59,65 @@ public class OrderController {
 
 	@Autowired
 	private ProductDAO productDAO;
-	
 
 	@RequestMapping(value = "/address", method = RequestMethod.GET)
-	public String address(Model model) {
+	public String address(Model model, HttpServletRequest req) {
 		model.addAttribute("addressDetails", new AddressDetails());
-
+		String loggedInUser = req.getRemoteUser();
+		CakeUser cakeUser = userDAO.getUser(loggedInUser);
+		List<CartItemList> cartList = cartDAO.list(cakeUser.getUserCart().getCartId());
+		model.addAttribute("cartSize", cartList.size());
+		model.addAttribute("categoryList", categoryDAO.list());
 		return "addressdetails";
 	}
 
 	@RequestMapping(value = "/addres{id}", method = RequestMethod.GET)
-	public ModelAndView addres(@PathVariable("id") int id,Model model,HttpServletRequest req) {
-		ModelAndView mv=new ModelAndView();
-		
+	public ModelAndView addres(@PathVariable("id") int id, Model model, HttpServletRequest req) {
+		ModelAndView mv = new ModelAndView();
+
 		if (req.getRemoteUser() != null) {
-		model.addAttribute("addressDetails", new AddressDetails());
+			model.addAttribute("addressDetails", new AddressDetails());
 
-		mv.setViewName("addressdetails");
-		}else {
+			mv.setViewName("addressdetails");
+		} else {
 			mv.addObject("logincart", "Please Login to buy your yummy cake");
-
-			mv.setViewName("loginneww");
+			String loggedInUser = req.getRemoteUser();
+			CakeUser cakeUser = userDAO.getUser(loggedInUser);
+			List<CartItemList> cartList = cartDAO.list(cakeUser.getUserCart().getCartId());
+			mv.addObject("cartSize", cartList.size());
+			mv.addObject("categoryList", categoryDAO.list());
+			mv.setViewName("login");
 		}
 		return mv;
 	}
 
 	@RequestMapping(value = "/checkout", method = RequestMethod.POST)
-	public ModelAndView checkout(@Valid @ModelAttribute("addressDetails") AddressDetails addressDetails, BindingResult result,
-			HttpSession session, HttpServletRequest req)
+	public ModelAndView checkout(@Valid @ModelAttribute("addressDetails") AddressDetails addressDetails,
+			BindingResult result, HttpSession session, HttpServletRequest req)
 
 	{
 
 		ModelAndView mv = new ModelAndView();
+		String loggedInUser = req.getRemoteUser();
+		CakeUser cakeUser = userDAO.getUser(loggedInUser);
+		List<CartItemList> cartList = cartDAO.list(cakeUser.getUserCart().getCartId());
+		mv.addObject("categoryList", categoryDAO.list());
 		if (result.hasErrors()) {
 
 			mv.setViewName("addressdetails");
-System.err.println("inside error");
+
 		}
 
 		else {
-			String loggedInUser = req.getRemoteUser();
-			CakeUser cakeUser = userDAO.getUser(loggedInUser);
+
 			addressDetails.setUser(cakeUser);
 			mv.addObject("details", addressDetails);
 			addressDAO.saveOrUpdate(addressDetails);
 
-			mv.addObject("ordersum", "ORDER SUMMARY");
-
-			List<CakeCart> cartList = cartDAO.list(loggedInUser);
-
-			for (CakeCart cake : cartList) {
+			for (CartItemList cake : cartList) {
 				CakeOrder cakeOrder = new CakeOrder();
-
-				cakeOrder.setCart(cake);
+				cakeOrder.setCart(cake.getUserCart());
 				cakeOrder.setUser(cakeUser);
-				CakeProduct cakeProduct = productDAO.get(cake.getProduct().getId());
-				System.out.println(cake.getProduct().getId());
-				cakeProduct.setStock(cakeProduct.getStock() - cake.getQuantity());
-				productDAO.saveOrUpdate(cakeProduct);
-				// cakeOrder.setDate();
-				// cakeOrder.setTime();
-
 				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 				Date date = new Date();
 				cakeOrder.setDate(dateFormat.format(date));
@@ -127,29 +126,48 @@ System.err.println("inside error");
 				cakeOrder.setTime(timeFormat.format(time));
 				cakeOrder.setAddress(addressDetails);
 				orderDAO.saveOrUpdate(cakeOrder);
+				/* removing the stock of product once it is dispatched */
+				CakeProduct cakeProduct = productDAO.get(cake.getProducts().getId());
+				System.out.println(cake.getProducts().getId());
+				cakeProduct.setStock(cakeProduct.getStock() - cake.getQuantity());
+				productDAO.saveOrUpdate(cakeProduct);
 			}
-
-			List<CakeCart> order = cartDAO.list(loggedInUser);
+			List<CartItemList> cartItems = null;
+			cartItems = cartDAO.list(cakeUser.getUserCart().getCartId());
+			List<CartItemList> order = cartDAO.list(cakeUser.getUserCart().getCartId());
 			mv.addObject("order", order);
+			mv.addObject("id", cakeUser.getUserCart().getCartId());
+			mv.addObject("totalAmount", cartDAO.getGrandTotal(cakeUser.getUserCart().getCartId()));
+			PurchasedItems purchasediems = new PurchasedItems();
+			for (CartItemList item : cartItems) {
+				purchasediems.setPurchaseItemId(item.getCartItemId());
+				purchasediems.setDate(item.getDate());
+				purchasediems.setProduct(item.getProducts());
+				purchasediems.setQuantity(item.getQuantity());
+				purchasediems.setTime(item.getTime());
+				purchasediems.setTotalPrice(item.getTotalPrice());
+				purchasediems.setUser(item.getUserCart());
+				purchasediems.setOrderId(cakeOrder.getOrderid());
 
-			mv.addObject("totalAmount", cartDAO.getTotalAmount(loggedInUser));
-			List<CakeCart> cart = cartDAO.list(loggedInUser);
-			UserOrder userOrder = new UserOrder();
-			userOrder.setUser(cakeUser);
-
-			userOrder.setGrandtotal(cartDAO.getGrandTotalAmount(loggedInUser));
-			userorderDAO.saveOrUpdate(userOrder);
-			for (CakeCart cakeCart : cart) {
-				cakeCart.setStatus('D');
-
-				cartDAO.saveOrUpdate(cakeCart);
-
+				cartDAO.savePurchasedItems(purchasediems);
+				cartDAO.delete(item.getCartItemId());
 			}
-			mv.setViewName("checkout");
+
+			UserCart userCart = cakeUser.getUserCart();
+			userCart.setGrandTotal(0);
+
+			System.out.println(userCart);
+			/*
+			 * UserCart userCart=
+			 * cartDAO.getByCartId(cakeUser.getUserCart().getCartId());
+			 * userCart.setGrandTotal(0);
+			 */
+			cartDAO.saveUserCart(userCart);
+			cartList = cartDAO.list(cakeUser.getUserCart().getCartId());
+			mv.addObject("cartSize", cartList.size());
+
 		}
-
 		return mv;
-
 	}
 
 	@RequestMapping("/continue")
@@ -158,14 +176,13 @@ System.err.println("inside error");
 
 	}
 
-	@RequestMapping("/adminvieworder")
-	public ModelAndView viewproduct() {
-		ModelAndView mv = new ModelAndView("/vieworder");
-		mv.addObject("OrderList", "ORDER LIST");
-		Gson gson = new Gson();
-		List<CakeOrder> order = orderDAO.list();
-		String orders = gson.toJson(order);
-		mv.addObject("orders", orders);
-		return mv;
-	}
 }
+
+/*
+ * 
+ * @RequestMapping("/adminvieworder") public ModelAndView viewproduct() {
+ * ModelAndView mv = new ModelAndView("/vieworder"); mv.addObject("OrderList",
+ * "ORDER LIST"); Gson gson = new Gson(); List<CakeOrder> order =
+ * orderDAO.list(); String orders = gson.toJson(order); mv.addObject("orders",
+ * orders); return mv; } }
+ */

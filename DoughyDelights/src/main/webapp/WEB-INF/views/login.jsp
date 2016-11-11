@@ -13,15 +13,17 @@
 
 	<%@include file="header.jsp"%>
 	<br>
-
+<br>
 	<div class="container">
 	
 
+<div class=col-sm-3></div>
 
 <div class=col-sm-6>
 
-			 <h4 style="color: red">${logincart}</h4> 
+			 <h4 style="color: red ">${logincart}</h4> 
 		 <h4 style="color: red">${errorMessage}</h4> 
+		 <br>
 			<h3>
 				<b>LOGIN</b>
 			</h3>
@@ -48,8 +50,8 @@
 
 	
 	</div>
-
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br>
+	
 	<%@include file="footer.jsp"%>
 </body>
 </html>

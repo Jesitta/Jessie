@@ -6,12 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 </head>
 <style type="text/css">
 body {
@@ -64,6 +64,13 @@ li a {
 				<ul class="dropdown-menu">
 					<li><a href="adminproduct">AddProduct</a></li>
 					<li><a href="adminviewprod">ViewProduct</a></li>
+
+				</ul>
+					<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown">Orders <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="adminvieworder">Order</a></li>
+					
 
 				</ul>
 		</ul>

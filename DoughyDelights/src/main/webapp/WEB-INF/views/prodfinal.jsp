@@ -63,12 +63,8 @@ table, th, td, tr {
 
 	</div>
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
+	<br><br>
 	<br>
 	<%@include file="footer.jsp"%>
 

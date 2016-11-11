@@ -13,8 +13,9 @@
 <body>
 
 <%@include file="header.jsp"%>
-<%@include file="mainheader.jsp"%>
+
 <div class="container">
+<br><br>
  <div class=col-sm-6>
 	<h4><b>${editproduct}</b></h4>
 <h4><b>${addproduct}</b></h4>

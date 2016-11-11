@@ -28,7 +28,7 @@ th, td,tr {
 <body>
 	<%@include file="header.jsp"%>
 
-	<%@include file="mainheader.jsp"%>
+	
 
 	<div class="container">
 

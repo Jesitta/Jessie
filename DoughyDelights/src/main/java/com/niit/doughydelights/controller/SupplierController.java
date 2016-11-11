@@ -82,9 +82,15 @@ private SupplierDAO supplierDAO;
 	}
 	@RequestMapping("/admindelsupl{id}")
 	public String deletecategory(@PathVariable("id") int id) {
+		
 		List<CakeProduct> product=productDAO.getBySupplier(id);
+		
+		if(product != null && !product.isEmpty()) {
+			 //has items here. The fact that has items does not mean that the items are != null. 
+			 //You have to check the nullity for every item
 		for(CakeProduct cakeProduct:product){
 		productDAO.delete(cakeProduct.getId());
+		}
 	}
 		supplierDAO.delete(id);
 		

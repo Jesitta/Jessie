@@ -9,47 +9,19 @@
 <title>ConfirmDetails</title>
 
 </head>
-<style type="text/css">
-body {
-	background-image: url("resources/pictures/bgimage.jpg");
-}
-</style>
+
 <body>
 	<%@include file="header.jsp"%>
 	<div class="container">
-
+	<br>
+<div class=col-sm-3></div>
 		<div class=col-sm-6>
 			<h3>
 				<b>CONFIRM YOUR DETAILS</b>
 			</h3>
 			<form:form   method="post"
 				commandName="cakeUser">
-<%-- <table>
-<tr>
-<td>Name:</td>
-<td><form:input path="name"/></td>
-</tr>
 
-<tr>
-<td>Address:</td>
-<td><form:input path="address"/></td>
-</tr>
-
-<tr>
-<td>Password:</td>
-<td><form:password path="password"/></td>
-</tr>
-<tr>
-<td>Mobile number:</td>
-<td><form:input path="mobilenumber"/></td>
-</tr>
-<tr>
-<td>User name:</td>
-<td><form:input path="username"/></td>
-</tr>
-
-</table>
-  --%>
 				<div class="form-group ">
 					<label for="name">Name</label><br>
 					<form:input path="name" class="form-control"
@@ -90,7 +62,7 @@ body {
 			</form:form>
 		</div>
 	</div>
-	<br><br><br>
+	<br>
 	<%@include file="footer.jsp"%>
 
 </body>

@@ -5,16 +5,7 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 
 <title>View</title>
 <style>
@@ -37,7 +28,7 @@ th, td,tr {
 <body>
 	<%@include file="header.jsp"%>
 
-	<%@include file="mainheader.jsp"%>
+	
 
 	<div class="container">
 
@@ -61,9 +52,10 @@ th, td,tr {
 <div class="col-sm-4">
 <div class="input-group">
    <input type="text"  ng-model="searchText" placeholder="Search"  class="form-control"/>
-    <span class="input-group-addon">
-        <i class="fa fa-search"></i>
-    </span>
+    <div class="input-group-addon input-sm">
+      <span class="glyphicon glyphicon-search"></span>
+    </div>
+    
 </div>
 <br>
 
@@ -73,14 +65,18 @@ th, td,tr {
 					<thead>
 						<tr>
 							<th style="width: 100; color: #C52D2F; text-align: center">CAT_ID</th>
-							<th style="width: 200; color: #C52D2F; text-align: center">CAT_NAME</th>
+							<th style="width: 200; color: #C52D2F; text-align: center"
+							ng-click="sortType = 'name'; sortReverse = !sortReverse">
+							CAT_NAME
+							<span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                          <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span></th>
 							<th style="width: 200; color: #C52D2F; text-align: center">CAT_DESCRIPTION</th>
 							<th style="width: 100; color: #C52D2F; text-align: center">EDIT</th>
 							<th style="width: 100; color: #C52D2F; text-align: center">DELETE</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr data-ng-repeat="category in list | filter:searchText">
+						<tr data-ng-repeat="category in list|orderBy:sortType:sortReverse | filter:searchText">
 							<td>CAT {{ category.id }}</td>
 							<td>{{ category.name }}</td>
 							<td>{{ category.description }}</td>

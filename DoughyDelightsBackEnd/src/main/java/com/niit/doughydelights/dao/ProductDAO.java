@@ -14,7 +14,7 @@ public interface ProductDAO {
 	public List<CakeProduct> getByProduct(int id);
 	public List<CakeProduct> getBySupplier(int id);
 
-
+	public CakeProduct getProductStock(int stock);
 	
 	
 }
